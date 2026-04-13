@@ -74,11 +74,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .social-btn.custom:hover{background:rgba(245,158,11,.25)}
 
 /* Scroll hint */
-.scroll-hint{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:10px;opacity:.5;font-size:.72rem;color:#fff;letter-spacing:.1em;text-transform:uppercase}
-.scroll-hint .dot{width:5px;height:5px;border-radius:50%;background:#fff;animation:bounce 1.4s infinite}
-.scroll-hint .dot:nth-child(2){animation-delay:.2s}
-.scroll-hint .dot:nth-child(3){animation-delay:.4s}
-@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+
 
 /* ── MAIN CONTENT ── */
 .main{max-width:860px;margin:0 auto;padding:60px 20px 80px}
@@ -273,7 +269,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .hero-contact{flex-direction:column;align-items:center;gap:6px}
   .contact-chip{width:100%;max-width:280px;justify-content:center}
   .social-btn{padding:10px 14px;font-size:.85rem;border-radius:12px}
-  .scroll-hint{display:none}
   .main{padding:32px 14px 56px}
   .section{margin-bottom:36px}
   .section-head{gap:10px;margin-bottom:20px}
@@ -337,10 +332,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <p class="hero-about" id="heroAbout">Personable and knowledgeable IT support technician with over 4 years of experience assisting customers with various hardware and software related issues. Provided in-depth technical support to clients at a Tier 2 level.</p>
     <div class="hero-contact" id="heroContact"></div>
     <div class="social-grid" id="socialGrid"></div>
-    <div class="scroll-hint">
-      <div style="display:flex;gap:5px"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-      <span id="scrollHintTxt">Ver CV completo</span>
-    </div>
+
   </div>
 </section>
 
@@ -756,8 +748,8 @@ function resolvePhoto(){
 // I18N
 // ══════════════════════════════════════════════
 const UI={
-  es:{expHeading:'Experiencia',eduHeading:'Educación y Certificaciones',skillsHeading:'Habilidades',langsHeading:'Idiomas',videosHeading:'Videos',podcastsHeading:'Podcasts',scrollHint:'Ver CV completo',noVideos:'Aún no hay videos agregados.',noPodcasts:'Aún no hay podcasts agregados.'},
-  en:{expHeading:'Experience',eduHeading:'Education & Certifications',skillsHeading:'Skills',langsHeading:'Languages',videosHeading:'Videos',podcastsHeading:'Podcasts',scrollHint:'View full CV',noVideos:'No videos added yet.',noPodcasts:'No podcasts added yet.'}
+  es:{expHeading:'Experiencia',eduHeading:'Educación y Certificaciones',skillsHeading:'Habilidades',langsHeading:'Idiomas',videosHeading:'Videos',podcastsHeading:'Podcasts',noVideos:'Aún no hay videos agregados.',noPodcasts:'Aún no hay podcasts agregados.'},
+  en:{expHeading:'Experience',eduHeading:'Education & Certifications',skillsHeading:'Skills',langsHeading:'Languages',videosHeading:'Videos',podcastsHeading:'Podcasts',noVideos:'No videos added yet.',noPodcasts:'No podcasts added yet.'}
 };
 
 function setLang(lang){
@@ -772,7 +764,6 @@ function setLang(lang){
   document.getElementById('videosHeading').textContent=u.videosHeading;
   document.getElementById('langsHeading').textContent=u.langsHeading;
   document.getElementById('podcastsHeading').textContent=u.podcastsHeading;
-  document.getElementById('scrollHintTxt').textContent=u.scrollHint;
   renderAll();
 }
 
