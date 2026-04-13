@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Carlos Marchena — CV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&amp;display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#0f172a;--navy-l:#1e3a5f;--navy-m:#2d4a7a;
@@ -267,11 +265,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
     <div>
       <div class="hero-name" id="heroName" onclick="secretClick()">Carlos Marchena Alpízar</div>
-      <div class="hero-title" id="heroTitleEl"></div>
+      <div class="hero-title" id="heroTitleEl">Ingeniero de Soporte Técnico · Especialista en IAM y Redes</div>
     </div>
-    <p class="hero-about" id="heroAboutEl"></p>
-    <div class="hero-contact" id="heroContact"></div>
-    <div class="social-grid" id="socialGrid"></div>
+    <p class="hero-about" id="heroAboutEl">Ingeniero de soporte técnico con más de 4 años de experiencia en soporte Tier 2, especializado en Gestión de Identidades y Accesos (IAM), redes y sistemas en la nube. Sólida experiencia en troubleshooting de sistemas distribuidos, APIs y entornos contenerizados (Kubernetes, Docker).</p>
+    <div class="hero-contact" id="heroContact"><a class="contact-chip" href="tel:88280987">📞 8828-0987</a><a class="contact-chip" href="mailto:carlosmarchena@gmail.com">✉️ carlosmarchena@gmail.com</a><a class="contact-chip" href="#">📍 Heredia, Costa Rica</a></div>
+    <div class="social-grid" id="socialGrid">
+    <a class="social-btn linkedin" href="https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span>LinkedIn</span><span class="s-arrow">→</span>
+    </a>
+    <a class="social-btn whatsapp" href="https://wa.me/50688280987" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg><span>WhatsApp</span><span class="s-arrow">→</span>
+    </a></div>
   </div>
 </section>
 
@@ -279,41 +283,245 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 <main class="main">
   <section class="section">
     <div class="section-head"><div class="section-icon">💼</div><h2 class="section-title" id="expHeading">Experiencia</h2><div class="section-line"></div></div>
-    <div class="exp-list" id="expList"></div>
+    <div class="exp-list" id="expList">
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Ingeniero de Soporte Técnico</div>
+          <div class="exp-period">2024 – 2026</div>
+        </div>
+        <div class="exp-company"><strong>Encora · Proyecto: AuthID</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">AuthID.ai es una plataforma de verificación de identidad biométrica. Troubleshooting avanzado de autenticación y detección de liveness. Análisis de logs y respuestas de API para identificar fallas del sistema. Reproducción de incidencias en entornos controlados. Colaboración con equipos de desarrollo, backend y business units.
+
+🏆 Reducí tasas de escalamiento mediante análisis profundo de causa raíz. Establecí procesos SLA-driven. Lideré la creación de documentación técnica y aproveché Databricks para troubleshooting basado en datos.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">TAC Engineer Tier 2 – Cisco DNA Center</div>
+          <div class="exp-period">2022 – 2023</div>
+        </div>
+        <div class="exp-company"><strong>Sykes · Proyecto: Cisco DNA Center</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Troubleshooting de clusters y servicios de Cisco DNA Center. Gestión de entornos Kubernetes y Docker. Actualizaciones de sistema (SWIM, IMC) y mantenimiento. CLI troubleshooting con Linux y comandos Maglev.
+
+🏆 Reduje interrupciones de servicio validando proactivamente procesos de upgrade. Aceleré resolución de incidentes mejorando workflows de troubleshooting en servicios Kubernetes.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Okta Administrator</div>
+          <div class="exp-period">2021 – 2022</div>
+        </div>
+        <div class="exp-company"><strong>Sykes · Proyecto: Okta</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Configuración y troubleshooting de SSO (SAML, OIDC, OAuth, WS-Fed). Gestión de políticas MFA y flujos de autenticación. Integración de Okta con Active Directory y LDAP. Provisioning, roles y ciclo de vida de usuarios.
+
+🏆 Reduje fallas de autenticación y disrupciones de acceso. Mejoré la confiabilidad de flujos de identidad estandarizando enfoques de troubleshooting.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">TAC Engineer Tier 2 – Cisco ACI</div>
+          <div class="exp-period">2019 – 2021</div>
+        </div>
+        <div class="exp-company"><strong>Sykes · Proyecto: Cisco ACI</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Troubleshooting avanzado de ACI fabric, políticas y servicios de red. Troubleshooting en Linux y análisis de logs. Gestión de certificados y APIs. Configuración de SNMP, DNS y NTP. Upgrades de ACI e IMC.
+
+🏆 Reduje incidentes recurrentes mediante análisis de causa raíz. Fortalecí la estabilidad general de la red en entornos distribuidos.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Agente de Detección de Fraude</div>
+          <div class="exp-period">2018 – 2019</div>
+        </div>
+        <div class="exp-company"><strong>Sykes · Proyecto: Capital One</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Contacto principal para consultas de fraude. Investigación de transacciones marcadas y actividad sospechosa. Análisis de patrones de transacciones e indicadores de riesgo.
+
+🏆 Reduje el riesgo financiero identificando patrones sospechosos. Fortalecí la confianza del cliente mejorando la efectividad de respuesta.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Representante de Soporte Técnico</div>
+          <div class="exp-period">2017 – 2018</div>
+        </div>
+        <div class="exp-company"><strong>Netcom S.A · Proyecto: ISP Support (ICE/Kölbi)</strong> · San José, Costa Rica</div>
+        <div class="exp-desc">Soporte técnico por llamada y correo electrónico. Troubleshooting de conectividad a internet. Configuración de módems y dispositivos de red. Resolución de problemas DSL, Fibra Óptica, Triple Play y VoIP.
+
+🏆 Reduje incidentes repetitivos resolviendo problemas de conectividad eficientemente en el primer contacto.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Técnico de Service Desk</div>
+          <div class="exp-period">Mayo – Dic 2016</div>
+        </div>
+        <div class="exp-company"><strong>Fujitsu · Proyecto: IT Service Desk</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Creación y gestión de tickets de incidencias. Soporte técnico básico (resets de contraseñas, impresoras, troubleshooting). Gestión de usuarios en Active Directory y Windows Server.
+
+🏆 Mejoré la eficiencia del servicio con documentación precisa. Reduje tiempo de inactividad de usuarios con soporte IT confiable.</div>
+      </div>
+    </div></div>
   </section>
   <section class="section">
     <div class="section-head"><div class="section-icon">🎓</div><h2 class="section-title" id="eduHeading">Educación y Certificaciones</h2><div class="section-line"></div></div>
-    <div class="edu-grid" id="eduGrid"></div>
+    <div class="edu-grid" id="eduGrid">
+    <div class="edu-card">
+      <div class="edu-title">Data Analyst</div>
+      <div class="edu-inst">Databricks</div>
+      <div class="edu-period">2026</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Licenciatura en Docencia</div>
+      <div class="edu-inst">Universidad San Marcos</div>
+      <div class="edu-period">2024 – 2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Ciencias de la Computación</div>
+      <div class="edu-inst">Universidad Nacional</div>
+      <div class="edu-period">2000 – 2005</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">IA Generativa: Introducción y Aplicaciones</div>
+      <div class="edu-inst">IBM</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Ruta de Entrenamiento Gen AI – Técnico</div>
+      <div class="edu-inst">Coursera</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">AI-Powered Software and System Design</div>
+      <div class="edu-inst">DeepLearning AI</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Team Software Engineering with AI</div>
+      <div class="edu-inst">DeepLearning AI</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">IA Generativa con Large Language Models</div>
+      <div class="edu-inst">DeepLearning AI / AWS</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Introducción a la IA Generativa para Dev de Software</div>
+      <div class="edu-inst">DeepLearning AI</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Advanced Prompt Engineering for Everyone</div>
+      <div class="edu-inst">Vanderbilt University</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Ruta de Entrenamiento Gen AI – Fundacional</div>
+      <div class="edu-inst">Coursera</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Containers &amp; Kubernetes Essentials</div>
+      <div class="edu-inst">IBM Developer Skills Network</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Docker Essentials – A Developer Introduction</div>
+      <div class="edu-inst">IBM Developer Skills Network</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Kubernetes</div>
+      <div class="edu-inst">Tech Academy – Sykes</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Introducción a Containers, Kubernetes y OpenShift V2</div>
+      <div class="edu-inst">IBM Developer Skills Network</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Introducción a Windows Server Administration</div>
+      <div class="edu-inst">Alison</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Endpoint Security</div>
+      <div class="edu-inst">Cisco</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Introducción a Ciberseguridad</div>
+      <div class="edu-inst">Cisco</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Linux Essentials</div>
+      <div class="edu-inst">Tech Academy – Sykes</div>
+      <div class="edu-period">2022</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Okta Certified Administrator</div>
+      <div class="edu-inst">Okta</div>
+      <div class="edu-period">2021</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">CCNA v7</div>
+      <div class="edu-inst">Tech Academy – Sykes</div>
+      <div class="edu-period">2024 – 2026</div>
+    </div></div>
   </section>
   <section class="section">
     <div class="section-head"><div class="section-icon">⚙️</div><h2 class="section-title" id="skillsHeading">Habilidades</h2><div class="section-line"></div></div>
-    <div class="skills-wrap" id="skillsWrap"></div>
+    <div class="skills-wrap" id="skillsWrap"><div class="skill-tag">Python</div><div class="skill-tag">APIs / REST</div><div class="skill-tag">Postman</div><div class="skill-tag">Kubernetes</div><div class="skill-tag">Docker</div><div class="skill-tag">Bash / Shell</div><div class="skill-tag">Linux (Ubuntu/CentOS)</div><div class="skill-tag">Windows Server</div><div class="skill-tag">VMware ESXi</div><div class="skill-tag">OpenSSL</div><div class="skill-tag">Cisco DNA Center</div><div class="skill-tag">Cisco ACI</div><div class="skill-tag">Okta / IAM</div><div class="skill-tag">SSO (SAML · OIDC · OAuth)</div><div class="skill-tag">LDAP / Active Directory</div><div class="skill-tag">PostgreSQL</div><div class="skill-tag">MongoDB</div><div class="skill-tag">Cassandra</div><div class="skill-tag">InfluxDB</div><div class="skill-tag">Databricks</div><div class="skill-tag">Log Analysis</div><div class="skill-tag">Jira</div><div class="skill-tag">Git</div><div class="skill-tag">Prompt Engineering</div><div class="skill-tag">Generative AI</div></div>
   </section>
   <section class="section">
     <div class="section-head"><div class="section-icon">🗣️</div><h2 class="section-title" id="langsHeading">Idiomas</h2><div class="section-line"></div></div>
-    <div class="langs-wrap" id="langsWrap"></div>
+    <div class="langs-wrap" id="langsWrap">
+    <div class="lang-card">
+      <div class="lang-flag">🇨🇷</div>
+      <div><div class="lang-name">Español</div><div class="lang-level">Nativo</div></div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-flag">🇺🇸</div>
+      <div><div class="lang-name">Inglés</div><div class="lang-level">Avanzado</div></div>
+    </div></div>
   </section>
   <section class="section">
     <div class="section-head"><div class="section-icon">🎬</div><h2 class="section-title" id="videosHeading">Videos</h2><div class="section-line"></div></div>
-    <div class="videos-grid" id="videosGrid"></div>
+    <div class="videos-grid" id="videosGrid"><div class="content-empty">No hay contenido aún.</div></div>
   </section>
   <section class="section">
     <div class="section-head"><div class="section-icon">🎙️</div><h2 class="section-title" id="podcastsHeading">Podcasts</h2><div class="section-line"></div></div>
-    <div class="podcasts-list" id="podcastsList"></div>
+    <div class="podcasts-list" id="podcastsList"><div class="content-empty">No hay contenido aún.</div></div>
   </section>
 </main>
 
-<div class="notif" id="notifEl"></div>
+<div class="notif" id="notifEl">✅ Cambios guardados</div>
 
 <!-- ADMIN PANEL -->
-<div class="adm-overlay" id="admOverlay">
+<div class="adm-overlay open" id="admOverlay">
  <div class="adm-panel">
   <div class="adm-head">
     <h2>⚙️ Panel Administrativo</h2>
     <div class="adm-head-r"><span class="adm-save-status" id="admSaveStatus">Carlos Marchena CV</span><button class="adm-close" onclick="closeAdmin()">✕</button></div>
   </div>
   <div class="adm-tabs">
-    <button class="adm-tab act" onclick="switchTab('perfil',this)">👤 Perfil</button>
+    <button class="adm-tab" onclick="switchTab('perfil',this)">👤 Perfil</button>
     <button class="adm-tab" onclick="switchTab('social',this)">🔗 Redes</button>
     <button class="adm-tab" onclick="switchTab('exp',this)">💼 Experiencia</button>
     <button class="adm-tab" onclick="switchTab('edu',this)">🎓 Educación</button>
@@ -322,16 +530,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <button class="adm-tab" onclick="switchTab('videos',this)">🎬 Videos</button>
     <button class="adm-tab" onclick="switchTab('podcasts',this)">🎙️ Podcasts</button>
     <button class="adm-tab" onclick="switchTab('security',this)">🔐 Seguridad</button>
-    <button class="adm-tab" onclick="switchTab('deploy',this)">🚀 Publicar</button>
+    <button class="adm-tab act" onclick="switchTab('deploy',this)">🚀 Publicar</button>
   </div>
   <div class="adm-body">
 
     <!-- PERFIL -->
-    <div class="adm-sec act" id="sec-perfil">
+    <div class="adm-sec" id="sec-perfil">
       <div class="adm-note">Escribe el contenido en <strong>español</strong> — se traducirá automáticamente al inglés al cambiar idioma.</div>
       <div class="adm-section-title">Foto de Perfil</div>
       <div class="photo-upload-area" onclick="document.getElementById('photoFileInput').click()">
-        <div class="photo-preview-ph" id="photoPreviewPh">👤</div>
+        <div class="photo-preview-ph" id="photoPreviewPh" style="display: flex;">👤</div>
         <img id="photoPreviewImg" class="photo-preview" style="display:none">
         <p style="font-size:.82rem;color:var(--text-l)">Click para subir foto · JPG/PNG/WEBP</p>
       </div>
@@ -353,28 +561,249 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <!-- SOCIAL -->
     <div class="adm-sec" id="sec-social">
       <div class="adm-note">Agrega o edita tus redes sociales.</div>
-      <div id="socialAdmList"></div>
+      <div id="socialAdmList">
+    <div class="adm-social-item" id="sadm-0">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-0"><option value="linkedin" selected="">LinkedIn</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="github">GitHub</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-0" value="https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-0" value="LinkedIn"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(0)">🗑</button></div>
+    </div>
+    <div class="adm-social-item" id="sadm-1">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-1"><option value="linkedin">LinkedIn</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="github">GitHub</option><option value="whatsapp" selected="">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-1" value="https://wa.me/50688280987" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-1" value="WhatsApp"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(1)">🗑</button></div>
+    </div>
+    <div class="adm-social-item" id="sadm-2">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-2"><option value="linkedin">LinkedIn</option><option value="instagram" selected="">Instagram</option><option value="facebook">Facebook</option><option value="github">GitHub</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-2" value="" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-2" value="Instagram"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(2)">🗑</button></div>
+    </div>
+    <div class="adm-social-item" id="sadm-3">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-3"><option value="linkedin">LinkedIn</option><option value="instagram">Instagram</option><option value="facebook" selected="">Facebook</option><option value="github">GitHub</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-3" value="" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-3" value="Facebook"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(3)">🗑</button></div>
+    </div>
+    <div class="adm-social-item" id="sadm-4">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-4"><option value="linkedin">LinkedIn</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="github" selected="">GitHub</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-4" value="" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-4" value="GitHub"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(4)">🗑</button></div>
+    </div></div>
       <button class="btn btn-outline" onclick="addSocialItem()">+ Agregar enlace</button>
     </div>
 
     <!-- EXPERIENCIA -->
     <div class="adm-sec" id="sec-exp">
       <div class="adm-note">Escribe en <strong>español</strong> — el motor de traducción hace el resto al cambiar a EN.</div>
-      <div class="adm-card-list" id="expAdmList"></div>
+      <div class="adm-card-list" id="expAdmList">
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-0',this)"><span>#1 Ingeniero de Soporte Técnico</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-0">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-0" value="Ingeniero de Soporte Técnico"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-0" value="Encora · Proyecto: AuthID"></div><div class="adm-fld"><label>Ubicación</label><input id="el-0" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-0" value="2024 – 2026"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-0" rows="4">AuthID.ai es una plataforma de verificación de identidad biométrica. Troubleshooting avanzado de autenticación y detección de liveness. Análisis de logs y respuestas de API para identificar fallas del sistema. Reproducción de incidencias en entornos controlados. Colaboración con equipos de desarrollo, backend y business units.
+
+🏆 Reducí tasas de escalamiento mediante análisis profundo de causa raíz. Establecí procesos SLA-driven. Lideré la creación de documentación técnica y aproveché Databricks para troubleshooting basado en datos.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(0,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(0,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(0)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-1',this)"><span>#2 TAC Engineer Tier 2 – Cisco DNA Center</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-1">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-1" value="TAC Engineer Tier 2 – Cisco DNA Center"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-1" value="Sykes · Proyecto: Cisco DNA Center"></div><div class="adm-fld"><label>Ubicación</label><input id="el-1" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-1" value="2022 – 2023"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-1" rows="4">Troubleshooting de clusters y servicios de Cisco DNA Center. Gestión de entornos Kubernetes y Docker. Actualizaciones de sistema (SWIM, IMC) y mantenimiento. CLI troubleshooting con Linux y comandos Maglev.
+
+🏆 Reduje interrupciones de servicio validando proactivamente procesos de upgrade. Aceleré resolución de incidentes mejorando workflows de troubleshooting en servicios Kubernetes.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(1,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(1,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(1)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-2',this)"><span>#3 Okta Administrator</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-2">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-2" value="Okta Administrator"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-2" value="Sykes · Proyecto: Okta"></div><div class="adm-fld"><label>Ubicación</label><input id="el-2" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-2" value="2021 – 2022"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-2" rows="4">Configuración y troubleshooting de SSO (SAML, OIDC, OAuth, WS-Fed). Gestión de políticas MFA y flujos de autenticación. Integración de Okta con Active Directory y LDAP. Provisioning, roles y ciclo de vida de usuarios.
+
+🏆 Reduje fallas de autenticación y disrupciones de acceso. Mejoré la confiabilidad de flujos de identidad estandarizando enfoques de troubleshooting.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(2,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(2,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(2)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-3',this)"><span>#4 TAC Engineer Tier 2 – Cisco ACI</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-3">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-3" value="TAC Engineer Tier 2 – Cisco ACI"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-3" value="Sykes · Proyecto: Cisco ACI"></div><div class="adm-fld"><label>Ubicación</label><input id="el-3" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-3" value="2019 – 2021"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-3" rows="4">Troubleshooting avanzado de ACI fabric, políticas y servicios de red. Troubleshooting en Linux y análisis de logs. Gestión de certificados y APIs. Configuración de SNMP, DNS y NTP. Upgrades de ACI e IMC.
+
+🏆 Reduje incidentes recurrentes mediante análisis de causa raíz. Fortalecí la estabilidad general de la red en entornos distribuidos.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(3,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(3,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(3)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-4',this)"><span>#5 Agente de Detección de Fraude</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-4">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-4" value="Agente de Detección de Fraude"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-4" value="Sykes · Proyecto: Capital One"></div><div class="adm-fld"><label>Ubicación</label><input id="el-4" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-4" value="2018 – 2019"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-4" rows="4">Contacto principal para consultas de fraude. Investigación de transacciones marcadas y actividad sospechosa. Análisis de patrones de transacciones e indicadores de riesgo.
+
+🏆 Reduje el riesgo financiero identificando patrones sospechosos. Fortalecí la confianza del cliente mejorando la efectividad de respuesta.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(4,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(4,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(4)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-5',this)"><span>#6 Representante de Soporte Técnico</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-5">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-5" value="Representante de Soporte Técnico"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-5" value="Netcom S.A · Proyecto: ISP Support (ICE/Kölbi)"></div><div class="adm-fld"><label>Ubicación</label><input id="el-5" value="San José, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-5" value="2017 – 2018"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-5" rows="4">Soporte técnico por llamada y correo electrónico. Troubleshooting de conectividad a internet. Configuración de módems y dispositivos de red. Resolución de problemas DSL, Fibra Óptica, Triple Play y VoIP.
+
+🏆 Reduje incidentes repetitivos resolviendo problemas de conectividad eficientemente en el primer contacto.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(5,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(5,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(5)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-6',this)"><span>#7 Técnico de Service Desk</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-6">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-6" value="Técnico de Service Desk"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-6" value="Fujitsu · Proyecto: IT Service Desk"></div><div class="adm-fld"><label>Ubicación</label><input id="el-6" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-6" value="Mayo – Dic 2016"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-6" rows="4">Creación y gestión de tickets de incidencias. Soporte técnico básico (resets de contraseñas, impresoras, troubleshooting). Gestión de usuarios en Active Directory y Windows Server.
+
+🏆 Mejoré la eficiencia del servicio con documentación precisa. Reduje tiempo de inactividad de usuarios con soporte IT confiable.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(6,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(6,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(6)">🗑 Eliminar</button></div>
+    </div></div></div>
       <button class="btn btn-outline" onclick="addExpItem()">+ Agregar posición</button>
     </div>
 
     <!-- EDUCACIÓN -->
     <div class="adm-sec" id="sec-edu">
       <div class="adm-note">Títulos y certificaciones.</div>
-      <div class="adm-card-list" id="eduAdmList"></div>
+      <div class="adm-card-list" id="eduAdmList">
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-0',this)"><span>#1 Data Analyst</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-0">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-0" value="Data Analyst"></div><div class="adm-fld"><label>Período</label><input id="edu-p-0" value="2026"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-0" value="Databricks"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(0)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-1',this)"><span>#2 Licenciatura en Docencia</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-1">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-1" value="Licenciatura en Docencia"></div><div class="adm-fld"><label>Período</label><input id="edu-p-1" value="2024 – 2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-1" value="Universidad San Marcos"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(1)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-2',this)"><span>#3 Ciencias de la Computación</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-2">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-2" value="Ciencias de la Computación"></div><div class="adm-fld"><label>Período</label><input id="edu-p-2" value="2000 – 2005"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-2" value="Universidad Nacional"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(2)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-3',this)"><span>#4 IA Generativa: Introducción y Aplicaciones</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-3">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-3" value="IA Generativa: Introducción y Aplicaciones"></div><div class="adm-fld"><label>Período</label><input id="edu-p-3" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-3" value="IBM"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(3)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-4',this)"><span>#5 Ruta de Entrenamiento Gen AI – Técnico</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-4">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-4" value="Ruta de Entrenamiento Gen AI – Técnico"></div><div class="adm-fld"><label>Período</label><input id="edu-p-4" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-4" value="Coursera"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(4)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-5',this)"><span>#6 AI-Powered Software and System Design</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-5">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-5" value="AI-Powered Software and System Design"></div><div class="adm-fld"><label>Período</label><input id="edu-p-5" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-5" value="DeepLearning AI"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(5)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-6',this)"><span>#7 Team Software Engineering with AI</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-6">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-6" value="Team Software Engineering with AI"></div><div class="adm-fld"><label>Período</label><input id="edu-p-6" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-6" value="DeepLearning AI"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(6)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-7',this)"><span>#8 IA Generativa con Large Language Models</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-7">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-7" value="IA Generativa con Large Language Models"></div><div class="adm-fld"><label>Período</label><input id="edu-p-7" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-7" value="DeepLearning AI / AWS"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(7)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-8',this)"><span>#9 Introducción a la IA Generativa para Dev de Software</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-8">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-8" value="Introducción a la IA Generativa para Dev de Software"></div><div class="adm-fld"><label>Período</label><input id="edu-p-8" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-8" value="DeepLearning AI"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(8)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-9',this)"><span>#10 Advanced Prompt Engineering for Everyone</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-9">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-9" value="Advanced Prompt Engineering for Everyone"></div><div class="adm-fld"><label>Período</label><input id="edu-p-9" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-9" value="Vanderbilt University"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(9)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-10',this)"><span>#11 Ruta de Entrenamiento Gen AI – Fundacional</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-10">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-10" value="Ruta de Entrenamiento Gen AI – Fundacional"></div><div class="adm-fld"><label>Período</label><input id="edu-p-10" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-10" value="Coursera"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(10)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-11',this)"><span>#12 Containers &amp; Kubernetes Essentials</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-11">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-11" value="Containers &amp; Kubernetes Essentials"></div><div class="adm-fld"><label>Período</label><input id="edu-p-11" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-11" value="IBM Developer Skills Network"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(11)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-12',this)"><span>#13 Docker Essentials – A Developer Introduction</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-12">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-12" value="Docker Essentials – A Developer Introduction"></div><div class="adm-fld"><label>Período</label><input id="edu-p-12" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-12" value="IBM Developer Skills Network"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(12)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-13',this)"><span>#14 Kubernetes</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-13">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-13" value="Kubernetes"></div><div class="adm-fld"><label>Período</label><input id="edu-p-13" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-13" value="Tech Academy – Sykes"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(13)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-14',this)"><span>#15 Introducción a Containers, Kubernetes y OpenShift V2</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-14">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-14" value="Introducción a Containers, Kubernetes y OpenShift V2"></div><div class="adm-fld"><label>Período</label><input id="edu-p-14" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-14" value="IBM Developer Skills Network"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(14)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-15',this)"><span>#16 Introducción a Windows Server Administration</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-15">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-15" value="Introducción a Windows Server Administration"></div><div class="adm-fld"><label>Período</label><input id="edu-p-15" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-15" value="Alison"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(15)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-16',this)"><span>#17 Endpoint Security</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-16">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-16" value="Endpoint Security"></div><div class="adm-fld"><label>Período</label><input id="edu-p-16" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-16" value="Cisco"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(16)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-17',this)"><span>#18 Introducción a Ciberseguridad</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-17">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-17" value="Introducción a Ciberseguridad"></div><div class="adm-fld"><label>Período</label><input id="edu-p-17" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-17" value="Cisco"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(17)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-18',this)"><span>#19 Linux Essentials</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-18">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-18" value="Linux Essentials"></div><div class="adm-fld"><label>Período</label><input id="edu-p-18" value="2022"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-18" value="Tech Academy – Sykes"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(18)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-19',this)"><span>#20 Okta Certified Administrator</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-19">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-19" value="Okta Certified Administrator"></div><div class="adm-fld"><label>Período</label><input id="edu-p-19" value="2021"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-19" value="Okta"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(19)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-20',this)"><span>#21 CCNA v7</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-20">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-20" value="CCNA v7"></div><div class="adm-fld"><label>Período</label><input id="edu-p-20" value="2024 – 2026"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-20" value="Tech Academy – Sykes"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(20)">🗑 Eliminar</button></div>
+    </div></div></div>
       <button class="btn btn-outline" onclick="addEduItem()">+ Agregar</button>
     </div>
 
     <!-- HABILIDADES -->
     <div class="adm-sec" id="sec-skills">
       <div class="adm-note">Términos técnicos — generalmente no necesitan traducción.</div>
-      <div class="skills-tags-edit" id="skillsAdmTags"></div>
+      <div class="skills-tags-edit" id="skillsAdmTags"><span class="skill-edit-tag">Python<button class="skill-del" onclick="removeSkill(0)">✕</button></span><span class="skill-edit-tag">APIs / REST<button class="skill-del" onclick="removeSkill(1)">✕</button></span><span class="skill-edit-tag">Postman<button class="skill-del" onclick="removeSkill(2)">✕</button></span><span class="skill-edit-tag">Kubernetes<button class="skill-del" onclick="removeSkill(3)">✕</button></span><span class="skill-edit-tag">Docker<button class="skill-del" onclick="removeSkill(4)">✕</button></span><span class="skill-edit-tag">Bash / Shell<button class="skill-del" onclick="removeSkill(5)">✕</button></span><span class="skill-edit-tag">Linux (Ubuntu/CentOS)<button class="skill-del" onclick="removeSkill(6)">✕</button></span><span class="skill-edit-tag">Windows Server<button class="skill-del" onclick="removeSkill(7)">✕</button></span><span class="skill-edit-tag">VMware ESXi<button class="skill-del" onclick="removeSkill(8)">✕</button></span><span class="skill-edit-tag">OpenSSL<button class="skill-del" onclick="removeSkill(9)">✕</button></span><span class="skill-edit-tag">Cisco DNA Center<button class="skill-del" onclick="removeSkill(10)">✕</button></span><span class="skill-edit-tag">Cisco ACI<button class="skill-del" onclick="removeSkill(11)">✕</button></span><span class="skill-edit-tag">Okta / IAM<button class="skill-del" onclick="removeSkill(12)">✕</button></span><span class="skill-edit-tag">SSO (SAML · OIDC · OAuth)<button class="skill-del" onclick="removeSkill(13)">✕</button></span><span class="skill-edit-tag">LDAP / Active Directory<button class="skill-del" onclick="removeSkill(14)">✕</button></span><span class="skill-edit-tag">PostgreSQL<button class="skill-del" onclick="removeSkill(15)">✕</button></span><span class="skill-edit-tag">MongoDB<button class="skill-del" onclick="removeSkill(16)">✕</button></span><span class="skill-edit-tag">Cassandra<button class="skill-del" onclick="removeSkill(17)">✕</button></span><span class="skill-edit-tag">InfluxDB<button class="skill-del" onclick="removeSkill(18)">✕</button></span><span class="skill-edit-tag">Databricks<button class="skill-del" onclick="removeSkill(19)">✕</button></span><span class="skill-edit-tag">Log Analysis<button class="skill-del" onclick="removeSkill(20)">✕</button></span><span class="skill-edit-tag">Jira<button class="skill-del" onclick="removeSkill(21)">✕</button></span><span class="skill-edit-tag">Git<button class="skill-del" onclick="removeSkill(22)">✕</button></span><span class="skill-edit-tag">Prompt Engineering<button class="skill-del" onclick="removeSkill(23)">✕</button></span><span class="skill-edit-tag">Generative AI<button class="skill-del" onclick="removeSkill(24)">✕</button></span></div>
       <div style="display:flex;gap:8px;margin-top:4px">
         <input id="newSkillInput" placeholder="Nueva habilidad..." style="flex:1;padding:8px 12px;border:2px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none" onkeydown="if(event.key==='Enter')addSkill()">
         <button class="btn btn-cyan" onclick="addSkill()">+ Agregar</button>
@@ -384,7 +813,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <!-- IDIOMAS -->
     <div class="adm-sec" id="sec-langs">
       <div class="adm-note">Idiomas que hablás y tu nivel de dominio.</div>
-      <div class="adm-card-list" id="langsAdmList"></div>
+      <div class="adm-card-list" id="langsAdmList">
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('lgbd-0',this)"><span>#1 Español</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="lgbd-0">
+      <div class="adm-row"><div class="adm-fld"><label>Idioma</label><input id="lg-n-0" value="Español" placeholder="Español"></div><div class="adm-fld"><label>Nivel</label><input id="lg-l-0" value="Nativo" placeholder="Nativo / Avanzado"></div></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeLang(0)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('lgbd-1',this)"><span>#2 Inglés</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="lgbd-1">
+      <div class="adm-row"><div class="adm-fld"><label>Idioma</label><input id="lg-n-1" value="Inglés" placeholder="Español"></div><div class="adm-fld"><label>Nivel</label><input id="lg-l-1" value="Avanzado" placeholder="Nativo / Avanzado"></div></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeLang(1)">🗑 Eliminar</button></div>
+    </div></div></div>
       <button class="btn btn-outline" onclick="addLangItem()">+ Agregar idioma</button>
     </div>
 
@@ -412,7 +851,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
 
     <!-- DEPLOY -->
-    <div class="adm-sec" id="sec-deploy">
+    <div class="adm-sec act" id="sec-deploy">
       <div class="adm-note">Publica en GitHub Pages actualizando <strong>index.html</strong> y <strong>data.json</strong>.</div>
       <div class="adm-section-title">Configuración de GitHub</div>
       <div class="adm-fld"><label>Usuario de GitHub</label><input id="gh-user" placeholder="tu-usuario"></div>
@@ -423,7 +862,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </div>
       <button class="btn btn-green" onclick="publishToGitHub()">🚀 Publicar en GitHub Pages</button>
       <button class="btn btn-outline" onclick="downloadDataJson()" style="margin-left:8px">⬇️ Descargar data.json</button>
-      <div class="deploy-log" id="deployLog"></div>
+      <div class="deploy-log show" id="deployLog">▶ Iniciando publicación...<br>1️⃣ Obteniendo referencia...<br>2️⃣ Preparando archivos...<br></div>
       <div class="adm-section-title" style="margin-top:24px">Peligro</div>
       <button class="btn btn-danger btn-sm" onclick="resetAllData()">🗑 Borrar todos los datos locales</button>
     </div>
@@ -1102,5 +1541,6 @@ function showNotif(msg){const el=document.getElementById('notifEl');el.textConte
   await setLang(currentLang);
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>

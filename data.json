@@ -1,5 +1,5 @@
 {
-  "adminPw": "",
+  "adminPw": "86e93299690acdf6f1848aa7f24c323342c9045ccd809278682f3387832cf46f",
   "photo": "",
   "name": "Carlos Marchena Alpízar",
   "title": "Ingeniero de Soporte Técnico · Especialista en IAM y Redes",
@@ -10,28 +10,28 @@
   "social": [
     {
       "type": "linkedin",
-      "label": "LinkedIn",
-      "url": "https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139"
+      "url": "https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139",
+      "label": "LinkedIn"
     },
     {
       "type": "whatsapp",
-      "label": "WhatsApp",
-      "url": "https://wa.me/50688280987"
+      "url": "https://wa.me/50688280987",
+      "label": "WhatsApp"
     },
     {
       "type": "instagram",
-      "label": "Instagram",
-      "url": ""
+      "url": "",
+      "label": "Instagram"
     },
     {
       "type": "facebook",
-      "label": "Facebook",
-      "url": ""
+      "url": "",
+      "label": "Facebook"
     },
     {
       "type": "github",
-      "label": "GitHub",
-      "url": ""
+      "url": "",
+      "label": "GitHub"
     }
   ],
   "experience": [
