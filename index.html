@@ -149,21 +149,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .notif.show{transform:translateX(-50%) translateY(0);opacity:1}
 
 /* ── ADMIN ── */
-.adm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9000;overflow-y:auto}
-.adm-overlay.open{display:flex;align-items:flex-start;justify-content:center;padding:30px 16px}
-.adm-panel{background:#fff;border-radius:20px;width:100%;max-width:880px;overflow:hidden;animation:fadeIn .3s ease;box-shadow:0 20px 80px rgba(0,0,0,.3)}
+.adm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9000;overflow-y:auto;padding:20px 16px}
+.adm-overlay.open{display:flex;align-items:flex-start;justify-content:center}
+.adm-panel{background:#fff;border-radius:20px;width:100%;max-width:880px;display:flex;flex-direction:column;max-height:92vh;animation:fadeIn .3s ease;box-shadow:0 20px 80px rgba(0,0,0,.3)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.adm-head{background:var(--navy);color:#fff;padding:18px 26px;display:flex;align-items:center;justify-content:space-between}
+.adm-head{background:var(--navy);color:#fff;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-radius:20px 20px 0 0}
 .adm-head h2{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700}
 .adm-head-r{display:flex;align-items:center;gap:14px}
 .adm-save-status{font-size:.75rem;color:rgba(255,255,255,.45)}
 .adm-close{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7;transition:opacity var(--tr)}
 .adm-close:hover{opacity:1}
-.adm-tabs{display:flex;border-bottom:2px solid #f0f4f8;background:#f8fafc;overflow-x:auto;scrollbar-width:none}
-.adm-tabs::-webkit-scrollbar{display:none}
-.adm-tab{flex:0 0 auto;padding:12px 15px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;color:var(--text-l);transition:all var(--tr);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap}
+.adm-tabs{display:flex;flex-wrap:wrap;border-bottom:2px solid #f0f4f8;background:#f8fafc;flex-shrink:0}
+.adm-tab{flex:0 0 auto;padding:10px 13px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--text-l);transition:all var(--tr);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap}
 .adm-tab.act{color:var(--cyan-d);border-bottom-color:var(--cyan)}
-.adm-body{padding:24px 26px;max-height:62vh;overflow-y:auto}
+.adm-body{padding:24px 26px;overflow-y:auto;flex:1;min-height:0}
 .adm-sec{display:none}.adm-sec.act{display:block}
 .adm-note{background:#dbeafe;border-radius:8px;padding:10px 14px;font-size:.8rem;color:#1e40af;margin-bottom:18px;line-height:1.5}
 .adm-note.warn{background:#fef3c7;color:#92400e}
@@ -175,7 +174,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .adm-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .adm-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .adm-section-title{font-family:'Syne',sans-serif;font-weight:700;color:var(--navy);font-size:.9rem;margin:20px 0 12px;padding-bottom:6px;border-bottom:2px solid #f0f4f8}
-.adm-actions{display:flex;gap:10px;justify-content:flex-end;padding:16px 26px;border-top:2px solid #f0f4f8;flex-wrap:wrap;background:#f8fafc}
+.adm-actions{display:flex;gap:10px;justify-content:flex-end;padding:16px 26px;border-top:2px solid #f0f4f8;flex-wrap:wrap;background:#f8fafc;flex-shrink:0;border-radius:0 0 20px 20px}
 .btn{font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;padding:9px 20px;border-radius:30px;border:none;cursor:pointer;transition:all var(--tr);display:inline-flex;align-items:center;gap:6px}
 .btn-primary{background:var(--navy);color:#fff}.btn-primary:hover{background:var(--navy-m)}
 .btn-cyan{background:var(--cyan);color:#fff}.btn-cyan:hover{background:var(--cyan-d)}
@@ -214,8 +213,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .edu-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
   .videos-grid{grid-template-columns:1fr 1fr;gap:14px}
   .podcast-card{grid-template-columns:56px 1fr;gap:12px}.podcast-cover{width:56px;height:56px}
-  .adm-row,.adm-row3{grid-template-columns:1fr 1fr}.adm-body{padding:20px 18px}.adm-actions{padding:14px 18px}
-}
+  .adm-row,.adm-row3{grid-template-columns:1fr 1fr}.adm-body{padding:20px 18px}.adm-actions{padding:14px 18px}}
 @media(max-width:520px){
   .top-bar{padding:12px 14px}.hero{padding:64px 16px 44px}
   .hero-photo-wrap{width:110px;height:110px}.hero-photo,.hero-photo-ph{width:110px;height:110px}
@@ -230,9 +228,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .videos-grid{grid-template-columns:1fr;gap:12px}
   .podcast-card{grid-template-columns:50px 1fr;gap:10px;padding:14px 15px}.podcast-cover{width:50px;height:50px;border-radius:10px}
   .podcast-title{font-size:.88rem}.podcast-btn{padding:4px 10px;font-size:.72rem}
-  .adm-row,.adm-row3{grid-template-columns:1fr}.adm-body{padding:16px 14px;max-height:58vh}.adm-actions{padding:12px 14px}
-  .adm-tab{padding:10px 11px;font-size:.74rem}.adm-head{padding:15px 18px}.adm-head h2{font-size:1rem}
-  .adm-social-item{grid-template-columns:1fr}.adm-overlay{padding:16px 10px}
+  .adm-row,.adm-row3{grid-template-columns:1fr}.adm-body{padding:16px 14px}.adm-actions{padding:12px 14px}
+  .adm-tab{padding:9px 10px;font-size:.72rem}.adm-head{padding:15px 18px}.adm-head h2{font-size:1rem}
+  .adm-social-item{grid-template-columns:1fr}.adm-overlay{padding:12px 8px}
 }
 @media(max-width:380px){
   .hero-name{font-size:1.55rem}.hero-photo-wrap{width:96px;height:96px}.hero-photo,.hero-photo-ph{width:96px;height:96px;font-size:2.6rem}
@@ -445,7 +443,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="adm-fld" style="margin-top:8px"><label>Contraseña</label>
       <input id="loginPw" type="password" placeholder="Ingresa tu contraseña" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
-    <p style="font-size:.78rem;color:var(--text-l);margin-top:6px">Contraseña inicial: <code>admin123</code></p>
   </div>
   <div class="adm-actions">
     <button class="btn btn-outline" onclick="closeLogin()">Cancelar</button>
@@ -650,16 +647,29 @@ async function sha256(pw){
 }
 
 async function loadData(){
+  // Migration: convert old _es/_en structure to new single-field structure
+  function migrate(d){
+    if(!d)return d;
+    if(d.title_es&&!d.title)d.title=d.title_es;
+    if(d.about_es&&!d.about)d.about=d.about_es;
+    if(d.loc_es&&!d.loc)d.loc=d.loc_es;
+    (d.experience||[]).forEach(e=>{if(e.title_es&&!e.title)e.title=e.title_es;if(e.period_es&&!e.period)e.period=e.period_es;if(e.desc_es&&!e.desc)e.desc=e.desc_es;});
+    (d.education||[]).forEach(e=>{if(e.title_es&&!e.title)e.title=e.title_es;});
+    (d.languages||[]).forEach(l=>{if(l.lang_es&&!l.lang)l.lang=l.lang_es;if(l.level_es&&!l.level)l.level=l.level_es;});
+    (d.videos||[]).forEach(v=>{if(v.title_es&&!v.title)v.title=v.title_es;});
+    (d.podcasts||[]).forEach(p=>{if(p.title_es&&!p.title)p.title=p.title_es;if(p.desc_es&&!p.desc)p.desc=p.desc_es;});
+    return d;
+  }
   try{
     const r=await fetch('./data.json?t='+Date.now());
-    if(r.ok){D=await r.json();resolvePhoto();D_ORIGINAL=JSON.parse(JSON.stringify(D));return;}
+    if(r.ok){D=migrate(await r.json());resolvePhoto();D_ORIGINAL=JSON.parse(JSON.stringify(D));return;}
   }catch{}
   try{
     const s=localStorage.getItem('cv_data');
-    if(s){D=JSON.parse(s);resolvePhoto();D_ORIGINAL=JSON.parse(JSON.stringify(D));return;}
+    if(s){D=migrate(JSON.parse(s));resolvePhoto();D_ORIGINAL=JSON.parse(JSON.stringify(D));return;}
   }catch{}
   D=JSON.parse(JSON.stringify(DEFAULT_DATA));
-  D.adminPw=await sha256('admin123');
+  D.adminPw=await sha256('lipeca10');
   D_ORIGINAL=JSON.parse(JSON.stringify(D));
   saveData();
 }
@@ -1083,7 +1093,12 @@ function showNotif(msg){const el=document.getElementById('notifEl');el.textConte
 (async()=>{
   await loadData();
   const validHash=/^[a-f0-9]{64}$/;
-  if(!validHash.test(D.adminPw)){D.adminPw=D_ORIGINAL.adminPw=await sha256('admin123');saveData();}
+  const oldHash=await sha256('admin123');
+  // If password is still the old default, upgrade to new default
+  if(!validHash.test(D.adminPw)||D.adminPw===oldHash){
+    D.adminPw=D_ORIGINAL.adminPw=await sha256('lipeca10');
+    saveData();
+  }
   await setLang(currentLang);
 })();
 </script>
