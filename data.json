@@ -2,14 +2,11 @@
   "adminPw": "",
   "photo": "",
   "name": "Carlos Marchena Alpízar",
-  "title_es": "Ingeniero de Soporte Técnico · Especialista en IAM y Redes",
-  "title_en": "Technical Support Engineer · IAM & Networking Specialist",
-  "about_es": "Ingeniero de soporte técnico con más de 4 años de experiencia en soporte Tier 2, especializado en Gestión de Identidades y Accesos (IAM), redes y sistemas en la nube. Sólida experiencia en troubleshooting de sistemas distribuidos, APIs y entornos contenerizados (Kubernetes, Docker). Capacidad comprobada para colaborar con equipos multifuncionales, resolver problemas complejos y mejorar la confiabilidad de sistemas.",
-  "about_en": "Technical Support Engineer with 4+ years of experience in Tier 2 support, specializing in Identity & Access Management (IAM), networking, and cloud-based systems. Strong expertise in troubleshooting distributed systems, APIs, and containerized environments (Kubernetes, Docker). Proven ability to collaborate with cross-functional teams, resolve complex issues, and improve system reliability.",
+  "title": "Ingeniero de Soporte Técnico · Especialista en IAM y Redes",
+  "about": "Ingeniero de soporte técnico con más de 4 años de experiencia en soporte Tier 2, especializado en Gestión de Identidades y Accesos (IAM), redes y sistemas en la nube. Sólida experiencia en troubleshooting de sistemas distribuidos, APIs y entornos contenerizados (Kubernetes, Docker).",
   "phone": "8828-0987",
   "email": "carlosmarchena@gmail.com",
-  "loc_es": "Heredia, Costa Rica",
-  "loc_en": "Heredia, Costa Rica",
+  "loc": "Heredia, Costa Rica",
   "social": [
     {
       "type": "linkedin",
@@ -39,200 +36,158 @@
   ],
   "experience": [
     {
-      "title_es": "Ingeniero de Soporte Técnico",
-      "title_en": "Technical Support Engineer",
+      "title": "Ingeniero de Soporte Técnico",
       "company": "Encora · Proyecto: AuthID",
       "location": "Heredia, Costa Rica",
-      "period_es": "2024 – 2026",
-      "period_en": "2024 – 2026",
-      "desc_es": "AuthID.ai es una plataforma de verificación de identidad biométrica. Troubleshooting avanzado de autenticación y detección de liveness. Análisis de logs y respuestas de API para identificar fallas del sistema. Reproducción de incidencias en entornos controlados. Análisis de imágenes para verificación de identidad. Colaboración con equipos de desarrollo, backend y business units.\n\n🏆 Reducí tasas de escalamiento mediante análisis profundo de causa raíz. Establecí procesos SLA-driven. Lideré la creación de documentación técnica y aproveché Databricks para troubleshooting basado en datos.",
-      "desc_en": "AuthID.ai is a biometric identity verification platform. Perform advanced troubleshooting for authentication and liveness detection issues. Analyze logs and API responses to identify system failures. Reproduce issues in controlled environments. Conduct image analysis for identity verification failures.\n\n🏆 Reduced escalation rates through effective root cause analysis. Established SLA-driven support processes. Led creation of technical documentation and leveraged Databricks for data-driven troubleshooting."
+      "period": "2024 – 2026",
+      "desc": "AuthID.ai es una plataforma de verificación de identidad biométrica. Troubleshooting avanzado de autenticación y detección de liveness. Análisis de logs y respuestas de API para identificar fallas del sistema. Reproducción de incidencias en entornos controlados. Colaboración con equipos de desarrollo, backend y business units.\n\n🏆 Reducí tasas de escalamiento mediante análisis profundo de causa raíz. Establecí procesos SLA-driven. Lideré la creación de documentación técnica y aproveché Databricks para troubleshooting basado en datos."
     },
     {
-      "title_es": "TAC Engineer Tier 2 – Cisco DNA Center",
-      "title_en": "TAC Engineer Tier 2 – Cisco DNA Center",
+      "title": "TAC Engineer Tier 2 – Cisco DNA Center",
       "company": "Sykes · Proyecto: Cisco DNA Center",
       "location": "Heredia, Costa Rica",
-      "period_es": "2022 – 2023",
-      "period_en": "2022 – 2023",
-      "desc_es": "Troubleshooting de clusters y servicios de Cisco DNA Center. Gestión de entornos Kubernetes y Docker. Actualizaciones de sistema (SWIM, IMC) y mantenimiento. CLI troubleshooting con Linux y comandos Maglev. Soporte de hardware UCS, almacenamiento y virtualización.\n\n🏆 Reduje interrupciones de servicio validando proactivamente procesos de upgrade. Aceleré resolución de incidentes mejorando workflows de troubleshooting en servicios Kubernetes.",
-      "desc_en": "Troubleshoot Cisco DNA Center clusters and services. Manage Kubernetes and Docker-based environments. Perform system upgrades (SWIM, IMC). Execute CLI troubleshooting using Linux and Maglev commands. Support UCS hardware, storage, and virtualization.\n\n🏆 Reduced service disruptions by proactively validating upgrade processes. Accelerated incident resolution by improving Kubernetes-based troubleshooting workflows."
+      "period": "2022 – 2023",
+      "desc": "Troubleshooting de clusters y servicios de Cisco DNA Center. Gestión de entornos Kubernetes y Docker. Actualizaciones de sistema (SWIM, IMC) y mantenimiento. CLI troubleshooting con Linux y comandos Maglev.\n\n🏆 Reduje interrupciones de servicio validando proactivamente procesos de upgrade. Aceleré resolución de incidentes mejorando workflows de troubleshooting en servicios Kubernetes."
     },
     {
-      "title_es": "Okta Administrator",
-      "title_en": "Okta Administrator",
+      "title": "Okta Administrator",
       "company": "Sykes · Proyecto: Okta",
       "location": "Heredia, Costa Rica",
-      "period_es": "2021 – 2022",
-      "period_en": "2021 – 2022",
-      "desc_es": "Configuración y troubleshooting de SSO (SAML, OIDC, OAuth, WS-Fed). Gestión de políticas MFA y flujos de autenticación. Integración de Okta con Active Directory y LDAP. Provisioning, roles y ciclo de vida de usuarios.\n\n🏆 Reduje fallas de autenticación y disrupciones de acceso. Mejoré la confiabilidad de flujos de identidad estandarizando enfoques de troubleshooting.",
-      "desc_en": "Configure and troubleshoot SSO (SAML, OIDC, OAuth, WS-Fed). Manage MFA policies and authentication flows. Integrate Okta with Active Directory and LDAP. Handle provisioning, roles, and user lifecycle management.\n\n🏆 Reduced authentication failures and access disruptions. Improved reliability of identity flows by standardizing troubleshooting approaches."
+      "period": "2021 – 2022",
+      "desc": "Configuración y troubleshooting de SSO (SAML, OIDC, OAuth, WS-Fed). Gestión de políticas MFA y flujos de autenticación. Integración de Okta con Active Directory y LDAP. Provisioning, roles y ciclo de vida de usuarios.\n\n🏆 Reduje fallas de autenticación y disrupciones de acceso. Mejoré la confiabilidad de flujos de identidad estandarizando enfoques de troubleshooting."
     },
     {
-      "title_es": "TAC Engineer Tier 2 – Cisco ACI",
-      "title_en": "TAC Engineer Tier 2 – Cisco ACI",
+      "title": "TAC Engineer Tier 2 – Cisco ACI",
       "company": "Sykes · Proyecto: Cisco ACI",
       "location": "Heredia, Costa Rica",
-      "period_es": "2019 – 2021",
-      "period_en": "2019 – 2021",
-      "desc_es": "Troubleshooting avanzado de ACI fabric, políticas y servicios de red. Troubleshooting en Linux y análisis de logs. Gestión de certificados y APIs. Configuración de SNMP, DNS y NTP. Upgrades de ACI e IMC.\n\n🏆 Reduje incidentes recurrentes mediante análisis de causa raíz de configuraciones incorrectas de ACI. Fortalecí la estabilidad general de la red en entornos distribuidos.",
-      "desc_en": "Advanced troubleshooting for ACI fabric, policies, and network services. Linux-based troubleshooting and log analysis. Certificate and API management. Configure SNMP, DNS, and NTP. Execute ACI and IMC upgrades.\n\n🏆 Reduced recurring network incidents through structured root cause analysis of ACI misconfigurations. Strengthened network stability across distributed environments."
+      "period": "2019 – 2021",
+      "desc": "Troubleshooting avanzado de ACI fabric, políticas y servicios de red. Troubleshooting en Linux y análisis de logs. Gestión de certificados y APIs. Configuración de SNMP, DNS y NTP. Upgrades de ACI e IMC.\n\n🏆 Reduje incidentes recurrentes mediante análisis de causa raíz. Fortalecí la estabilidad general de la red en entornos distribuidos."
     },
     {
-      "title_es": "Agente de Detección de Fraude",
-      "title_en": "Fraud Detection Agent",
+      "title": "Agente de Detección de Fraude",
       "company": "Sykes · Proyecto: Capital One",
       "location": "Heredia, Costa Rica",
-      "period_es": "2018 – 2019",
-      "period_en": "2018 – 2019",
-      "desc_es": "Contacto principal para consultas de fraude. Investigación de transacciones marcadas y actividad sospechosa. Análisis de patrones de transacciones e indicadores de riesgo.\n\n🏆 Reduje el riesgo financiero identificando con precisión patrones sospechosos. Fortalecí la confianza del cliente mejorando la efectividad de respuesta.",
-      "desc_en": "Primary contact for fraud claim inquiries. Investigate flagged transactions and suspicious activity. Analyze transaction patterns and risk indicators.\n\n🏆 Reduced financial risk by accurately identifying suspicious transaction patterns. Strengthened customer trust by improving response effectiveness."
+      "period": "2018 – 2019",
+      "desc": "Contacto principal para consultas de fraude. Investigación de transacciones marcadas y actividad sospechosa. Análisis de patrones de transacciones e indicadores de riesgo.\n\n🏆 Reduje el riesgo financiero identificando patrones sospechosos. Fortalecí la confianza del cliente mejorando la efectividad de respuesta."
     },
     {
-      "title_es": "Representante de Soporte Técnico",
-      "title_en": "Technical Support Representative",
+      "title": "Representante de Soporte Técnico",
       "company": "Netcom S.A · Proyecto: ISP Support (ICE/Kölbi)",
       "location": "San José, Costa Rica",
-      "period_es": "2017 – 2018",
-      "period_en": "2017 – 2018",
-      "desc_es": "Soporte técnico por llamada y correo electrónico. Troubleshooting de conectividad a internet. Configuración de módems y dispositivos de red. Resolución de problemas DSL, Fibra Óptica, Triple Play y VoIP.\n\n🏆 Reduje incidentes repetitivos resolviendo problemas de conectividad eficientemente en el primer contacto.",
-      "desc_en": "Technical support via calls and email. Troubleshoot internet connectivity issues. Configure modems and network devices. Resolve DSL, Fiber, Triple Play and VoIP issues.\n\n🏆 Reduced repeat incidents by resolving connectivity issues efficiently on first contact, improving overall service reliability."
+      "period": "2017 – 2018",
+      "desc": "Soporte técnico por llamada y correo electrónico. Troubleshooting de conectividad a internet. Configuración de módems y dispositivos de red. Resolución de problemas DSL, Fibra Óptica, Triple Play y VoIP.\n\n🏆 Reduje incidentes repetitivos resolviendo problemas de conectividad eficientemente en el primer contacto."
     },
     {
-      "title_es": "Técnico de Service Desk",
-      "title_en": "Service Desk Technician",
+      "title": "Técnico de Service Desk",
       "company": "Fujitsu · Proyecto: IT Service Desk",
       "location": "Heredia, Costa Rica",
-      "period_es": "Mayo – Dic 2016",
-      "period_en": "May – Dec 2016",
-      "desc_es": "Creación y gestión de tickets de incidencias. Soporte técnico básico (resets de contraseñas, impresoras, troubleshooting). Gestión de usuarios en Active Directory y Windows Server.\n\n🏆 Mejoré la eficiencia del servicio con documentación precisa. Reduje tiempo de inactividad de usuarios con soporte IT confiable.",
-      "desc_en": "Create and manage incident tickets. Basic technical support (password resets, printers, troubleshooting). Manage users in Active Directory and Windows Server.\n\n🏆 Improved service efficiency with accurate incident documentation. Reduced user downtime by maintaining reliable and timely IT support."
+      "period": "Mayo – Dic 2016",
+      "desc": "Creación y gestión de tickets de incidencias. Soporte técnico básico (resets de contraseñas, impresoras, troubleshooting). Gestión de usuarios en Active Directory y Windows Server.\n\n🏆 Mejoré la eficiencia del servicio con documentación precisa. Reduje tiempo de inactividad de usuarios con soporte IT confiable."
     }
   ],
   "education": [
     {
-      "title_es": "Data Analyst",
-      "title_en": "Data Analyst",
+      "title": "Data Analyst",
       "institution": "Databricks",
       "period": "2026"
     },
     {
-      "title_es": "Licenciatura en Docencia",
-      "title_en": "Bachelor's in Teaching",
+      "title": "Licenciatura en Docencia",
       "institution": "Universidad San Marcos",
       "period": "2024 – 2025"
     },
     {
-      "title_es": "Ciencias de la Computación",
-      "title_en": "Computer Science",
+      "title": "Ciencias de la Computación",
       "institution": "Universidad Nacional",
       "period": "2000 – 2005"
     },
     {
-      "title_es": "IA Generativa: Introducción y Aplicaciones",
-      "title_en": "Generative AI: Introduction and Applications",
+      "title": "IA Generativa: Introducción y Aplicaciones",
       "institution": "IBM",
       "period": "2025"
     },
     {
-      "title_es": "Ruta de Entrenamiento Gen AI – Técnico",
-      "title_en": "Generative AI Training Path – Technical",
+      "title": "Ruta de Entrenamiento Gen AI – Técnico",
       "institution": "Coursera",
       "period": "2025"
     },
     {
-      "title_es": "AI-Powered Software and System Design",
-      "title_en": "AI-Powered Software and System Design",
+      "title": "AI-Powered Software and System Design",
       "institution": "DeepLearning AI",
       "period": "2025"
     },
     {
-      "title_es": "Team Software Engineering with AI",
-      "title_en": "Team Software Engineering with AI",
+      "title": "Team Software Engineering with AI",
       "institution": "DeepLearning AI",
       "period": "2025"
     },
     {
-      "title_es": "IA Generativa con Large Language Models",
-      "title_en": "Generative AI with Large Language Models",
+      "title": "IA Generativa con Large Language Models",
       "institution": "DeepLearning AI / AWS",
       "period": "2025"
     },
     {
-      "title_es": "Introducción a la IA Generativa para Dev de Software",
-      "title_en": "Introduction to Generative AI for Software Development",
+      "title": "Introducción a la IA Generativa para Dev de Software",
       "institution": "DeepLearning AI",
       "period": "2025"
     },
     {
-      "title_es": "Advanced Prompt Engineering for Everyone",
-      "title_en": "Advanced Prompt Engineering for Everyone",
+      "title": "Advanced Prompt Engineering for Everyone",
       "institution": "Vanderbilt University",
       "period": "2025"
     },
     {
-      "title_es": "Ruta de Entrenamiento Gen AI – Fundacional",
-      "title_en": "Generative AI Training Path – Foundational",
+      "title": "Ruta de Entrenamiento Gen AI – Fundacional",
       "institution": "Coursera",
       "period": "2025"
     },
     {
-      "title_es": "Containers & Kubernetes Essentials",
-      "title_en": "Containers & Kubernetes Essentials",
+      "title": "Containers & Kubernetes Essentials",
       "institution": "IBM Developer Skills Network",
       "period": "2023"
     },
     {
-      "title_es": "Docker Essentials",
-      "title_en": "Docker Essentials – A Developer Introduction",
+      "title": "Docker Essentials – A Developer Introduction",
       "institution": "IBM Developer Skills Network",
       "period": "2023"
     },
     {
-      "title_es": "Kubernetes",
-      "title_en": "Kubernetes",
+      "title": "Kubernetes",
       "institution": "Tech Academy – Sykes",
       "period": "2023"
     },
     {
-      "title_es": "Introducción a Containers, Kubernetes y OpenShift V2",
-      "title_en": "Introduction to Containers, Kubernetes and OpenShift V2",
+      "title": "Introducción a Containers, Kubernetes y OpenShift V2",
       "institution": "IBM Developer Skills Network",
       "period": "2023"
     },
     {
-      "title_es": "Introducción a Windows Server Administration",
-      "title_en": "Introduction to Windows Server Administration",
+      "title": "Introducción a Windows Server Administration",
       "institution": "Alison",
       "period": "2023"
     },
     {
-      "title_es": "Endpoint Security",
-      "title_en": "Endpoint Security",
+      "title": "Endpoint Security",
       "institution": "Cisco",
       "period": "2023"
     },
     {
-      "title_es": "Introducción a Ciberseguridad",
-      "title_en": "Introduction to Cybersecurity",
+      "title": "Introducción a Ciberseguridad",
       "institution": "Cisco",
       "period": "2023"
     },
     {
-      "title_es": "Linux Essentials",
-      "title_en": "Linux Essentials",
+      "title": "Linux Essentials",
       "institution": "Tech Academy – Sykes",
       "period": "2022"
     },
     {
-      "title_es": "Okta Certified Administrator",
-      "title_en": "Okta Certified Administrator",
+      "title": "Okta Certified Administrator",
       "institution": "Okta",
       "period": "2021"
     },
     {
-      "title_es": "CCNA v7",
-      "title_en": "CCNA v7",
+      "title": "CCNA v7",
       "institution": "Tech Academy – Sykes",
       "period": "2024 – 2026"
     }
@@ -266,16 +221,12 @@
   ],
   "languages": [
     {
-      "lang_es": "Español",
-      "lang_en": "Spanish",
-      "level_es": "Nativo",
-      "level_en": "Native"
+      "lang": "Español",
+      "level": "Nativo"
     },
     {
-      "lang_es": "Inglés",
-      "lang_en": "English",
-      "level_es": "Avanzado",
-      "level_en": "Advanced"
+      "lang": "Inglés",
+      "level": "Avanzado"
     }
   ],
   "videos": [],
