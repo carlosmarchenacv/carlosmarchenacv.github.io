@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Carlos Marchena — CV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&amp;display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#0f172a;--navy-l:#1e3a5f;--navy-m:#2d4a7a;
@@ -261,17 +259,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-photo-wrap" id="heroPhotoWrap">
-      <div class="hero-photo-ph" id="heroPh">👤</div>
+    <div class="hero-photo-wrap" id="heroPhotoWrap"><img id="heroPhotoImg" class="hero-photo" src="data:image/jpeg;base64,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">
+      <div class="hero-photo-ph" id="heroPh" style="display: none;">👤</div>
       <div class="hero-badge">✨</div>
     </div>
     <div>
       <div class="hero-name" id="heroName">Carlos Marchena Alpízar</div>
-      <div class="hero-title" id="heroTitleEl"></div>
+      <div class="hero-title" id="heroTitleEl">Ingeniero de Soporte Técnico · Especialista en IAM y Redes</div>
     </div>
-    <p class="hero-about" id="heroAboutEl"></p>
-    <div class="hero-contact" id="heroContact"></div>
-    <div class="social-grid" id="socialGrid"></div>
+    <p class="hero-about" id="heroAboutEl">Ingeniero de soporte técnico con más de 4 años de experiencia en soporte Tier 2, especializado en Gestión de Identidades y Accesos (IAM), redes y sistemas en la nube. Sólida experiencia en troubleshooting de sistemas distribuidos, APIs y entornos contenerizados (Kubernetes, Docker).</p>
+    <div class="hero-contact" id="heroContact"><a class="contact-chip" href="tel:88280987">📞 8828-0987</a><a class="contact-chip" href="mailto:carlosmarchena@gmail.com">✉️ carlosmarchena@gmail.com</a><a class="contact-chip" href="#">📍 Alajuela, Costa Rica</a></div>
+    <div class="social-grid" id="socialGrid">
+    <a class="social-btn linkedin" href="https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span>LinkedIn</span><span class="s-arrow">→</span>
+    </a>
+    <a class="social-btn whatsapp" href="https://wa.me/50688280987" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg><span>WhatsApp</span><span class="s-arrow">→</span>
+    </a></div>
   </div>
 </section>
 
@@ -279,42 +283,246 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 <main class="main">
   <section class="section">
     <div class="section-head"><div class="section-icon">💼</div><h2 class="section-title" id="expHeading">Experiencia</h2><div class="section-line"></div></div>
-    <div class="exp-list" id="expList"></div>
+    <div class="exp-list" id="expList">
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Ingeniero de Soporte Técnico</div>
+          <div class="exp-period">2024 – 2026</div>
+        </div>
+        <div class="exp-company"><strong>Encora · Proyecto: AuthID</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">AuthID.ai es una plataforma de verificación de identidad biométrica. Troubleshooting avanzado de autenticación y detección de liveness. Análisis de logs y respuestas de API para identificar fallas del sistema. Reproducción de incidencias en entornos controlados. Colaboración con equipos de desarrollo, backend y business units.
+
+🏆 Reducí tasas de escalamiento mediante análisis profundo de causa raíz. Establecí procesos SLA-driven. Lideré la creación de documentación técnica y aproveché Databricks para troubleshooting basado en datos.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">TAC Engineer Tier 2 – Cisco DNA Center</div>
+          <div class="exp-period">2022 – 2023</div>
+        </div>
+        <div class="exp-company"><strong>Sykes · Proyecto: Cisco DNA Center</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Troubleshooting de clusters y servicios de Cisco DNA Center. Gestión de entornos Kubernetes y Docker. Actualizaciones de sistema (SWIM, IMC) y mantenimiento. CLI troubleshooting con Linux y comandos Maglev.
+
+🏆 Reduje interrupciones de servicio validando proactivamente procesos de upgrade. Aceleré resolución de incidentes mejorando workflows de troubleshooting en servicios Kubernetes.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Okta Administrator</div>
+          <div class="exp-period">2021 – 2022</div>
+        </div>
+        <div class="exp-company"><strong>Sykes · Proyecto: Okta</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Configuración y troubleshooting de SSO (SAML, OIDC, OAuth, WS-Fed). Gestión de políticas MFA y flujos de autenticación. Integración de Okta con Active Directory y LDAP. Provisioning, roles y ciclo de vida de usuarios.
+
+🏆 Reduje fallas de autenticación y disrupciones de acceso. Mejoré la confiabilidad de flujos de identidad estandarizando enfoques de troubleshooting.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">TAC Engineer Tier 2 – Cisco ACI</div>
+          <div class="exp-period">2019 – 2021</div>
+        </div>
+        <div class="exp-company"><strong>Sykes · Proyecto: Cisco ACI</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Troubleshooting avanzado de ACI fabric, políticas y servicios de red. Troubleshooting en Linux y análisis de logs. Gestión de certificados y APIs. Configuración de SNMP, DNS y NTP. Upgrades de ACI e IMC.
+
+🏆 Reduje incidentes recurrentes mediante análisis de causa raíz. Fortalecí la estabilidad general de la red en entornos distribuidos.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Agente de Detección de Fraude</div>
+          <div class="exp-period">2018 – 2019</div>
+        </div>
+        <div class="exp-company"><strong>Sykes · Proyecto: Capital One</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Contacto principal para consultas de fraude. Investigación de transacciones marcadas y actividad sospechosa. Análisis de patrones de transacciones e indicadores de riesgo.
+
+🏆 Reduje el riesgo financiero identificando patrones sospechosos. Fortalecí la confianza del cliente mejorando la efectividad de respuesta.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Representante de Soporte Técnico</div>
+          <div class="exp-period">2017 – 2018</div>
+        </div>
+        <div class="exp-company"><strong>Netcom S.A · Proyecto: ISP Support (ICE/Kölbi)</strong> · San José, Costa Rica</div>
+        <div class="exp-desc">Soporte técnico por llamada y correo electrónico. Troubleshooting de conectividad a internet. Configuración de módems y dispositivos de red. Resolución de problemas DSL, Fibra Óptica, Triple Play y VoIP.
+
+🏆 Reduje incidentes repetitivos resolviendo problemas de conectividad eficientemente en el primer contacto.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Técnico de Service Desk</div>
+          <div class="exp-period">Mayo – Dic 2016</div>
+        </div>
+        <div class="exp-company"><strong>Fujitsu · Proyecto: IT Service Desk</strong> · Heredia, Costa Rica</div>
+        <div class="exp-desc">Creación y gestión de tickets de incidencias. Soporte técnico básico (resets de contraseñas, impresoras, troubleshooting). Gestión de usuarios en Active Directory y Windows Server.
+
+🏆 Mejoré la eficiencia del servicio con documentación precisa. Reduje tiempo de inactividad de usuarios con soporte IT confiable.</div>
+      </div>
+    </div></div>
   </section>
   <section class="section">
     <div class="section-head"><div class="section-icon">🎓</div><h2 class="section-title" id="eduHeading">Educación y Certificaciones</h2><div class="section-line"></div></div>
-    <div class="edu-grid" id="eduGrid"></div>
+    <div class="edu-grid" id="eduGrid">
+    <div class="edu-card">
+      <div class="edu-title">Data Analyst</div>
+      <div class="edu-inst">Databricks</div>
+      <div class="edu-period">2026</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Licenciatura en Docencia</div>
+      <div class="edu-inst">Universidad San Marcos</div>
+      <div class="edu-period">2024 – 2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Ciencias de la Computación</div>
+      <div class="edu-inst">Universidad Nacional</div>
+      <div class="edu-period">2000 – 2005</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">IA Generativa: Introducción y Aplicaciones</div>
+      <div class="edu-inst">IBM</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Ruta de Entrenamiento Gen AI – Técnico</div>
+      <div class="edu-inst">Coursera</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">AI-Powered Software and System Design</div>
+      <div class="edu-inst">DeepLearning AI</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Team Software Engineering with AI</div>
+      <div class="edu-inst">DeepLearning AI</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">IA Generativa con Large Language Models</div>
+      <div class="edu-inst">DeepLearning AI / AWS</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Introducción a la IA Generativa para Dev de Software</div>
+      <div class="edu-inst">DeepLearning AI</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Advanced Prompt Engineering for Everyone</div>
+      <div class="edu-inst">Vanderbilt University</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Ruta de Entrenamiento Gen AI – Fundacional</div>
+      <div class="edu-inst">Coursera</div>
+      <div class="edu-period">2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Containers &amp; Kubernetes Essentials</div>
+      <div class="edu-inst">IBM Developer Skills Network</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Docker Essentials – A Developer Introduction</div>
+      <div class="edu-inst">IBM Developer Skills Network</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Kubernetes</div>
+      <div class="edu-inst">Tech Academy – Sykes</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Introducción a Containers, Kubernetes y OpenShift V2</div>
+      <div class="edu-inst">IBM Developer Skills Network</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Introducción a Windows Server Administration</div>
+      <div class="edu-inst">Alison</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Endpoint Security</div>
+      <div class="edu-inst">Cisco</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Introducción a Ciberseguridad</div>
+      <div class="edu-inst">Cisco</div>
+      <div class="edu-period">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Linux Essentials</div>
+      <div class="edu-inst">Tech Academy – Sykes</div>
+      <div class="edu-period">2022</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Okta Certified Administrator</div>
+      <div class="edu-inst">Okta</div>
+      <div class="edu-period">2021</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">CCNA v7</div>
+      <div class="edu-inst">Tech Academy – Sykes</div>
+      <div class="edu-period">2024 – 2026</div>
+    </div></div>
   </section>
   <section class="section">
     <div class="section-head"><div class="section-icon">⚙️</div><h2 class="section-title" id="skillsHeading">Habilidades</h2><div class="section-line"></div></div>
-    <div class="skills-wrap" id="skillsWrap"></div>
+    <div class="skills-wrap" id="skillsWrap"><div class="skill-tag">Python</div><div class="skill-tag">APIs / REST</div><div class="skill-tag">Postman</div><div class="skill-tag">Kubernetes</div><div class="skill-tag">Docker</div><div class="skill-tag">Bash / Shell</div><div class="skill-tag">Linux (Ubuntu/CentOS)</div><div class="skill-tag">Windows Server</div><div class="skill-tag">VMware ESXi</div><div class="skill-tag">OpenSSL</div><div class="skill-tag">Cisco DNA Center</div><div class="skill-tag">Cisco ACI</div><div class="skill-tag">Okta / IAM</div><div class="skill-tag">SSO (SAML · OIDC · OAuth)</div><div class="skill-tag">LDAP / Active Directory</div><div class="skill-tag">PostgreSQL</div><div class="skill-tag">MongoDB</div><div class="skill-tag">Cassandra</div><div class="skill-tag">InfluxDB</div><div class="skill-tag">Databricks</div><div class="skill-tag">Log Analysis</div><div class="skill-tag">Jira</div><div class="skill-tag">Git</div><div class="skill-tag">Prompt Engineering</div><div class="skill-tag">Generative AI</div></div>
   </section>
   <section class="section">
     <div class="section-head"><div class="section-icon">🗣️</div><h2 class="section-title" id="langsHeading">Idiomas</h2><div class="section-line"></div></div>
-    <div class="langs-wrap" id="langsWrap"></div>
+    <div class="langs-wrap" id="langsWrap">
+    <div class="lang-card">
+      <div class="lang-flag">🇨🇷</div>
+      <div><div class="lang-name">Español</div><div class="lang-level">Nativo</div></div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-flag">🇺🇸</div>
+      <div><div class="lang-name">Inglés</div><div class="lang-level">Avanzado</div></div>
+    </div></div>
   </section>
   <section class="section">
-  <section class="section" id="videosSection">
+  <section class="section" id="videosSection" style="display: none;">
     <div class="section-head"><div class="section-icon">🎬</div><h2 class="section-title" id="videosHeading">Videos</h2><div class="section-line"></div></div>
     <div class="videos-grid" id="videosGrid"></div>
   </section>
-  <section class="section" id="podcastsSection">
+  <section class="section" id="podcastsSection" style="display: none;">
     <div class="section-head"><div class="section-icon">🎙️</div><h2 class="section-title" id="podcastsHeading">Podcasts</h2><div class="section-line"></div></div>
     <div class="podcasts-list" id="podcastsList"></div>
   </section>
-</main>
+</section></main>
 
-<div class="notif" id="notifEl"></div>
+<div class="notif" id="notifEl">✅ Cambios guardados</div>
 
 <!-- ADMIN PANEL -->
-<div class="adm-overlay" id="admOverlay">
+<div class="adm-overlay open" id="admOverlay">
  <div class="adm-panel">
   <div class="adm-head">
     <h2>⚙️ Panel Administrativo</h2>
     <div class="adm-head-r"><span class="adm-save-status" id="admSaveStatus">Carlos Marchena CV</span><button class="adm-close" onclick="closeAdmin()">✕</button></div>
   </div>
   <div class="adm-tabs">
-    <button class="adm-tab act" onclick="switchTab('perfil',this)">👤 Perfil</button>
+    <button class="adm-tab" onclick="switchTab('perfil',this)">👤 Perfil</button>
     <button class="adm-tab" onclick="switchTab('social',this)">🔗 Redes</button>
     <button class="adm-tab" onclick="switchTab('exp',this)">💼 Experiencia</button>
     <button class="adm-tab" onclick="switchTab('edu',this)">🎓 Educación</button>
@@ -323,17 +531,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <button class="adm-tab" onclick="switchTab('videos',this)">🎬 Videos</button>
     <button class="adm-tab" onclick="switchTab('podcasts',this)">🎙️ Podcasts</button>
     <button class="adm-tab" onclick="switchTab('security',this)">🔐 Seguridad</button>
-    <button class="adm-tab" onclick="switchTab('deploy',this)">🚀 Publicar</button>
+    <button class="adm-tab act" onclick="switchTab('deploy',this)">🚀 Publicar</button>
   </div>
   <div class="adm-body">
 
     <!-- PERFIL -->
-    <div class="adm-sec act" id="sec-perfil">
+    <div class="adm-sec" id="sec-perfil">
       <div class="adm-note">Escribe el contenido en <strong>español</strong> — se traducirá automáticamente al inglés al cambiar idioma.</div>
       <div class="adm-section-title">Foto de Perfil</div>
       <div class="photo-upload-area" onclick="document.getElementById('photoFileInput').click()">
-        <div class="photo-preview-ph" id="photoPreviewPh">👤</div>
-        <img id="photoPreviewImg" class="photo-preview" style="display:none">
+        <div class="photo-preview-ph" id="photoPreviewPh" style="display: none;">👤</div>
+        <img id="photoPreviewImg" class="photo-preview" style="display: block;" src="data:image/jpeg;base64,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">
         <p style="font-size:.82rem;color:var(--text-l)">Click para subir foto · JPG/PNG/WEBP</p>
       </div>
       <input type="file" id="photoFileInput" accept="image/*" style="display:none" onchange="handlePhotoUpload(this)">
@@ -354,28 +562,249 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <!-- SOCIAL -->
     <div class="adm-sec" id="sec-social">
       <div class="adm-note">Agrega o edita tus redes sociales.</div>
-      <div id="socialAdmList"></div>
+      <div id="socialAdmList">
+    <div class="adm-social-item" id="sadm-0">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-0"><option value="linkedin" selected="">LinkedIn</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="github">GitHub</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-0" value="https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-0" value="LinkedIn"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(0)">🗑</button></div>
+    </div>
+    <div class="adm-social-item" id="sadm-1">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-1"><option value="linkedin">LinkedIn</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="github">GitHub</option><option value="whatsapp" selected="">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-1" value="https://wa.me/50688280987" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-1" value="WhatsApp"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(1)">🗑</button></div>
+    </div>
+    <div class="adm-social-item" id="sadm-2">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-2"><option value="linkedin">LinkedIn</option><option value="instagram" selected="">Instagram</option><option value="facebook">Facebook</option><option value="github">GitHub</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-2" value="" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-2" value="Instagram"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(2)">🗑</button></div>
+    </div>
+    <div class="adm-social-item" id="sadm-3">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-3"><option value="linkedin">LinkedIn</option><option value="instagram">Instagram</option><option value="facebook" selected="">Facebook</option><option value="github">GitHub</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-3" value="" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-3" value="Facebook"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(3)">🗑</button></div>
+    </div>
+    <div class="adm-social-item" id="sadm-4">
+      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-4"><option value="linkedin">LinkedIn</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="github" selected="">GitHub</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="custom">Otro</option></select></div>
+      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-4" value="" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-4" value="GitHub"></div></div>
+      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(4)">🗑</button></div>
+    </div></div>
       <button class="btn btn-outline" onclick="addSocialItem()">+ Agregar enlace</button>
     </div>
 
     <!-- EXPERIENCIA -->
     <div class="adm-sec" id="sec-exp">
       <div class="adm-note">Escribe en <strong>español</strong> — el motor de traducción hace el resto al cambiar a EN.</div>
-      <div class="adm-card-list" id="expAdmList"></div>
+      <div class="adm-card-list" id="expAdmList">
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-0',this)"><span>#1 Ingeniero de Soporte Técnico</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-0">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-0" value="Ingeniero de Soporte Técnico"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-0" value="Encora · Proyecto: AuthID"></div><div class="adm-fld"><label>Ubicación</label><input id="el-0" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-0" value="2024 – 2026"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-0" rows="4">AuthID.ai es una plataforma de verificación de identidad biométrica. Troubleshooting avanzado de autenticación y detección de liveness. Análisis de logs y respuestas de API para identificar fallas del sistema. Reproducción de incidencias en entornos controlados. Colaboración con equipos de desarrollo, backend y business units.
+
+🏆 Reducí tasas de escalamiento mediante análisis profundo de causa raíz. Establecí procesos SLA-driven. Lideré la creación de documentación técnica y aproveché Databricks para troubleshooting basado en datos.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(0,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(0,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(0)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-1',this)"><span>#2 TAC Engineer Tier 2 – Cisco DNA Center</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-1">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-1" value="TAC Engineer Tier 2 – Cisco DNA Center"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-1" value="Sykes · Proyecto: Cisco DNA Center"></div><div class="adm-fld"><label>Ubicación</label><input id="el-1" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-1" value="2022 – 2023"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-1" rows="4">Troubleshooting de clusters y servicios de Cisco DNA Center. Gestión de entornos Kubernetes y Docker. Actualizaciones de sistema (SWIM, IMC) y mantenimiento. CLI troubleshooting con Linux y comandos Maglev.
+
+🏆 Reduje interrupciones de servicio validando proactivamente procesos de upgrade. Aceleré resolución de incidentes mejorando workflows de troubleshooting en servicios Kubernetes.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(1,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(1,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(1)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-2',this)"><span>#3 Okta Administrator</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-2">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-2" value="Okta Administrator"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-2" value="Sykes · Proyecto: Okta"></div><div class="adm-fld"><label>Ubicación</label><input id="el-2" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-2" value="2021 – 2022"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-2" rows="4">Configuración y troubleshooting de SSO (SAML, OIDC, OAuth, WS-Fed). Gestión de políticas MFA y flujos de autenticación. Integración de Okta con Active Directory y LDAP. Provisioning, roles y ciclo de vida de usuarios.
+
+🏆 Reduje fallas de autenticación y disrupciones de acceso. Mejoré la confiabilidad de flujos de identidad estandarizando enfoques de troubleshooting.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(2,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(2,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(2)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-3',this)"><span>#4 TAC Engineer Tier 2 – Cisco ACI</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-3">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-3" value="TAC Engineer Tier 2 – Cisco ACI"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-3" value="Sykes · Proyecto: Cisco ACI"></div><div class="adm-fld"><label>Ubicación</label><input id="el-3" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-3" value="2019 – 2021"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-3" rows="4">Troubleshooting avanzado de ACI fabric, políticas y servicios de red. Troubleshooting en Linux y análisis de logs. Gestión de certificados y APIs. Configuración de SNMP, DNS y NTP. Upgrades de ACI e IMC.
+
+🏆 Reduje incidentes recurrentes mediante análisis de causa raíz. Fortalecí la estabilidad general de la red en entornos distribuidos.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(3,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(3,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(3)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-4',this)"><span>#5 Agente de Detección de Fraude</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-4">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-4" value="Agente de Detección de Fraude"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-4" value="Sykes · Proyecto: Capital One"></div><div class="adm-fld"><label>Ubicación</label><input id="el-4" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-4" value="2018 – 2019"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-4" rows="4">Contacto principal para consultas de fraude. Investigación de transacciones marcadas y actividad sospechosa. Análisis de patrones de transacciones e indicadores de riesgo.
+
+🏆 Reduje el riesgo financiero identificando patrones sospechosos. Fortalecí la confianza del cliente mejorando la efectividad de respuesta.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(4,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(4,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(4)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-5',this)"><span>#6 Representante de Soporte Técnico</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-5">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-5" value="Representante de Soporte Técnico"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-5" value="Netcom S.A · Proyecto: ISP Support (ICE/Kölbi)"></div><div class="adm-fld"><label>Ubicación</label><input id="el-5" value="San José, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-5" value="2017 – 2018"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-5" rows="4">Soporte técnico por llamada y correo electrónico. Troubleshooting de conectividad a internet. Configuración de módems y dispositivos de red. Resolución de problemas DSL, Fibra Óptica, Triple Play y VoIP.
+
+🏆 Reduje incidentes repetitivos resolviendo problemas de conectividad eficientemente en el primer contacto.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(5,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(5,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(5)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-6',this)"><span>#7 Técnico de Service Desk</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="ebd-6">
+      <div class="adm-fld"><label>Título del puesto</label><input id="et-6" value="Técnico de Service Desk"></div>
+      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-6" value="Fujitsu · Proyecto: IT Service Desk"></div><div class="adm-fld"><label>Ubicación</label><input id="el-6" value="Heredia, Costa Rica"></div></div>
+      <div class="adm-fld"><label>Período</label><input id="ep-6" value="Mayo – Dic 2016"></div>
+      <div class="adm-fld"><label>Descripción</label><textarea id="ed-6" rows="4">Creación y gestión de tickets de incidencias. Soporte técnico básico (resets de contraseñas, impresoras, troubleshooting). Gestión de usuarios en Active Directory y Windows Server.
+
+🏆 Mejoré la eficiencia del servicio con documentación precisa. Reduje tiempo de inactividad de usuarios con soporte IT confiable.</textarea></div>
+      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(6,-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(6,1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(6)">🗑 Eliminar</button></div>
+    </div></div></div>
       <button class="btn btn-outline" onclick="addExpItem()">+ Agregar posición</button>
     </div>
 
     <!-- EDUCACIÓN -->
     <div class="adm-sec" id="sec-edu">
       <div class="adm-note">Títulos y certificaciones.</div>
-      <div class="adm-card-list" id="eduAdmList"></div>
+      <div class="adm-card-list" id="eduAdmList">
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-0',this)"><span>#1 Data Analyst</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-0">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-0" value="Data Analyst"></div><div class="adm-fld"><label>Período</label><input id="edu-p-0" value="2026"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-0" value="Databricks"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(0)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-1',this)"><span>#2 Licenciatura en Docencia</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-1">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-1" value="Licenciatura en Docencia"></div><div class="adm-fld"><label>Período</label><input id="edu-p-1" value="2024 – 2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-1" value="Universidad San Marcos"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(1)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-2',this)"><span>#3 Ciencias de la Computación</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-2">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-2" value="Ciencias de la Computación"></div><div class="adm-fld"><label>Período</label><input id="edu-p-2" value="2000 – 2005"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-2" value="Universidad Nacional"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(2)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-3',this)"><span>#4 IA Generativa: Introducción y Aplicaciones</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-3">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-3" value="IA Generativa: Introducción y Aplicaciones"></div><div class="adm-fld"><label>Período</label><input id="edu-p-3" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-3" value="IBM"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(3)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-4',this)"><span>#5 Ruta de Entrenamiento Gen AI – Técnico</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-4">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-4" value="Ruta de Entrenamiento Gen AI – Técnico"></div><div class="adm-fld"><label>Período</label><input id="edu-p-4" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-4" value="Coursera"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(4)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-5',this)"><span>#6 AI-Powered Software and System Design</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-5">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-5" value="AI-Powered Software and System Design"></div><div class="adm-fld"><label>Período</label><input id="edu-p-5" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-5" value="DeepLearning AI"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(5)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-6',this)"><span>#7 Team Software Engineering with AI</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-6">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-6" value="Team Software Engineering with AI"></div><div class="adm-fld"><label>Período</label><input id="edu-p-6" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-6" value="DeepLearning AI"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(6)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-7',this)"><span>#8 IA Generativa con Large Language Models</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-7">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-7" value="IA Generativa con Large Language Models"></div><div class="adm-fld"><label>Período</label><input id="edu-p-7" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-7" value="DeepLearning AI / AWS"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(7)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-8',this)"><span>#9 Introducción a la IA Generativa para Dev de Software</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-8">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-8" value="Introducción a la IA Generativa para Dev de Software"></div><div class="adm-fld"><label>Período</label><input id="edu-p-8" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-8" value="DeepLearning AI"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(8)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-9',this)"><span>#10 Advanced Prompt Engineering for Everyone</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-9">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-9" value="Advanced Prompt Engineering for Everyone"></div><div class="adm-fld"><label>Período</label><input id="edu-p-9" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-9" value="Vanderbilt University"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(9)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-10',this)"><span>#11 Ruta de Entrenamiento Gen AI – Fundacional</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-10">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-10" value="Ruta de Entrenamiento Gen AI – Fundacional"></div><div class="adm-fld"><label>Período</label><input id="edu-p-10" value="2025"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-10" value="Coursera"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(10)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-11',this)"><span>#12 Containers &amp; Kubernetes Essentials</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-11">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-11" value="Containers &amp; Kubernetes Essentials"></div><div class="adm-fld"><label>Período</label><input id="edu-p-11" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-11" value="IBM Developer Skills Network"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(11)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-12',this)"><span>#13 Docker Essentials – A Developer Introduction</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-12">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-12" value="Docker Essentials – A Developer Introduction"></div><div class="adm-fld"><label>Período</label><input id="edu-p-12" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-12" value="IBM Developer Skills Network"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(12)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-13',this)"><span>#14 Kubernetes</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-13">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-13" value="Kubernetes"></div><div class="adm-fld"><label>Período</label><input id="edu-p-13" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-13" value="Tech Academy – Sykes"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(13)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-14',this)"><span>#15 Introducción a Containers, Kubernetes y OpenShift V2</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-14">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-14" value="Introducción a Containers, Kubernetes y OpenShift V2"></div><div class="adm-fld"><label>Período</label><input id="edu-p-14" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-14" value="IBM Developer Skills Network"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(14)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-15',this)"><span>#16 Introducción a Windows Server Administration</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-15">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-15" value="Introducción a Windows Server Administration"></div><div class="adm-fld"><label>Período</label><input id="edu-p-15" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-15" value="Alison"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(15)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-16',this)"><span>#17 Endpoint Security</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-16">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-16" value="Endpoint Security"></div><div class="adm-fld"><label>Período</label><input id="edu-p-16" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-16" value="Cisco"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(16)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-17',this)"><span>#18 Introducción a Ciberseguridad</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-17">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-17" value="Introducción a Ciberseguridad"></div><div class="adm-fld"><label>Período</label><input id="edu-p-17" value="2023"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-17" value="Cisco"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(17)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-18',this)"><span>#19 Linux Essentials</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-18">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-18" value="Linux Essentials"></div><div class="adm-fld"><label>Período</label><input id="edu-p-18" value="2022"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-18" value="Tech Academy – Sykes"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(18)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-19',this)"><span>#20 Okta Certified Administrator</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-19">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-19" value="Okta Certified Administrator"></div><div class="adm-fld"><label>Período</label><input id="edu-p-19" value="2021"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-19" value="Okta"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(19)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-20',this)"><span>#21 CCNA v7</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="edbd-20">
+      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-20" value="CCNA v7"></div><div class="adm-fld"><label>Período</label><input id="edu-p-20" value="2024 – 2026"></div></div>
+      <div class="adm-fld"><label>Institución</label><input id="edu-i-20" value="Tech Academy – Sykes"></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(20)">🗑 Eliminar</button></div>
+    </div></div></div>
       <button class="btn btn-outline" onclick="addEduItem()">+ Agregar</button>
     </div>
 
     <!-- HABILIDADES -->
     <div class="adm-sec" id="sec-skills">
       <div class="adm-note">Términos técnicos — generalmente no necesitan traducción.</div>
-      <div class="skills-tags-edit" id="skillsAdmTags"></div>
+      <div class="skills-tags-edit" id="skillsAdmTags"><span class="skill-edit-tag">Python<button class="skill-del" onclick="removeSkill(0)">✕</button></span><span class="skill-edit-tag">APIs / REST<button class="skill-del" onclick="removeSkill(1)">✕</button></span><span class="skill-edit-tag">Postman<button class="skill-del" onclick="removeSkill(2)">✕</button></span><span class="skill-edit-tag">Kubernetes<button class="skill-del" onclick="removeSkill(3)">✕</button></span><span class="skill-edit-tag">Docker<button class="skill-del" onclick="removeSkill(4)">✕</button></span><span class="skill-edit-tag">Bash / Shell<button class="skill-del" onclick="removeSkill(5)">✕</button></span><span class="skill-edit-tag">Linux (Ubuntu/CentOS)<button class="skill-del" onclick="removeSkill(6)">✕</button></span><span class="skill-edit-tag">Windows Server<button class="skill-del" onclick="removeSkill(7)">✕</button></span><span class="skill-edit-tag">VMware ESXi<button class="skill-del" onclick="removeSkill(8)">✕</button></span><span class="skill-edit-tag">OpenSSL<button class="skill-del" onclick="removeSkill(9)">✕</button></span><span class="skill-edit-tag">Cisco DNA Center<button class="skill-del" onclick="removeSkill(10)">✕</button></span><span class="skill-edit-tag">Cisco ACI<button class="skill-del" onclick="removeSkill(11)">✕</button></span><span class="skill-edit-tag">Okta / IAM<button class="skill-del" onclick="removeSkill(12)">✕</button></span><span class="skill-edit-tag">SSO (SAML · OIDC · OAuth)<button class="skill-del" onclick="removeSkill(13)">✕</button></span><span class="skill-edit-tag">LDAP / Active Directory<button class="skill-del" onclick="removeSkill(14)">✕</button></span><span class="skill-edit-tag">PostgreSQL<button class="skill-del" onclick="removeSkill(15)">✕</button></span><span class="skill-edit-tag">MongoDB<button class="skill-del" onclick="removeSkill(16)">✕</button></span><span class="skill-edit-tag">Cassandra<button class="skill-del" onclick="removeSkill(17)">✕</button></span><span class="skill-edit-tag">InfluxDB<button class="skill-del" onclick="removeSkill(18)">✕</button></span><span class="skill-edit-tag">Databricks<button class="skill-del" onclick="removeSkill(19)">✕</button></span><span class="skill-edit-tag">Log Analysis<button class="skill-del" onclick="removeSkill(20)">✕</button></span><span class="skill-edit-tag">Jira<button class="skill-del" onclick="removeSkill(21)">✕</button></span><span class="skill-edit-tag">Git<button class="skill-del" onclick="removeSkill(22)">✕</button></span><span class="skill-edit-tag">Prompt Engineering<button class="skill-del" onclick="removeSkill(23)">✕</button></span><span class="skill-edit-tag">Generative AI<button class="skill-del" onclick="removeSkill(24)">✕</button></span></div>
       <div style="display:flex;gap:8px;margin-top:4px">
         <input id="newSkillInput" placeholder="Nueva habilidad..." style="flex:1;padding:8px 12px;border:2px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none" onkeydown="if(event.key==='Enter')addSkill()">
         <button class="btn btn-cyan" onclick="addSkill()">+ Agregar</button>
@@ -385,7 +814,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <!-- IDIOMAS -->
     <div class="adm-sec" id="sec-langs">
       <div class="adm-note">Idiomas que hablás y tu nivel de dominio.</div>
-      <div class="adm-card-list" id="langsAdmList"></div>
+      <div class="adm-card-list" id="langsAdmList">
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('lgbd-0',this)"><span>#1 Español</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="lgbd-0">
+      <div class="adm-row"><div class="adm-fld"><label>Idioma</label><input id="lg-n-0" value="Español" placeholder="Español"></div><div class="adm-fld"><label>Nivel</label><input id="lg-l-0" value="Nativo" placeholder="Nativo / Avanzado"></div></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeLang(0)">🗑 Eliminar</button></div>
+    </div></div>
+    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('lgbd-1',this)"><span>#2 Inglés</span><span class="ci-arrow">▼</span></div>
+    <div class="adm-card-bd" id="lgbd-1">
+      <div class="adm-row"><div class="adm-fld"><label>Idioma</label><input id="lg-n-1" value="Inglés" placeholder="Español"></div><div class="adm-fld"><label>Nivel</label><input id="lg-l-1" value="Avanzado" placeholder="Nativo / Avanzado"></div></div>
+      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeLang(1)">🗑 Eliminar</button></div>
+    </div></div></div>
       <button class="btn btn-outline" onclick="addLangItem()">+ Agregar idioma</button>
     </div>
 
@@ -413,7 +852,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
 
     <!-- DEPLOY -->
-    <div class="adm-sec" id="sec-deploy">
+    <div class="adm-sec act" id="sec-deploy">
       <div class="adm-note">Publica en GitHub Pages actualizando <strong>index.html</strong> y <strong>data.json</strong>.</div>
       <div class="adm-section-title">Configuración de GitHub</div>
       <div class="adm-fld"><label>Usuario de GitHub</label><input id="gh-user" placeholder="tu-usuario"></div>
@@ -424,7 +863,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </div>
       <button class="btn btn-green" onclick="publishToGitHub()">🚀 Publicar en GitHub Pages</button>
       <button class="btn btn-outline" onclick="downloadDataJson()" style="margin-left:8px">⬇️ Descargar data.json</button>
-      <div class="deploy-log" id="deployLog"></div>
+      <div class="deploy-log show" id="deployLog">▶ Iniciando publicación...<br>1️⃣ Obteniendo referencia...<br>2️⃣ Preparando archivos...<br></div>
       <div class="adm-section-title" style="margin-top:24px">Peligro</div>
       <button class="btn btn-danger btn-sm" onclick="resetAllData()">🗑 Borrar todos los datos locales</button>
     </div>
@@ -1139,5 +1578,6 @@ function showNotif(msg){const el=document.getElementById('notifEl');el.textConte
   await setLang(currentLang);
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
