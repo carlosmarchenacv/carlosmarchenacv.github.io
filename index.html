@@ -384,7 +384,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <!-- ADMIN PANEL -->
 <div class="adm-overlay" id="admOverlay">
- <div class="adm-panel">
+ <div class="adm-panel" onclick="event.stopPropagation()">
   <div class="adm-head">
     <h2>⚙️ Panel Administrativo</h2>
     <div class="adm-head-r"><span class="adm-save-status" id="admSaveStatus">Carlos Marchena CV</span><button class="adm-close" onclick="closeAdmin()">✕</button></div>
@@ -560,8 +560,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
   </div>
   <div class="adm-actions">
-    <button class="btn btn-outline" onclick="closeAdmin()">Cancelar</button>
-    <button class="btn btn-primary" onclick="saveAdmin()">💾 Guardar cambios</button>
+    <button class="btn btn-outline" onclick="saveAdmin()">💾 Guardar</button>
+    <button class="btn btn-green" onclick="saveAndPublish()">🚀 Guardar y Publicar</button>
   </div>
  </div>
 </div>
@@ -1081,16 +1081,13 @@ function populateAdminFields(){
     document.getElementById('ghPublishNote').style.display='none';
     document.getElementById('ghPublishSection').style.display='block';
     updateSiteLink(gh);
-    const last=localStorage.getItem('cv_gh_last');
+    const last=localStorage.getItem(GH_LAST_KEY);
     if(last)document.getElementById('ghLastPublish').textContent=`Última publicación: ${last}`;
   }
-  if(location.protocol==='file:'){
-    document.getElementById('ghFileWarn').style.display='block';
-  }
+  if(location.protocol==='file:')document.getElementById('ghFileWarn').style.display='block';
 }
 
 function saveAdmin(){
-  // Always edit D_ORIGINAL
   D_ORIGINAL.name=document.getElementById('p-name').value.trim();
   D_ORIGINAL.title=document.getElementById('p-title').value.trim();
   D_ORIGINAL.about=document.getElementById('p-about').value.trim();
@@ -1099,15 +1096,22 @@ function saveAdmin(){
   D_ORIGINAL.loc=document.getElementById('p-loc').value.trim();
   collectSocialFromAdmin();collectExpFromAdmin();collectEduFromAdmin();
   collectLangsFromAdmin();collectVideosFromAdmin();collectPodcastsFromAdmin();
-  // Save GH config if fields have values
   const ghDom=readGhDom();
-  if(ghDom.user&&ghDom.repo&&ghDom.token)localStorage.setItem('cv_gh',JSON.stringify(ghDom));
+  if(ghDom.user&&ghDom.repo&&ghDom.token)localStorage.setItem(GH_LS_KEY,JSON.stringify(ghDom));
   D=JSON.parse(JSON.stringify(D_ORIGINAL));
   D_view=null;
-  saveData(); // clears tx cache
+  saveData();
   renderAll();
   showNotif('✅ Cambios guardados');
-  closeAdmin();
+  // Panel stays open — only ✕ closes it
+}
+
+async function saveAndPublish(){
+  saveAdmin();
+  // Switch to deploy tab so user sees progress
+  const deployTab=document.querySelector('.adm-tab[onclick*="deploy"]');
+  if(deployTab)switchTab('deploy',deployTab);
+  await publishDataJson();
 }
 
 // Photo
@@ -1254,163 +1258,276 @@ async function changePassword(){
 // ═══════════════════════════════════════════════
 // GITHUB PUBLISH SYSTEM
 // ═══════════════════════════════════════════════
-function getGhCfg(){try{return JSON.parse(localStorage.getItem('cv_gh')||'{}')}catch{return {}}}
-function saveGhCfgBtn(){
+// ═══════════════════════════════════════════════
+// GITHUB PUBLISH SYSTEM
+// ═══════════════════════════════════════════════
+const GH_LS_KEY='cv_gh';
+const GH_LAST_KEY='cv_gh_last';
+
+function getGhCfg(){
+  try{return JSON.parse(localStorage.getItem(GH_LS_KEY)||'{}')}catch{return {}}
+}
+
+function readGhDom(){
+  return {
+    user:(document.getElementById('gh-user')?.value||'').trim(),
+    repo:(document.getElementById('gh-repo')?.value||'').trim(),
+    branch:(document.getElementById('gh-branch')?.value||'').trim()||'main',
+    token:(document.getElementById('gh-token')?.value||'').trim()
+  };
+}
+
+// Always prefer localStorage (saved config) over DOM (might be empty if tab not visited)
+function getActiveCfg(){
+  const dom=readGhDom();
+  const saved=getGhCfg();
+  return {
+    user:dom.user||saved.user||'',
+    repo:dom.repo||saved.repo||'',
+    branch:dom.branch||saved.branch||'main',
+    token:dom.token||saved.token||''
+  };
+}
+
+function toggleGhToken(){const i=document.getElementById('gh-token');i.type=i.type==='password'?'text':'password';}
+
+function updateSiteLink(cfg){
+  const sl=document.getElementById('ghSiteLink');if(!sl)return;
+  const url=`https://${cfg.user}.github.io${cfg.repo!==(cfg.user+'.github.io')?'/'+cfg.repo:''}`;
+  sl.href=url;sl.textContent=url.replace('https://','')+' ↗';
+}
+
+function setGhStatus(state,msg,pct){
+  const dot=document.getElementById('ghDot');
+  const txt=document.getElementById('ghStatusMsg');
+  const wrap=document.getElementById('ghProgressWrap');
+  const fill=document.getElementById('ghProgressFill');
+  const ptxt=document.getElementById('ghProgressTxt');
+  if(dot)dot.className='gh-status-dot'+(state?' '+state:'');
+  if(txt)txt.textContent=msg||'';
+  if(pct!==undefined&&wrap){
+    wrap.style.display='block';
+    if(fill)fill.style.width=Math.min(pct,100)+'%';
+    if(ptxt)ptxt.textContent=pct<100?pct+'%':'✅ Completado';
+  }else if(pct===undefined&&wrap){wrap.style.display='none';}
+}
+
+function ghLog(msg){
+  // Update status message with latest step
+  setGhStatus('busy',msg);
+  console.log('[GH]',msg);
+}
+
+async function saveGhCfgBtn(){
   const cfg=readGhDom();
   if(!cfg.user||!cfg.repo||!cfg.token){
     setGhStatus('err','⚠️ Usuario, repositorio y token son obligatorios');return;
   }
-  if(!cfg.branch)cfg.branch='main';
-  localStorage.setItem('cv_gh',JSON.stringify(cfg));
-  document.getElementById('ghConfigStatus').textContent='✅ Configuración guardada';
+  localStorage.setItem(GH_LS_KEY,JSON.stringify(cfg));
+  document.getElementById('ghConfigStatus').textContent='✅ Configuración guardada en este dispositivo';
   document.getElementById('ghConfigStatus').style.color='#16a34a';
   document.getElementById('ghPublishNote').style.display='none';
   document.getElementById('ghPublishSection').style.display='block';
   updateSiteLink(cfg);
   showNotif('✅ Configuración guardada');
 }
-function readGhDom(){
-  return {
-    user:document.getElementById('gh-user')?.value.trim()||'',
-    repo:document.getElementById('gh-repo')?.value.trim()||'',
-    branch:document.getElementById('gh-branch')?.value.trim()||'main',
-    token:document.getElementById('gh-token')?.value.trim()||''
-  };
-}
-function toggleGhToken(){const i=document.getElementById('gh-token');i.type=i.type==='password'?'text':'password';}
-function updateSiteLink(cfg){
-  const sl=document.getElementById('ghSiteLink');if(!sl)return;
-  const url=`https://${cfg.user}.github.io${cfg.repo!==cfg.user+'.github.io'?'/'+cfg.repo:''}`;
-  sl.href=url;sl.textContent=url.replace('https://','')+' ↗';
-}
-function setGhStatus(state,msg,pct){
-  const dot=document.getElementById('ghDot'),txt=document.getElementById('ghStatusMsg');
-  const wrap=document.getElementById('ghProgressWrap'),fill=document.getElementById('ghProgressFill'),ptxt=document.getElementById('ghProgressTxt');
-  if(dot)dot.className='gh-status-dot'+(state?' '+state:'');
-  if(txt)txt.textContent=msg||'';
-  if(pct!==undefined&&wrap){wrap.style.display='block';if(fill)fill.style.width=pct+'%';if(ptxt)ptxt.textContent=pct<100?pct+'%':'✅ Completado';}
-  else if(wrap){wrap.style.display='none';}
-}
 
 async function verifyGhConnection(){
   const cfg=readGhDom();
   if(!cfg.token||!cfg.user||!cfg.repo){showNotif('⚠️ Completá usuario, repositorio y token');return;}
-  if(location.protocol==='file:'){setGhStatus('err','⚠️ No podés verificar desde archivo local (file://)');return;}
+  if(location.protocol==='file:'){
+    setGhStatus('err','⚠️ No funciona desde archivo local (file://). Subí el archivo a GitHub Pages primero.');return;
+  }
   document.getElementById('ghPublishNote').style.display='none';
   document.getElementById('ghPublishSection').style.display='block';
   setGhStatus('busy','Verificando conexión con GitHub...',50);
   try{
-    const r=await fetch(`https://api.github.com/repos/${cfg.user}/${cfg.repo}`,{headers:{Authorization:`Bearer ${cfg.token}`,Accept:'application/vnd.github+json'}});
+    const r=await fetch(`https://api.github.com/repos/${cfg.user}/${cfg.repo}`,{
+      headers:{Authorization:`Bearer ${cfg.token}`,Accept:'application/vnd.github+json'}
+    });
+    const data=await r.json().catch(()=>({}));
     if(r.status===200){
-      const d=await r.json();
-      cfg.branch=d.default_branch;
-      localStorage.setItem('cv_gh',JSON.stringify(cfg));
+      cfg.branch=data.default_branch||'main';
+      localStorage.setItem(GH_LS_KEY,JSON.stringify(cfg));
       document.getElementById('gh-branch').value=cfg.branch;
       document.getElementById('ghConfigStatus').textContent=`✅ Conectado — rama detectada: ${cfg.branch}`;
       document.getElementById('ghConfigStatus').style.color='#16a34a';
       updateSiteLink(cfg);
-      setGhStatus('ok',`✅ Conectado a ${d.full_name} — rama: ${cfg.branch} — listo para publicar`);
+      setGhStatus('ok',`✅ Conectado a ${data.full_name} — rama: ${cfg.branch}`);
       showNotif(`✅ Conectado. Rama: ${cfg.branch}`);
     } else if(r.status===401){
-      setGhStatus('err','❌ Token sin acceso. Necesitás scope "repo" (token clásico) o permiso "Contents → Read and Write" (fine-grained).');
+      setGhStatus('err','❌ Token sin acceso. Token clásico (ghp_): necesita scope "repo". Token fine-grained (github_pat_): "Contents → Read and Write".');
     } else if(r.status===404){
       setGhStatus('err',`❌ Repositorio "${cfg.user}/${cfg.repo}" no encontrado. Verificá el nombre exacto.`);
     } else {
-      const e=await r.json().catch(()=>({}));
-      setGhStatus('err',`❌ Error ${r.status}: ${e.message||'respuesta inesperada'}`);
+      setGhStatus('err',`❌ Error ${r.status}: ${data.message||'respuesta inesperada de GitHub'}`);
     }
-  }catch{setGhStatus('err','❌ Error de red. Verificá tu conexión a internet.');}
+  }catch(e){
+    setGhStatus('err',`❌ Error de red: ${e.message}`);
+  }
 }
 
-// Core Git Data API push — handles encoding and all steps
+// ── Core Git Data API file pusher ──
 async function ghPushFile(cfg, filePath, content, onProgress){
-  const h={Authorization:`Bearer ${cfg.token}`,Accept:'application/vnd.github+json','Content-Type':'application/json'};
+  if(!cfg.user||!cfg.repo||!cfg.token||!cfg.branch){
+    throw new Error('Configuración incompleta — verificá usuario, repositorio, rama y token.');
+  }
+  const h={
+    Authorization:`Bearer ${cfg.token}`,
+    Accept:'application/vnd.github+json',
+    'Content-Type':'application/json'
+  };
   const base=`https://api.github.com/repos/${cfg.user}/${cfg.repo}`;
   const prog=(pct,msg)=>{if(onProgress)onProgress(pct,msg);};
-  prog(15,'Leyendo rama...');
-  const r1=await fetch(`${base}/git/ref/heads/${cfg.branch}`,{headers:h});
-  if(r1.status===401)throw new Error('Token sin permisos de escritura. Verificá los scopes del token.');
-  if(r1.status===404)throw new Error(`Rama "${cfg.branch}" no encontrada. Usá "Verificar y Guardar" primero.`);
-  if(!r1.ok){const e=await r1.json().catch(()=>({}));throw new Error(`Error ${r1.status}: ${e.message||''}`);}
-  const {object:{sha:commitSha}}=await r1.json();
-  prog(28,'Leyendo estado actual...');
+
+  // Step 1 — Get branch ref
+  prog(10,'Leyendo rama...');
+  const r1=await fetch(`${base}/git/ref/heads/${encodeURIComponent(cfg.branch)}`,{headers:h});
+  if(r1.status===401)throw new Error('Token sin permisos de escritura. Necesitás scope "repo" o "Contents: Write".');
+  if(r1.status===404)throw new Error(`Rama "${cfg.branch}" no encontrada. Usá "Verificar y Guardar" para detectar la rama correcta.`);
+  if(!r1.ok){const e=await r1.json().catch(()=>({}));throw new Error(`Error ${r1.status} al leer rama: ${e.message||''}`);}
+  const d1=await r1.json();
+  const commitSha=d1.object?.sha;
+  if(!commitSha)throw new Error('No se pudo obtener el SHA del commit actual.');
+
+  // Step 2 — Get tree SHA
+  prog(22,'Leyendo commit actual...');
   const r2=await fetch(`${base}/git/commits/${commitSha}`,{headers:h});
-  const {tree:{sha:treeSha}}=await r2.json();
-  prog(45,'Subiendo archivo...');
-  // Correct UTF-8 base64 encoding (handles emojis, tildes, etc.)
-  const encoded=btoa(Array.from(new TextEncoder().encode(content),b=>String.fromCharCode(b)).join(''));
-  const r3=await fetch(`${base}/git/blobs`,{method:'POST',headers:h,body:JSON.stringify({content:encoded,encoding:'base64'})});
-  if(!r3.ok){const e=await r3.json().catch(()=>({}));throw new Error(`Error al crear blob: ${e.message||r3.status}`);}
-  const {sha:blobSha}=await r3.json();
-  prog(62,'Preparando árbol...');
-  const r4=await fetch(`${base}/git/trees`,{method:'POST',headers:h,body:JSON.stringify({base_tree:treeSha,tree:[{path:filePath,mode:'100644',type:'blob',sha:blobSha}]})});
-  if(!r4.ok){const e=await r4.json().catch(()=>({}));throw new Error(`Error al crear árbol: ${e.message||r4.status}`);}
-  const {sha:newTree}=await r4.json();
-  prog(78,'Creando commit...');
+  if(!r2.ok){const e=await r2.json().catch(()=>({}));throw new Error(`Error ${r2.status} al leer commit: ${e.message||''}`);}
+  const d2=await r2.json();
+  const treeSha=d2.tree?.sha;
+  if(!treeSha)throw new Error('No se pudo obtener el SHA del árbol.');
+
+  // Step 3 — Create blob (UTF-8 safe encoding)
+  prog(38,'Creando blob del archivo...');
+  const bytes=new TextEncoder().encode(content);
+  const encoded=btoa(Array.from(bytes,b=>String.fromCharCode(b)).join(''));
+  const r3=await fetch(`${base}/git/blobs`,{
+    method:'POST',headers:h,
+    body:JSON.stringify({content:encoded,encoding:'base64'})
+  });
+  if(r3.status===413)throw new Error('Archivo demasiado grande (>100MB). Usá URLs externas para imágenes en lugar de base64.');
+  if(!r3.ok){const e=await r3.json().catch(()=>({}));throw new Error(`Error ${r3.status} al crear blob: ${e.message||''}`);}
+  const d3=await r3.json();
+  const blobSha=d3.sha;
+  if(!blobSha)throw new Error('No se recibió SHA del blob.');
+
+  // Step 4 — Create tree
+  prog(55,'Preparando árbol de archivos...');
+  const r4=await fetch(`${base}/git/trees`,{
+    method:'POST',headers:h,
+    body:JSON.stringify({base_tree:treeSha,tree:[{path:filePath,mode:'100644',type:'blob',sha:blobSha}]})
+  });
+  if(!r4.ok){const e=await r4.json().catch(()=>({}));throw new Error(`Error ${r4.status} al crear árbol: ${e.message||''}`);}
+  const d4=await r4.json();
+  if(!d4.sha)throw new Error('No se recibió SHA del árbol nuevo.');
+
+  // Step 5 — Create commit
+  prog(72,'Creando commit...');
   const now=new Date().toLocaleString('es-CR');
-  const r5=await fetch(`${base}/git/commits`,{method:'POST',headers:h,body:JSON.stringify({message:`CV — ${filePath} — ${now}`,tree:newTree,parents:[commitSha]})});
-  if(!r5.ok){const e=await r5.json().catch(()=>({}));throw new Error(`Error al crear commit: ${e.message||r5.status}`);}
-  const {sha:newCommit}=await r5.json();
-  prog(92,'Actualizando rama...');
-  const r6=await fetch(`${base}/git/refs/heads/${cfg.branch}`,{method:'PATCH',headers:h,body:JSON.stringify({sha:newCommit,force:true})});
-  if(!r6.ok){const e=await r6.json().catch(()=>({}));throw new Error(`Error al actualizar rama: ${e.message||r6.status}`);}
-  prog(100,'✅ Completado');
+  const r5=await fetch(`${base}/git/commits`,{
+    method:'POST',headers:h,
+    body:JSON.stringify({message:`CV Update — ${filePath} — ${now}`,tree:d4.sha,parents:[commitSha]})
+  });
+  if(!r5.ok){const e=await r5.json().catch(()=>({}));throw new Error(`Error ${r5.status} al crear commit: ${e.message||''}`);}
+  const d5=await r5.json();
+  if(!d5.sha)throw new Error('No se recibió SHA del commit nuevo.');
+
+  // Step 6 — Update branch ref
+  prog(88,'Actualizando rama...');
+  const r6=await fetch(`${base}/git/refs/heads/${encodeURIComponent(cfg.branch)}`,{
+    method:'PATCH',headers:h,
+    body:JSON.stringify({sha:d5.sha,force:true})
+  });
+  if(!r6.ok){const e=await r6.json().catch(()=>({}));throw new Error(`Error ${r6.status} al actualizar rama: ${e.message||''}`);}
+
+  prog(100,'✅ Publicado correctamente');
   return now;
 }
 
+// ── Build clean data.json — no adminPw, no base64 photos ──
+function buildDataJson(){
+  if(!D_ORIGINAL){throw new Error('No hay datos cargados. Recargá la página.');}
+  const d=JSON.parse(JSON.stringify(D_ORIGINAL));
+  delete d.adminPw; // never publish password hash
+  if(d.photo&&d.photo.startsWith('data:'))d.photo=''; // strip base64 photos
+  return d;
+}
+
 async function publishDataJson(){
-  const domCfg=readGhDom();
-  const cfg=domCfg.user&&domCfg.repo&&domCfg.token?domCfg:getGhCfg();
-  if(!cfg.token||!cfg.user||!cfg.repo){showNotif('⚠️ Configurá GitHub primero');switchTab('deploy',document.querySelector('.adm-tab:last-child'));return;}
-  if(!cfg.branch)cfg.branch='main';
-  if(location.protocol==='file:'){setGhStatus('err','⚠️ No podés publicar desde archivo local (file://)');return;}
+  const cfg=getActiveCfg();
+  if(!cfg.token||!cfg.user||!cfg.repo){
+    showNotif('⚠️ Configurá y guardá GitHub primero');
+    switchTab('deploy',document.querySelectorAll('.adm-tab')[9]);
+    return;
+  }
+  if(location.protocol==='file:'){
+    setGhStatus('err','⚠️ No funciona desde archivo local (file://). Abrí el sitio en GitHub Pages.');return;
+  }
   const dataBtn=document.getElementById('ghPublishDataBtn');
   const htmlBtn=document.getElementById('ghPublishHtmlBtn');
-  dataBtn.disabled=true;if(htmlBtn)htmlBtn.disabled=true;
+  if(dataBtn)dataBtn.disabled=true;
+  if(htmlBtn)htmlBtn.disabled=true;
   setGhStatus('busy','Construyendo data.json...',5);
   try{
-    const d={...D_ORIGINAL,photo:D_ORIGINAL.photo&&D_ORIGINAL.photo.startsWith('data:')?'':D_ORIGINAL.photo};
+    const d=buildDataJson();
     const json=JSON.stringify(d,null,2);
     const sizeKB=(json.length/1024).toFixed(1);
-    setGhStatus('busy',`Subiendo data.json (${sizeKB} KB)...`,10);
-    const now=await ghPushFile(cfg,'data.json',json,(pct,msg)=>setGhStatus('busy',`${msg} — data.json (${sizeKB} KB)`,pct));
-    setGhStatus('ok',`✅ data.json publicado (${sizeKB} KB) — cambios en vivo en ~1 min`,100);
+    if(json.length>2*1024*1024){
+      const ok=confirm(`⚠️ El data.json pesa ${(json.length/1048576).toFixed(1)} MB — probablemente tiene imágenes en base64 muy pesadas. ¿Continuar?`);
+      if(!ok){if(dataBtn)dataBtn.disabled=false;if(htmlBtn)htmlBtn.disabled=false;setGhStatus('','');return;}
+    }
+    const now=await ghPushFile(cfg,'data.json',json,(pct,msg)=>setGhStatus('busy',`${msg} — data.json ${sizeKB}KB`,pct));
     const lastStr=`${now} — data.json (${sizeKB} KB)`;
-    localStorage.setItem('cv_gh_last',lastStr);
-    document.getElementById('ghLastPublish').textContent=`Última publicación: ${lastStr}`;
-    showNotif(`🚀 Publicado (${sizeKB} KB). Cambios en ~1 minuto.`);
-    setTimeout(()=>setGhStatus('ok',`✅ Listo — ${now}`),4000);
-  }catch(e){setGhStatus('err','❌ '+e.message);showNotif('❌ '+e.message);}
-  finally{dataBtn.disabled=false;if(htmlBtn)htmlBtn.disabled=false;}
+    localStorage.setItem(GH_LAST_KEY,lastStr);
+    const lastEl=document.getElementById('ghLastPublish');
+    if(lastEl)lastEl.textContent=`Última publicación: ${lastStr}`;
+    setGhStatus('ok',`✅ data.json publicado (${sizeKB} KB) — cambios en vivo en ~1 min`,100);
+    showNotif(`🚀 Publicado (${sizeKB} KB). Visible en ~1 minuto.`);
+    setTimeout(()=>setGhStatus('ok',`✅ Listo — ${now}`),5000);
+  }catch(e){
+    console.error('[publishDataJson]',e);
+    setGhStatus('err','❌ '+e.message);
+    showNotif('❌ '+e.message.slice(0,80));
+  }finally{
+    if(dataBtn)dataBtn.disabled=false;
+    if(htmlBtn)htmlBtn.disabled=false;
+  }
 }
 
 async function publishIndexHtml(){
-  const domCfg=readGhDom();
-  const cfg=domCfg.user&&domCfg.repo&&domCfg.token?domCfg:getGhCfg();
+  const cfg=getActiveCfg();
   if(!cfg.token||!cfg.user||!cfg.repo){showNotif('⚠️ Configurá GitHub primero');return;}
-  if(!cfg.branch)cfg.branch='main';
-  if(location.protocol==='file:'){setGhStatus('err','⚠️ No podés publicar desde archivo local (file://)');return;}
-  if(!confirm('¿Publicar el index.html? Esto actualiza el código de la página para todos los visitantes.'))return;
+  if(location.protocol==='file:'){setGhStatus('err','⚠️ No funciona desde archivo local (file://)');return;}
+  if(!confirm('¿Publicar el index.html completo? Esto actualiza el código de la página para todos los visitantes.'))return;
   const dataBtn=document.getElementById('ghPublishDataBtn');
   const htmlBtn=document.getElementById('ghPublishHtmlBtn');
-  htmlBtn.disabled=true;if(dataBtn)dataBtn.disabled=true;
-  setGhStatus('busy','Generando index.html...',5);
+  if(htmlBtn)htmlBtn.disabled=true;
+  if(dataBtn)dataBtn.disabled=true;
+  setGhStatus('busy','Capturando index.html...',5);
   try{
-    // Clean up admin UI state before capturing
-    document.getElementById('admOverlay').classList.remove('open');
-    document.getElementById('loginOverlay').classList.remove('open');
+    // Close admin overlays so they don't appear in the saved HTML
+    document.getElementById('admOverlay')?.classList.remove('open');
+    document.getElementById('loginOverlay')?.classList.remove('open');
+    await new Promise(r=>setTimeout(r,200)); // let DOM settle
     const html=document.documentElement.outerHTML;
     const sizeKB=(html.length/1024).toFixed(1);
-    setGhStatus('busy',`Subiendo index.html (${sizeKB} KB)...`,10);
-    const now=await ghPushFile(cfg,'index.html',html,(pct,msg)=>setGhStatus('busy',`${msg} — index.html (${sizeKB} KB)`,pct));
-    setGhStatus('ok',`✅ index.html publicado (${sizeKB} KB) — diseño en vivo en ~1 min`,100);
+    const now=await ghPushFile(cfg,'index.html',html,(pct,msg)=>setGhStatus('busy',`${msg} — index.html ${sizeKB}KB`,pct));
     const lastStr=`${now} — index.html (${sizeKB} KB)`;
-    localStorage.setItem('cv_gh_last',lastStr);
-    document.getElementById('ghLastPublish').textContent=`Última publicación: ${lastStr}`;
-    showNotif(`📄 index.html actualizado. En vivo en ~1 minuto.`);
-    setTimeout(()=>setGhStatus('ok',`✅ Listo — ${now}`),4000);
-  }catch(e){setGhStatus('err','❌ '+e.message);showNotif('❌ '+e.message);}
-  finally{htmlBtn.disabled=false;if(dataBtn)dataBtn.disabled=false;}
+    localStorage.setItem(GH_LAST_KEY,lastStr);
+    const lastEl=document.getElementById('ghLastPublish');
+    if(lastEl)lastEl.textContent=`Última publicación: ${lastStr}`;
+    setGhStatus('ok',`✅ index.html publicado (${sizeKB} KB) — diseño en vivo en ~1 min`,100);
+    showNotif(`📄 index.html actualizado. Visible en ~1 minuto.`);
+    setTimeout(()=>setGhStatus('ok',`✅ Listo — ${now}`),5000);
+  }catch(e){
+    console.error('[publishIndexHtml]',e);
+    setGhStatus('err','❌ '+e.message);
+    showNotif('❌ '+e.message.slice(0,80));
+  }finally{
+    if(htmlBtn)htmlBtn.disabled=false;
+    if(dataBtn)dataBtn.disabled=false;
+  }
 }
 
 function downloadDataJson(){
