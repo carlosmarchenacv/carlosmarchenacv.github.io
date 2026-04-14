@@ -20,6 +20,44 @@
   --shadow-lg:0 8px 48px rgba(15,23,42,.14);
   --tr:.2s ease;
 }
+[data-theme="dark"]{
+  --bg:#0f172a;--white:#1e293b;
+  --text:#e2e8f0;--text-m:#94a3b8;--text-l:#64748b;
+  --card:#1e293b;--border:#334155;
+  --shadow:0 2px 16px rgba(0,0,0,.3);
+  --shadow-md:0 4px 28px rgba(0,0,0,.4);
+  --shadow-lg:0 8px 48px rgba(0,0,0,.5);
+}
+[data-theme="dark"] .exp-card:hover{border-color:var(--cyan)}
+[data-theme="dark"] .edu-card:hover{border-color:var(--cyan)}
+[data-theme="dark"] .adm-panel,[data-theme="dark"] .contact-modal{background:#1e293b}
+[data-theme="dark"] .adm-tabs,[data-theme="dark"] .adm-body,[data-theme="dark"] .adm-actions,[data-theme="dark"] .adm-actions{background:#1e293b;border-color:#334155}
+[data-theme="dark"] .adm-tab{color:var(--text-l)}
+[data-theme="dark"] .adm-tab.act{color:var(--cyan-l)}
+[data-theme="dark"] .adm-fld input,[data-theme="dark"] .adm-fld textarea,[data-theme="dark"] .adm-fld select,[data-theme="dark"] .rte-area{background:#0f172a;color:var(--text);border-color:#334155}
+[data-theme="dark"] .adm-fld input:focus,[data-theme="dark"] .adm-fld textarea:focus{background:#0f172a;border-color:var(--cyan)}
+[data-theme="dark"] .adm-card-item,[data-theme="dark"] .adm-social-item{background:#0f172a;border-color:#334155}
+[data-theme="dark"] .adm-section-title{color:var(--cyan-l);border-color:#334155}
+[data-theme="dark"] .adm-note{background:#1e3a5f;color:#93c5fd}
+[data-theme="dark"] .adm-note.warn{background:#422006;color:#fcd34d}
+[data-theme="dark"] .btn-outline{color:var(--text);border-color:#334155}
+[data-theme="dark"] .btn-outline:hover{border-color:var(--cyan-l);background:#334155}
+[data-theme="dark"] .skill-tag{background:var(--card);color:var(--text);border-color:#334155}
+[data-theme="dark"] .skill-tag:hover{color:var(--cyan-l);background:rgba(14,165,233,.1);border-color:var(--cyan)}
+[data-theme="dark"] .section-title{color:#e2e8f0}
+[data-theme="dark"] .exp-title,[data-theme="dark"] .edu-title,[data-theme="dark"] .lang-name,[data-theme="dark"] .project-title,[data-theme="dark"] .ref-name,[data-theme="dark"] .video-title,.podcast-title{color:#e2e8f0}
+[data-theme="dark"] .exp-line{background:linear-gradient(to bottom,var(--cyan),#334155)}
+[data-theme="dark"] .exp-dot{border-color:#1e293b}
+[data-theme="dark"] .tl-year{background:var(--navy-m);color:var(--cyan-l)}
+[data-theme="dark"] .headline-badge{background:rgba(14,165,233,.2);border-color:rgba(14,165,233,.4);color:var(--cyan-l)}
+[data-theme="dark"] .rte-toolbar{background:#0f172a;border-color:#334155}
+[data-theme="dark"] .rte-btn{color:var(--text-m)}
+[data-theme="dark"] .rte-btn:hover{background:#334155;color:#e2e8f0}
+[data-theme="dark"] .photo-upload-area{background:#0f172a;border-color:#334155}
+[data-theme="dark"] .counters-strip{background:#1e293b;border-top:1px solid #334155;border-bottom:1px solid #334155}
+[data-theme="dark"] .counter-sep{background:#334155}
+[data-theme="dark"] .contact-body{background:#1e293b}
+[data-theme="dark"] .wa-float,[data-theme="dark"] .contact-float-btn{box-shadow:0 4px 18px rgba(0,0,0,.4)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
@@ -31,6 +69,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .lang-btn{background:transparent;color:rgba(255,255,255,.7);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;padding:7px 14px;transition:all var(--tr)}
 .lang-btn.active{background:rgba(255,255,255,.25);color:#fff}
 .lang-btn:hover:not(.active){color:#fff}
+.dark-btn{pointer-events:all;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);border-radius:30px;padding:7px 12px;cursor:pointer;font-size:1rem;transition:all var(--tr);backdrop-filter:blur(8px)}
+.dark-btn:hover{background:rgba(255,255,255,.25)}
+.share-btn{pointer-events:all;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);border-radius:30px;padding:7px 14px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all var(--tr);display:flex;align-items:center;gap:5px;backdrop-filter:blur(8px);font-family:'DM Sans',sans-serif}
+.share-btn:hover{background:rgba(255,255,255,.25)}
 
 /* ── LANG LOADING OVERLAY ── */
 .lang-load-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.75);z-index:9900;flex-direction:column;align-items:center;justify-content:center;gap:16px;backdrop-filter:blur(4px)}
@@ -81,20 +123,30 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .section-line{flex:1;height:2px;background:linear-gradient(to right,var(--border),transparent)}
 
 /* Experience */
-.exp-list{display:flex;flex-direction:column}
-.exp-item{display:grid;grid-template-columns:auto 1fr;gap:0 20px}
-.exp-left{display:flex;flex-direction:column;align-items:center;padding-top:4px}
-.exp-dot{width:14px;height:14px;border-radius:50%;background:var(--cyan);border:3px solid #fff;box-shadow:0 0 0 3px var(--cyan-l);flex-shrink:0;z-index:1}
-.exp-line{width:2px;flex:1;background:linear-gradient(to bottom,var(--cyan-l),var(--border));margin-top:6px;min-height:20px}
-.exp-item:last-child .exp-line{display:none}
-.exp-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:18px 22px;margin-bottom:16px;box-shadow:var(--shadow);transition:box-shadow var(--tr)}
-.exp-card:hover{box-shadow:var(--shadow-md)}
-.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+/* Timeline */
+.exp-list{display:flex;flex-direction:column;position:relative}
+.exp-list::before{content:'';position:absolute;left:48px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--cyan),var(--border));z-index:0}
+.exp-item{display:grid;grid-template-columns:100px 1fr;gap:0 20px;position:relative;margin-bottom:8px}
+.exp-left{display:flex;flex-direction:column;align-items:flex-end;padding-top:6px;position:relative;z-index:1}
+.tl-year{font-family:'Syne',sans-serif;font-weight:800;font-size:.72rem;color:var(--cyan-d);background:rgba(14,165,233,.1);border-radius:20px;padding:3px 10px;white-space:nowrap;letter-spacing:.02em;margin-right:4px}
+.exp-dot{width:16px;height:16px;border-radius:50%;background:var(--cyan);border:3px solid var(--bg);box-shadow:0 0 0 3px var(--cyan-l);flex-shrink:0;z-index:2;position:absolute;right:-9px;top:6px}
+.exp-line{display:none}
+.exp-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:18px 22px;margin-bottom:16px;box-shadow:var(--shadow);transition:all .25s ease;border-left:3px solid transparent}
+.exp-card:hover{box-shadow:var(--shadow-md);border-left-color:var(--cyan)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:6px}
 .exp-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--navy)}
 .exp-period{font-size:.74rem;font-weight:600;color:var(--cyan-d);background:rgba(14,165,233,.08);border-radius:20px;padding:3px 10px;white-space:nowrap}
-.exp-company{font-size:.84rem;color:var(--text-m);margin-bottom:8px;font-weight:500}
+.exp-company{font-size:.84rem;color:var(--text-m);margin-bottom:8px;font-weight:500;display:flex;align-items:center;gap:8px}
 .exp-company strong{color:var(--navy-m)}
-.exp-desc{font-size:.85rem;color:var(--text-m);line-height:1.65;white-space:pre-line}
+.exp-company-logo{width:22px;height:22px;border-radius:4px;object-fit:contain;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0}
+.exp-desc{font-size:.85rem;color:var(--text-m);line-height:1.65}
+@media(max-width:600px){
+  .exp-list::before{left:0;display:none}
+  .exp-item{grid-template-columns:1fr}
+  .exp-left{flex-direction:row;align-items:center;gap:8px;margin-bottom:6px;padding-top:0}
+  .exp-dot{position:static;margin-left:0}
+  .tl-year{font-size:.75rem}
+}
 
 /* Education */
 .edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
@@ -287,7 +339,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 /* ── PRINT / PDF STYLES ── */
 @media print{
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .top-bar,.wa-float,.pdf-btn-wrap,.adm-overlay,#loginOverlay,.lang-load-overlay,.notif,.contact-float-btn,.contact-overlay{display:none!important}
+  .top-bar,.wa-float,.pdf-btn-wrap,.adm-overlay,#loginOverlay,.lang-load-overlay,.notif,.contact-float-btn,.contact-overlay,.dark-btn,.share-btn{display:none!important}
+  [data-theme="dark"] *{background-color:white!important;color:black!important;border-color:#e2e8f0!important}
+  [data-theme="dark"] .hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#1a4a8a 100%)!important}
+  [data-theme="dark"] .hero *{color:rgba(255,255,255,.9)!important}
   .hero{min-height:auto;padding:40px 30px 30px;break-inside:avoid}
   .hero-bg{display:none}
   .hero::before{display:none}
@@ -477,6 +532,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <!-- TOP BAR -->
 <div class="top-bar">
+  <button class="share-btn" onclick="shareCV()" id="shareBtn" title="Compartir CV">🔗 <span id="shareBtnTxt">Compartir</span></button>
+  <button class="dark-btn" onclick="toggleDark()" id="darkBtn" title="Modo oscuro">🌙</button>
   <div class="lang-btns">
     <button class="lang-btn active" id="btnES" onclick="setLang('es')">ES</button>
     <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
@@ -939,14 +996,16 @@ const UI = {
     projectsHeading:'Proyectos',langsHeading:'Idiomas',videosHeading:'Videos',podcastsHeading:'Podcasts',
     refsHeading:'Referencias',noContent:'No hay contenido aún.',
     statsYears:'años de experiencia',statsCompanies:'empresas',statsLangs:'idiomas',statsCerts:'certificaciones',
-    contactTitle:'Contáctame',contactName:'Tu nombre',contactMsg:'Mensaje',contactSend:'Enviar por WhatsApp',contactEmail:'Enviar por Email',contactClose:'Cerrar'
+    contactTitle:'Contáctame',contactName:'Tu nombre',contactMsg:'Mensaje',contactSend:'Enviar por WhatsApp',contactEmail:'Enviar por Email',contactClose:'Cerrar',
+    linkCopied:'✅ Enlace copiado',shareLabel:'Compartir'
   },
   en:{
     expHeading:'Experience',eduHeading:'Education & Certifications',skillsHeading:'Skills',
     projectsHeading:'Projects',langsHeading:'Languages',videosHeading:'Videos',podcastsHeading:'Podcasts',
     refsHeading:'References',noContent:'No content yet.',
     statsYears:'years of experience',statsCompanies:'companies',statsLangs:'languages',statsCerts:'certifications',
-    contactTitle:'Contact Me',contactName:'Your name',contactMsg:'Message',contactSend:'Send via WhatsApp',contactEmail:'Send by Email',contactClose:'Close'
+    contactTitle:'Contact Me',contactName:'Your name',contactMsg:'Message',contactSend:'Send via WhatsApp',contactEmail:'Send by Email',contactClose:'Close',
+    linkCopied:'✅ Link copied',shareLabel:'Share'
   }
 };
 
@@ -1061,6 +1120,7 @@ async function setLang(lang){
   const ph=document.getElementById('projectsHeading');if(ph)ph.textContent=u.projectsHeading;
   document.getElementById('langsHeading').textContent=u.langsHeading;
   const rh=document.getElementById('refsHeading');if(rh)rh.textContent=u.refsHeading;
+  const sb=document.getElementById('shareBtnTxt');if(sb)sb.textContent=u.shareLabel||'Compartir';
   document.getElementById('videosHeading').textContent=u.videosHeading;
   document.getElementById('podcastsHeading').textContent=u.podcastsHeading;
   if(lang==='en'){
@@ -1227,19 +1287,40 @@ function renderSocial(){
     </a>`).join('');
 }
 
+function extractYear(period){
+  // Extract start year for sorting — handles "2024 – 2026", "Jan 2024", "Mayo – Dic 2016", etc.
+  const m=(period||'').match(/\b(20\d{2}|19\d{2})\b/);
+  return m?parseInt(m[1]):0;
+}
+function extractYearLabel(period){
+  const m=(period||'').match(/\b(20\d{2}|19\d{2})\b/);
+  return m?m[1]:'';
+}
+
 function renderExperience(){
-  document.getElementById('expList').innerHTML=(D.experience||[]).map((e,i)=>`
-    <div class="exp-item reveal reveal-d${Math.min(i+1,6)}">
-      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+  // Sort chronologically — most recent first
+  const sorted=[...(D.experience||[])].sort((a,b)=>extractYear(b.period)-extractYear(a.period));
+  document.getElementById('expList').innerHTML=sorted.map((e,i)=>{
+    const yr=extractYearLabel(e.period);
+    const logo=e.logo?
+      `<img class="exp-company-logo" src="${e.logo}" alt="" loading="lazy">`:
+      `<span class="exp-company-logo">${e.emoji||'🏢'}</span>`;
+    return `<div class="exp-item reveal reveal-d${Math.min(i+1,6)}">
+      <div class="exp-left">
+        ${yr?`<div class="tl-year">${yr}</div>`:''}
+        <div class="exp-dot"></div>
+        <div class="exp-line"></div>
+      </div>
       <div class="exp-card">
         <div class="exp-header">
           <div class="exp-title">${e.title}</div>
           <div class="exp-period">${e.period}</div>
         </div>
-        <div class="exp-company"><strong>${e.company}</strong> · ${e.location||''}</div>
+        <div class="exp-company">${logo}<strong>${e.company}</strong><span style="color:var(--text-l)">·</span>${e.location||''}</div>
         <div class="exp-desc">${e.desc||''}</div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 function renderEducation(){
   document.getElementById('eduGrid').innerHTML=(D.education||[]).map((e,i)=>`
@@ -1630,7 +1711,11 @@ function renderExpAdmin(){
     <div class="adm-card-bd" id="ebd-${i}">
       <div class="adm-fld"><label>Título del puesto</label><input id="et-${i}" value="${(e.title||'').replace(/"/g,'&quot;')}"></div>
       <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-${i}" value="${(e.company||'').replace(/"/g,'&quot;')}"></div><div class="adm-fld"><label>Ubicación</label><input id="el-${i}" value="${(e.location||'').replace(/"/g,'&quot;')}"></div></div>
-      <div class="adm-fld"><label>Período</label><input id="ep-${i}" value="${(e.period||'').replace(/"/g,'&quot;')}"></div>
+      <div class="adm-row">
+        <div class="adm-fld"><label>Período</label><input id="ep-${i}" value="${(e.period||'').replace(/"/g,'&quot;')}"></div>
+        <div class="adm-fld"><label>Emoji empresa</label><input id="ee-${i}" value="${(e.emoji||'🏢').replace(/"/g,'&quot;')}" placeholder="🏢" style="max-width:80px"></div>
+      </div>
+      <div class="adm-fld"><label>Logo URL (opcional)</label><input id="elo-${i}" value="${(e.logo||'').replace(/"/g,'&quot;')}" placeholder="https://logo.clearbit.com/empresa.com"></div>
       <div class="adm-fld"><label>Descripción</label>
         <div class="rte-wrap"><div class="rte-toolbar" id="rte-exp-bar-${i}"></div><div class="rte-area" id="rte-exp-${i}" contenteditable="true"></div></div>
       </div>
@@ -1654,6 +1739,8 @@ function collectExpFromAdmin(){
       company:document.getElementById(`ec-${i}`)?.value||'',
       location:document.getElementById(`el-${i}`)?.value||'',
       period:document.getElementById(`ep-${i}`)?.value||'',
+      emoji:document.getElementById(`ee-${i}`)?.value||'🏢',
+      logo:document.getElementById(`elo-${i}`)?.value?.trim()||'',
       desc:getRTEValue(`rte-exp-${i}`)
     };
   }
@@ -1684,6 +1771,50 @@ function addSkill(){const inp=document.getElementById('newSkillInput');const v=i
 function removeSkill(i){D_ORIGINAL.skills.splice(i,1);renderSkillsAdmin();}
 
 // Languages
+
+// ══════════════════════════════════════════════
+// DARK MODE
+// ══════════════════════════════════════════════
+function initDark(){
+  const saved=localStorage.getItem('cvDark');
+  if(saved==='1'||(!saved&&window.matchMedia('(prefers-color-scheme:dark)').matches)){
+    document.documentElement.setAttribute('data-theme','dark');
+    document.getElementById('darkBtn').textContent='☀️';
+  }
+}
+function toggleDark(){
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  if(isDark){
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('cvDark','0');
+    document.getElementById('darkBtn').textContent='🌙';
+  } else {
+    document.documentElement.setAttribute('data-theme','dark');
+    localStorage.setItem('cvDark','1');
+    document.getElementById('darkBtn').textContent='☀️';
+  }
+}
+
+// ══════════════════════════════════════════════
+// SHARE CV
+// ══════════════════════════════════════════════
+async function shareCV(){
+  const url=location.href;
+  try{
+    if(navigator.share){
+      await navigator.share({title:D.name+' — CV',url});
+      return;
+    }
+  }catch{}
+  try{
+    await navigator.clipboard.writeText(url);
+    const u=UI[currentLang]||UI.es;
+    showNotif(u.linkCopied||'✅ Enlace copiado');
+  }catch{
+    showNotif('🔗 '+url);
+  }
+}
+
 // ══════════════════════════════════════════════
 // COUNTERS
 // ══════════════════════════════════════════════
@@ -2360,6 +2491,7 @@ function showNotif(msg){const el=document.getElementById('notifEl');el.textConte
 // INIT
 // ═══════════════════════════════════════════════
 (async()=>{
+  initDark();
   await loadData();
   const validHash=/^[a-f0-9]{64}$/;
   const oldHash=await sha256('admin123');
