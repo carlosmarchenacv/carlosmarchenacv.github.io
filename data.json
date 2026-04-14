@@ -230,5 +230,15 @@
   ],
   "videos": [],
   "podcasts": [],
-  "projects": []
+  "projects": [],
+  "heroImage": "",
+  "headline": {
+    "text": "Buscando nuevos retos en IAM, Networking e Inteligencia Artificial",
+    "badges": [
+      "IAM / SSO",
+      "Networking",
+      "Cloud / Kubernetes",
+      "AI / LLMs"
+    ]
+  }
 }
