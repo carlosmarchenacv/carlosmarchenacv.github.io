@@ -9,28 +9,28 @@
   "social": [
     {
       "type": "linkedin",
-      "label": "LinkedIn",
-      "url": "https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139"
+      "url": "https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139",
+      "label": "LinkedIn"
     },
     {
       "type": "whatsapp",
-      "label": "WhatsApp",
-      "url": "https://wa.me/50688280987"
+      "url": "https://wa.me/50688280987",
+      "label": "WhatsApp"
     },
     {
       "type": "instagram",
-      "label": "Instagram",
-      "url": ""
+      "url": "",
+      "label": "Instagram"
     },
     {
       "type": "facebook",
-      "label": "Facebook",
-      "url": ""
+      "url": "",
+      "label": "Facebook"
     },
     {
       "type": "github",
-      "label": "GitHub",
-      "url": ""
+      "url": "",
+      "label": "GitHub"
     }
   ],
   "experience": [
