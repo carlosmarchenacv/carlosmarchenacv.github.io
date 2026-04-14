@@ -287,7 +287,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 /* ── PRINT / PDF STYLES ── */
 @media print{
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .top-bar,.wa-float,.pdf-btn-wrap,.adm-overlay,#loginOverlay,.lang-load-overlay,.notif{display:none!important}
+  .top-bar,.wa-float,.pdf-btn-wrap,.adm-overlay,#loginOverlay,.lang-load-overlay,.notif,.contact-float-btn,.contact-overlay{display:none!important}
   .hero{min-height:auto;padding:40px 30px 30px;break-inside:avoid}
   .hero-bg{display:none}
   .hero::before{display:none}
@@ -311,6 +311,39 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .hero-about{color:rgba(255,255,255,.9)!important}
   .hero-title{color:var(--cyan-l)!important}
 }
+/* ── COUNTERS STRIP ── */
+.counters-strip{background:var(--navy);padding:36px 20px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:0}
+.counter-item{display:flex;flex-direction:column;align-items:center;padding:10px 40px;min-width:140px}
+.counter-num{font-family:'Syne',sans-serif;font-weight:800;font-size:2.6rem;color:#fff;line-height:1;letter-spacing:-.02em}
+.counter-lbl{font-size:.8rem;color:rgba(255,255,255,.55);margin-top:4px;text-align:center;letter-spacing:.02em}
+.counter-sep{width:1px;height:48px;background:rgba(255,255,255,.12)}
+@media(max-width:600px){.counter-sep{display:none}.counter-item{padding:10px 20px;min-width:100px}.counter-num{font-size:2rem}}
+/* ── REFERENCES ── */
+.refs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.ref-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:22px;box-shadow:var(--shadow);transition:all .25s;position:relative}
+.ref-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--cyan-l)}
+.ref-quote{font-size:.88rem;color:var(--text-m);line-height:1.7;font-style:italic;margin-bottom:16px;padding-left:16px;position:relative}
+.ref-quote::before{content:'"';position:absolute;left:0;top:-6px;font-size:2.2rem;color:var(--cyan-l);font-family:'Syne',sans-serif;line-height:1;opacity:.5}
+.ref-author{display:flex;align-items:center;gap:12px}
+.ref-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-m));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;overflow:hidden}
+.ref-avatar img{width:100%;height:100%;object-fit:cover}
+.ref-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--navy)}
+.ref-role{font-size:.76rem;color:var(--text-l)}
+@media(max-width:520px){.refs-grid{grid-template-columns:1fr}}
+/* ── CONTACT FLOAT BUTTON ── */
+.contact-float-btn{position:fixed;bottom:90px;right:26px;z-index:700;width:50px;height:50px;border-radius:50%;background:var(--cyan);color:#fff;border:none;cursor:pointer;font-size:1.3rem;box-shadow:0 4px 18px rgba(14,165,233,.45);transition:all .2s;display:flex;align-items:center;justify-content:center}
+.contact-float-btn:hover{background:var(--cyan-d);transform:scale(1.1)}
+/* ── CONTACT MODAL ── */
+.contact-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:8500;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.contact-overlay.open{display:flex}
+.contact-modal{background:#fff;border-radius:20px;width:100%;max-width:440px;overflow:hidden;animation:fadeIn .3s ease;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.contact-head{background:var(--navy);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
+.contact-head h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
+.contact-body{padding:22px}
+.contact-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.contact-btns .btn{flex:1;justify-content:center}
+@media(max-width:400px){.contact-btns{flex-direction:column}}
+
 .rte-wrap{border:2px solid var(--border);border-radius:8px;overflow:hidden;background:#f8fafc;transition:border-color var(--tr)}
 .rte-wrap:focus-within{border-color:var(--cyan);background:#fff}
 .rte-toolbar{display:flex;gap:2px;padding:6px 8px;border-bottom:1px solid var(--border);background:#f1f5f9;flex-wrap:wrap}
@@ -515,7 +548,50 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="section-head"><div class="section-icon">🎙️</div><h2 class="section-title" id="podcastsHeading">Podcasts</h2><div class="section-line"></div></div>
     <div class="podcasts-list" id="podcastsList"></div>
   </section>
+  <section class="section reveal" id="refsSection" style="display:none">
+    <div class="section-head"><div class="section-icon">⭐</div><h2 class="section-title" id="refsHeading">Referencias</h2><div class="section-line"></div></div>
+    <div class="refs-grid" id="refsGrid"></div>
+  </section>
 </main>
+
+<!-- COUNTERS STRIP -->
+<div class="counters-strip reveal" id="countersStrip">
+  <div class="counter-item"><div class="counter-num" id="cnt-years">0</div><div class="counter-lbl" id="cnt-years-lbl">años de experiencia</div></div>
+  <div class="counter-sep"></div>
+  <div class="counter-item"><div class="counter-num" id="cnt-companies">0</div><div class="counter-lbl" id="cnt-companies-lbl">empresas</div></div>
+  <div class="counter-sep"></div>
+  <div class="counter-item"><div class="counter-num" id="cnt-certs">0</div><div class="counter-lbl" id="cnt-certs-lbl">certificaciones</div></div>
+  <div class="counter-sep"></div>
+  <div class="counter-item"><div class="counter-num" id="cnt-langs">0</div><div class="counter-lbl" id="cnt-langs-lbl">idiomas</div></div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="contact-overlay" id="contactOverlay" onclick="if(event.target===this)closeContact()">
+  <div class="contact-modal">
+    <div class="contact-head">
+      <h3 id="contactTitle">Contáctame</h3>
+      <button onclick="closeContact()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text-l)">✕</button>
+    </div>
+    <div class="contact-body">
+      <div class="adm-fld"><label id="contactNameLbl">Tu nombre</label><input id="contactNameInput" placeholder=""></div>
+      <div class="adm-fld"><label id="contactMsgLbl">Mensaje</label><textarea id="contactMsgInput" rows="4"></textarea></div>
+      <div class="contact-btns">
+        <button class="btn btn-green" id="contactWaBtn" onclick="sendContactWA()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <span id="contactWaLbl">Enviar por WhatsApp</span>
+        </button>
+        <button class="btn btn-primary" id="contactEmailBtn" onclick="sendContactEmail()">
+          ✉️ <span id="contactEmailLbl">Enviar por Email</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT FLOATING BUTTON -->
+<button class="contact-float-btn" id="contactFloatBtn" onclick="openContact()" title="Contáctame">
+  ✉️
+</button>
 
 <a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
@@ -540,6 +616,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <button class="adm-tab" onclick="switchTab('langs',this)">🗣️ Idiomas</button>
     <button class="adm-tab" onclick="switchTab('videos',this)">🎬 Videos</button>
     <button class="adm-tab" onclick="switchTab('podcasts',this)">🎙️ Podcasts</button>
+    <button class="adm-tab" onclick="switchTab('refs',this)">⭐ Referencias</button>
+    <button class="adm-tab" onclick="switchTab('contactcfg',this)">✉️ Contacto</button>
     <button class="adm-tab" onclick="switchTab('security',this)">🔐 Seguridad</button>
     <button class="adm-tab" onclick="switchTab('deploy',this)">🚀 Publicar</button>
   </div>
@@ -655,6 +733,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="adm-note">Links a Spotify, Apple Podcasts u otras plataformas.</div>
       <div class="adm-card-list" id="podcastsAdmList"></div>
       <button class="btn btn-outline" onclick="addPodcastItem()">+ Agregar podcast</button>
+    </div>
+
+    <!-- REFERENCIAS -->
+    <div class="adm-sec" id="sec-refs">
+      <div class="adm-note">Personas que te recomiendan. Aparece solo si hay al menos una. Escribí en <strong>español</strong> — se traduce automáticamente.</div>
+      <div class="adm-card-list" id="refsAdmList"></div>
+      <button class="btn btn-outline" onclick="addRefItem()">+ Agregar referencia</button>
+    </div>
+
+    <!-- CONFIGURACIÓN CONTACTO -->
+    <div class="adm-sec" id="sec-contactcfg">
+      <div class="adm-note">Configura el botón de contacto flotante (✉️). Los visitantes pueden enviarte un mensaje directo por WhatsApp o Email.</div>
+      <div class="adm-fld"><label>Número de WhatsApp (con código de país)</label><input id="cfg-wa" placeholder="50688280987"></div>
+      <div class="adm-fld"><label>Email de contacto</label><input id="cfg-email" placeholder="carlosmarchena@gmail.com"></div>
+      <div class="adm-fld"><label>Asunto predeterminado del email</label><input id="cfg-subject" placeholder="Hola Carlos, me gustaría contactarte"></div>
     </div>
 
     <!-- SEGURIDAD -->
@@ -834,13 +927,27 @@ const DEFAULT_DATA = {
   headline:{
     text:'Buscando nuevos retos en IAM, Networking e Inteligencia Artificial',
     badges:['IAM / SSO','Networking','Cloud / Kubernetes','AI / LLMs']
-  }
+  },
+  references:[],
+  contact:{whatsapp:'',email:'',subject:'Hola Carlos, me gustaría contactarte'}
 };
 
 // Static UI strings
 const UI = {
-  es:{expHeading:'Experiencia',eduHeading:'Educación y Certificaciones',skillsHeading:'Habilidades',projectsHeading:'Proyectos',langsHeading:'Idiomas',videosHeading:'Videos',podcastsHeading:'Podcasts',noContent:'No hay contenido aún.'},
-  en:{expHeading:'Experience',eduHeading:'Education & Certifications',skillsHeading:'Skills',projectsHeading:'Projects',langsHeading:'Languages',videosHeading:'Videos',podcastsHeading:'Podcasts',noContent:'No content yet.'}
+  es:{
+    expHeading:'Experiencia',eduHeading:'Educación y Certificaciones',skillsHeading:'Habilidades',
+    projectsHeading:'Proyectos',langsHeading:'Idiomas',videosHeading:'Videos',podcastsHeading:'Podcasts',
+    refsHeading:'Referencias',noContent:'No hay contenido aún.',
+    statsYears:'años de experiencia',statsCompanies:'empresas',statsLangs:'idiomas',statsCerts:'certificaciones',
+    contactTitle:'Contáctame',contactName:'Tu nombre',contactMsg:'Mensaje',contactSend:'Enviar por WhatsApp',contactEmail:'Enviar por Email',contactClose:'Cerrar'
+  },
+  en:{
+    expHeading:'Experience',eduHeading:'Education & Certifications',skillsHeading:'Skills',
+    projectsHeading:'Projects',langsHeading:'Languages',videosHeading:'Videos',podcastsHeading:'Podcasts',
+    refsHeading:'References',noContent:'No content yet.',
+    statsYears:'years of experience',statsCompanies:'companies',statsLangs:'languages',statsCerts:'certifications',
+    contactTitle:'Contact Me',contactName:'Your name',contactMsg:'Message',contactSend:'Send via WhatsApp',contactEmail:'Send by Email',contactClose:'Close'
+  }
 };
 
 // ═══════════════════════════════════════════════
@@ -897,6 +1004,8 @@ async function buildTranslations(){
   (D.videos||[]).forEach((v,i)=>{add(`vid_${i}_title`,v.title);});
   (D.podcasts||[]).forEach((p,i)=>{add(`pod_${i}_title`,p.title);add(`pod_${i}_desc`,stripHtml(p.desc));});
   (D.projects||[]).forEach((p,i)=>{add(`proj_${i}_title`,p.title);add(`proj_${i}_desc`,stripHtml(p.desc));add(`proj_${i}_tags`,p.tags);});
+  (D.references||[]).forEach((r,i)=>{add(`ref_${i}_quote`,r.quote);add(`ref_${i}_name`,r.name);add(`ref_${i}_role`,r.role);});
+  add('contact_subject',(D.contact||{}).subject||'');
   const map={};
   let done=0;
   for(const item of queue){
@@ -930,6 +1039,8 @@ function applyTranslations(map){
   (Dt.videos||[]).forEach((v,i)=>{if(g(`vid_${i}_title`))v.title=g(`vid_${i}_title`);});
   (Dt.podcasts||[]).forEach((p,i)=>{if(g(`pod_${i}_title`))p.title=g(`pod_${i}_title`);if(g(`pod_${i}_desc`))p.desc=g(`pod_${i}_desc`);});
   (Dt.projects||[]).forEach((p,i)=>{if(g(`proj_${i}_title`))p.title=g(`proj_${i}_title`);if(g(`proj_${i}_desc`))p.desc=g(`proj_${i}_desc`);if(g(`proj_${i}_tags`))p.tags=g(`proj_${i}_tags`);});
+  (Dt.references||[]).forEach((r,i)=>{if(g(`ref_${i}_quote`))r.quote=g(`ref_${i}_quote`);if(g(`ref_${i}_name`))r.name=g(`ref_${i}_name`);if(g(`ref_${i}_role`))r.role=g(`ref_${i}_role`);});
+  if(Dt.contact&&g('contact_subject'))Dt.contact.subject=g('contact_subject');
   return Dt;
 }
 
@@ -949,6 +1060,7 @@ async function setLang(lang){
   document.getElementById('skillsHeading').textContent=u.skillsHeading;
   const ph=document.getElementById('projectsHeading');if(ph)ph.textContent=u.projectsHeading;
   document.getElementById('langsHeading').textContent=u.langsHeading;
+  const rh=document.getElementById('refsHeading');if(rh)rh.textContent=u.refsHeading;
   document.getElementById('videosHeading').textContent=u.videosHeading;
   document.getElementById('podcastsHeading').textContent=u.podcastsHeading;
   if(lang==='en'){
@@ -986,6 +1098,8 @@ async function loadData(){
     if(!d.projects)d.projects=[];
     if(!d.heroImage)d.heroImage='';
     if(!d.headline)d.headline={text:'',badges:[]};
+    if(!d.references)d.references=[];
+    if(!d.contact)d.contact={whatsapp:'',email:'',subject:''};
     return d;
   }
   try{
@@ -1031,7 +1145,13 @@ let _revealObs=null;
 function initReveal(){
   if(_revealObs)_revealObs.disconnect();
   _revealObs=new IntersectionObserver(entries=>{
-    entries.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');_revealObs.unobserve(x.target);}});
+    entries.forEach(x=>{
+      if(x.isIntersecting){
+        x.target.classList.add('vis');
+        if(x.target.id==='countersStrip')animateCounters();
+        _revealObs.unobserve(x.target);
+      }
+    });
   },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal,.reveal-scale,.skill-tag').forEach(el=>{
     el.classList.remove('vis');
@@ -1040,7 +1160,7 @@ function initReveal(){
 }
 
 function renderAll(){
-  renderHero();renderSocial();renderExperience();renderEducation();renderSkills();renderProjects();renderLanguages();renderVideos();renderPodcasts();renderHeadline();updateWaButton();
+  renderHero();renderSocial();renderExperience();renderEducation();renderSkills();renderProjects();renderLanguages();renderVideos();renderPodcasts();renderReferences();renderHeadline();renderCounters();updateWaButton();updateContactBtn();
   setTimeout(initReveal,80);
 }
 
@@ -1292,7 +1412,7 @@ function populateAdminFields(){
   document.getElementById('p-loc').value=D_ORIGINAL.loc||'';
   if(D_ORIGINAL.photo){document.getElementById('photoPreviewPh').style.display='none';document.getElementById('photoPreviewImg').src=D_ORIGINAL.photo;document.getElementById('photoPreviewImg').style.display='block';}
   else{document.getElementById('photoPreviewPh').style.display='flex';document.getElementById('photoPreviewImg').style.display='none';}
-  renderSocialAdmin();renderExpAdmin();renderEduAdmin();renderSkillsAdmin();renderProjectsAdmin();renderLangsAdmin();renderVideosAdmin();renderPodcastsAdmin();
+  renderSocialAdmin();renderExpAdmin();renderEduAdmin();renderSkillsAdmin();renderProjectsAdmin();renderLangsAdmin();renderVideosAdmin();renderPodcastsAdmin();renderRefsAdmin();populateContactCfg();
   populateApariencia();
   // Init RTE for about field
   initRTE('rte-about-bar','rte-about');
@@ -1321,7 +1441,7 @@ function saveAdmin(){
   D_ORIGINAL.loc=document.getElementById('p-loc').value.trim();
   collectSocialFromAdmin();collectExpFromAdmin();collectEduFromAdmin();
   collectAparienciaFromAdmin();
-  collectProjectsFromAdmin();collectLangsFromAdmin();collectVideosFromAdmin();collectPodcastsFromAdmin();
+  collectProjectsFromAdmin();collectLangsFromAdmin();collectVideosFromAdmin();collectPodcastsFromAdmin();collectRefsFromAdmin();collectContactCfg();
   const ghDom=readGhDom();
   if(ghDom.user&&ghDom.repo&&ghDom.token)localStorage.setItem(GH_LS_KEY,JSON.stringify(ghDom));
   D=JSON.parse(JSON.stringify(D_ORIGINAL));
@@ -1565,8 +1685,183 @@ function removeSkill(i){D_ORIGINAL.skills.splice(i,1);renderSkillsAdmin();}
 
 // Languages
 // ══════════════════════════════════════════════
-// RICH TEXT EDITOR (RTE)
+// COUNTERS
 // ══════════════════════════════════════════════
+function renderCounters(){
+  const u=UI[currentLang]||UI.es;
+  // Calculate values from data
+  const yearsVal='5+';
+  const companiesVal=(D.experience||[]).length;
+  const certsVal=(D.education||[]).length;
+  const langsVal=(D.languages||[]).length;
+  document.getElementById('cnt-years-lbl').textContent=u.statsYears;
+  document.getElementById('cnt-companies-lbl').textContent=u.statsCompanies;
+  document.getElementById('cnt-certs-lbl').textContent=u.statsCerts;
+  document.getElementById('cnt-langs-lbl').textContent=u.statsLangs;
+  // Store targets for animation
+  document.getElementById('cnt-years').dataset.target=yearsVal;
+  document.getElementById('cnt-companies').dataset.target=companiesVal;
+  document.getElementById('cnt-certs').dataset.target=certsVal;
+  document.getElementById('cnt-langs').dataset.target=langsVal;
+}
+
+function animateCounters(){
+  document.querySelectorAll('.counter-num').forEach(el=>{
+    const raw=el.dataset.target||'0';
+    const isSpecial=isNaN(raw.replace('+','').replace('-',''));
+    if(isSpecial){el.textContent=raw;return;}
+    const suffix=raw.includes('+')?'+':'';
+    const target=parseInt(raw)||0;
+    let current=0;
+    const steps=40;
+    const inc=Math.max(1,Math.ceil(target/steps));
+    const tick=()=>{
+      current=Math.min(current+inc,target);
+      el.textContent=current+suffix;
+      if(current<target)requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+
+// ══════════════════════════════════════════════
+// REFERENCES RENDER
+// ══════════════════════════════════════════════
+function renderReferences(){
+  const section=document.getElementById('refsSection');
+  const grid=document.getElementById('refsGrid');
+  const refs=(D.references||[]).filter(r=>r.name||r.quote);
+  if(!section||!grid)return;
+  section.style.display=refs.length?'':'none';
+  if(!refs.length)return;
+  grid.innerHTML=refs.map((r,i)=>{
+    const avatar=r.photo
+      ?`<img src="${r.photo}" alt="${r.name}">`
+      :`<span>${r.emoji||'👤'}</span>`;
+    return `<div class="ref-card reveal-scale reveal-d${Math.min(i%4+1,4)}">
+      <div class="ref-quote">${r.quote||''}</div>
+      <div class="ref-author">
+        <div class="ref-avatar">${avatar}</div>
+        <div><div class="ref-name">${r.name||''}</div><div class="ref-role">${r.role||''}</div></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
+// REFERENCES ADMIN
+// ══════════════════════════════════════════════
+function renderRefsAdmin(){
+  const list=document.getElementById('refsAdmList');if(!list)return;
+  list.innerHTML=(D_ORIGINAL.references||[]).map((r,i)=>`
+    <div class="adm-card-item">
+      <div class="adm-card-hd" onclick="toggleCard('rbd-${i}',this)"><span>#${i+1} ${r.name||'Sin nombre'}</span><span class="ci-arrow">▼</span></div>
+      <div class="adm-card-bd" id="rbd-${i}">
+        <div class="adm-fld"><label>Cita / Recomendación</label><textarea id="rq-${i}" rows="3">${(r.quote||'').replace(/</g,'&lt;')}</textarea></div>
+        <div class="adm-row">
+          <div class="adm-fld"><label>Nombre</label><input id="rn-${i}" value="${(r.name||'').replace(/"/g,'&quot;')}"></div>
+          <div class="adm-fld"><label>Cargo / Empresa</label><input id="rr-${i}" value="${(r.role||'').replace(/"/g,'&quot;')}"></div>
+        </div>
+        <div class="adm-row">
+          <div class="adm-fld"><label>Emoji (si no hay foto)</label><input id="re-${i}" value="${(r.emoji||'👤').replace(/"/g,'&quot;')}" style="max-width:80px"></div>
+          <div class="adm-fld"><label>Foto URL o subir</label>
+            <input id="rp-${i}" value="${(r.photo||'').replace(/"/g,'&quot;')}" placeholder="https://...">
+            <button class="btn btn-outline btn-sm" style="margin-top:6px" onclick="document.getElementById('rpfile-${i}').click()">📷 Subir</button>
+            <input type="file" id="rpfile-${i}" accept="image/*" style="display:none" onchange="handleRefPhoto(this,${i})">
+          </div>
+        </div>
+        <div class="adm-card-actions">
+          <button class="btn btn-danger btn-sm" onclick="removeRef(${i})">🗑 Eliminar</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function addRefItem(){D_ORIGINAL.references=D_ORIGINAL.references||[];D_ORIGINAL.references.push({quote:'',name:'',role:'',emoji:'👤',photo:''});renderRefsAdmin();}
+function removeRef(i){if(confirm('¿Eliminar referencia?')){collectRefsFromAdmin();D_ORIGINAL.references.splice(i,1);renderRefsAdmin();}}
+function handleRefPhoto(input,i){
+  const file=input.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{compressPhoto(e.target.result,999,(c)=>{const el=document.getElementById(`rp-${i}`);if(el)el.value=c;});};
+  r.readAsDataURL(file);
+}
+function collectRefsFromAdmin(){
+  const n=(D_ORIGINAL.references||[]).length;
+  for(let i=0;i<n;i++){
+    if(!document.getElementById(`rq-${i}`))continue;
+    D_ORIGINAL.references[i]={
+      quote:document.getElementById(`rq-${i}`)?.value||'',
+      name:document.getElementById(`rn-${i}`)?.value||'',
+      role:document.getElementById(`rr-${i}`)?.value||'',
+      emoji:document.getElementById(`re-${i}`)?.value||'👤',
+      photo:document.getElementById(`rp-${i}`)?.value?.trim()||''
+    };
+  }
+}
+
+// ══════════════════════════════════════════════
+// CONTACT CONFIG ADMIN
+// ══════════════════════════════════════════════
+function populateContactCfg(){
+  const c=D_ORIGINAL.contact||{};
+  const wa=document.getElementById('cfg-wa');
+  const em=document.getElementById('cfg-email');
+  const sub=document.getElementById('cfg-subject');
+  if(wa)wa.value=c.whatsapp||'';
+  if(em)em.value=c.email||'';
+  if(sub)sub.value=c.subject||'';
+}
+function collectContactCfg(){
+  D_ORIGINAL.contact={
+    whatsapp:(document.getElementById('cfg-wa')?.value||'').trim(),
+    email:(document.getElementById('cfg-email')?.value||'').trim(),
+    subject:(document.getElementById('cfg-subject')?.value||'').trim()
+  };
+}
+
+// ══════════════════════════════════════════════
+// CONTACT MODAL (public)
+// ══════════════════════════════════════════════
+function updateContactBtn(){
+  const btn=document.getElementById('contactFloatBtn');
+  if(!btn)return;
+  const c=D.contact||{};
+  btn.style.display=(c.whatsapp||c.email)?'flex':'none';
+}
+function openContact(){
+  const u=UI[currentLang]||UI.es;
+  document.getElementById('contactTitle').textContent=u.contactTitle;
+  document.getElementById('contactNameLbl').textContent=u.contactName;
+  document.getElementById('contactMsgLbl').textContent=u.contactMsg;
+  document.getElementById('contactWaLbl').textContent=u.contactSend;
+  document.getElementById('contactEmailLbl').textContent=u.contactEmail;
+  const c=D.contact||{};
+  const waBtn=document.getElementById('contactWaBtn');
+  const emBtn=document.getElementById('contactEmailBtn');
+  if(waBtn)waBtn.style.display=c.whatsapp?'':'none';
+  if(emBtn)emBtn.style.display=c.email?'':'none';
+  document.getElementById('contactOverlay').classList.add('open');
+  document.getElementById('contactNameInput').focus();
+}
+function closeContact(){document.getElementById('contactOverlay').classList.remove('open');}
+function sendContactWA(){
+  const name=document.getElementById('contactNameInput').value.trim();
+  const msg=document.getElementById('contactMsgInput').value.trim();
+  const c=D.contact||{};
+  if(!c.whatsapp){showNotif('No hay número de WhatsApp configurado');return;}
+  const text=encodeURIComponent(`Hola Carlos, soy ${name||'alguien'}.\n\n${msg||c.subject||''}`);
+  window.open(`https://wa.me/${c.whatsapp}?text=${text}`,'_blank');
+  closeContact();
+}
+function sendContactEmail(){
+  const name=document.getElementById('contactNameInput').value.trim();
+  const msg=document.getElementById('contactMsgInput').value.trim();
+  const c=D.contact||{};
+  if(!c.email){showNotif('No hay email configurado');return;}
+  const subject=encodeURIComponent(c.subject||'Contacto desde CV');
+  const body=encodeURIComponent(`Hola Carlos, soy ${name||'alguien'}.\n\n${msg||''}`);
+  window.open(`mailto:${c.email}?subject=${subject}&body=${body}`,'_blank');
+  closeContact();
+}
 function initRTE(toolbarId,areaId){
   const toolbar=document.getElementById(toolbarId);
   const area=document.getElementById(areaId);
