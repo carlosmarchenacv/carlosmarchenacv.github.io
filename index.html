@@ -273,6 +273,43 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .deploy-log{background:var(--navy);color:#a5f3fc;font-family:monospace;font-size:.75rem;border-radius:8px;padding:14px;max-height:180px;overflow-y:auto;margin-top:10px;display:none;line-height:1.6}
 .deploy-log.show{display:block}
 
+/* ── RICH TEXT EDITOR ── */
+.rte-wrap{border:2px solid var(--border);border-radius:8px;overflow:hidden;background:#f8fafc;transition:border-color var(--tr)}
+.rte-wrap:focus-within{border-color:var(--cyan);background:#fff}
+.rte-toolbar{display:flex;gap:2px;padding:6px 8px;border-bottom:1px solid var(--border);background:#f1f5f9;flex-wrap:wrap}
+.rte-btn{background:none;border:1px solid transparent;border-radius:5px;width:28px;height:28px;cursor:pointer;font-size:.82rem;display:flex;align-items:center;justify-content:center;color:var(--text-m);transition:all .15s}
+.rte-btn:hover{background:#e2e8f0;border-color:var(--border);color:var(--navy)}
+.rte-btn.active{background:var(--cyan);color:#fff;border-color:var(--cyan-d)}
+.rte-sep{width:1px;height:20px;background:var(--border);margin:0 3px;flex-shrink:0}
+.rte-area{min-height:90px;padding:10px 12px;outline:none;font-family:'DM Sans',sans-serif;font-size:.86rem;line-height:1.65;color:var(--text)}
+.rte-area b,.rte-area strong{font-weight:700;color:var(--navy)}
+.rte-area i,.rte-area em{font-style:italic}
+.rte-area ul,.rte-area ol{padding-left:20px;margin:4px 0}
+.rte-area li{margin-bottom:2px}
+/* exp-desc/about renders HTML from RTE */
+.exp-desc,.hero-about-html{font-size:.85rem;color:var(--text-m);line-height:1.65}
+.exp-desc b,.exp-desc strong,.hero-about-html b,.hero-about-html strong{font-weight:700;color:var(--navy)}
+.exp-desc i,.exp-desc em,.hero-about-html i,.hero-about-html em{font-style:italic}
+.exp-desc ul,.exp-desc ol,.hero-about-html ul,.hero-about-html ol{padding-left:20px;margin:4px 0}
+.exp-desc li,.hero-about-html li{margin-bottom:2px}
+
+/* ── PROJECTS SECTION ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.project-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);transition:all .25s ease}
+.project-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--cyan-l)}
+.project-thumb{width:100%;height:155px;background:linear-gradient(135deg,var(--navy),var(--navy-m));display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:rgba(255,255,255,.35);overflow:hidden;position:relative}
+.project-thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.project-body{padding:16px 18px}
+.project-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.98rem;color:var(--navy);margin-bottom:6px}
+.project-desc{font-size:.83rem;color:var(--text-m);line-height:1.6;margin-bottom:10px}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.project-tag{background:rgba(14,165,233,.09);color:var(--cyan-d);border-radius:20px;padding:3px 10px;font-size:.72rem;font-weight:600}
+.project-links{display:flex;gap:8px;flex-wrap:wrap}
+.project-link{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all var(--tr)}
+.project-link.live{background:var(--cyan);color:#fff}.project-link.live:hover{background:var(--cyan-d)}
+.project-link.repo{background:var(--border);color:var(--navy)}.project-link.repo:hover{background:#e2e8f0}
+@media(max-width:520px){.projects-grid{grid-template-columns:1fr}}
+
 @keyframes wa-pulse{0%,100%{box-shadow:0 5px 22px rgba(37,211,102,.5)}50%{box-shadow:0 5px 30px rgba(37,211,102,.75),0 0 0 7px rgba(37,211,102,.1)}}
 .wa-float{position:fixed;bottom:26px;right:26px;z-index:700;width:56px;height:56px;background:#25D366;border-radius:50%;display:none;align-items:center;justify-content:center;text-decoration:none;transition:all .2s ease;animation:wa-pulse 2.5s infinite;box-shadow:0 5px 22px rgba(37,211,102,.5)}
 .wa-float.show{display:flex}
@@ -363,6 +400,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="section-head"><div class="section-icon">⚙️</div><h2 class="section-title" id="skillsHeading">Habilidades</h2><div class="section-line"></div></div>
     <div class="skills-wrap" id="skillsWrap"></div>
   </section>
+  <section class="section reveal" id="projectsSection">
+    <div class="section-head"><div class="section-icon">🚀</div><h2 class="section-title" id="projectsHeading">Proyectos</h2><div class="section-line"></div></div>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </section>
   <section class="section reveal">
     <div class="section-head"><div class="section-icon">🗣️</div><h2 class="section-title" id="langsHeading">Idiomas</h2><div class="section-line"></div></div>
     <div class="langs-wrap" id="langsWrap"></div>
@@ -395,6 +436,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <button class="adm-tab" onclick="switchTab('exp',this)">💼 Experiencia</button>
     <button class="adm-tab" onclick="switchTab('edu',this)">🎓 Educación</button>
     <button class="adm-tab" onclick="switchTab('skills',this)">⚙️ Habilidades</button>
+    <button class="adm-tab" onclick="switchTab('projects',this)">🚀 Proyectos</button>
     <button class="adm-tab" onclick="switchTab('langs',this)">🗣️ Idiomas</button>
     <button class="adm-tab" onclick="switchTab('videos',this)">🎬 Videos</button>
     <button class="adm-tab" onclick="switchTab('podcasts',this)">🎙️ Podcasts</button>
@@ -418,7 +460,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="adm-fld"><label>Nombre completo</label><input id="p-name" placeholder="Carlos Marchena Alpízar"></div>
       <div class="adm-fld"><label>Título / Rol</label><input id="p-title" placeholder="Ingeniero de Soporte · Especialista IAM"></div>
       <div class="adm-section-title">Sobre Mí</div>
-      <div class="adm-fld"><label>Descripción personal</label><textarea id="p-about" rows="4"></textarea></div>
+      <div class="adm-fld"><label>Descripción personal</label>
+        <div class="rte-wrap" id="rte-about-wrap">
+          <div class="rte-toolbar" id="rte-about-bar"></div>
+          <div class="rte-area" id="rte-about" contenteditable="true"></div>
+        </div>
+      </div>
       <div class="adm-section-title">Contacto</div>
       <div class="adm-row">
         <div class="adm-fld"><label>Teléfono</label><input id="p-phone" placeholder="8828-0987"></div>
@@ -446,6 +493,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="adm-note">Títulos y certificaciones.</div>
       <div class="adm-card-list" id="eduAdmList"></div>
       <button class="btn btn-outline" onclick="addEduItem()">+ Agregar</button>
+    </div>
+
+    <!-- PROYECTOS -->
+    <div class="adm-sec" id="sec-projects">
+      <div class="adm-note">Mostrá tus proyectos web, apps o trabajos destacados. La sección aparece solo si tiene al menos uno. Escribí en <strong>español</strong> — se traduce automáticamente.</div>
+      <div class="adm-card-list" id="projectsAdmList"></div>
+      <button class="btn btn-outline" onclick="addProjectItem()">+ Agregar proyecto</button>
     </div>
 
     <!-- HABILIDADES -->
@@ -650,13 +704,14 @@ const DEFAULT_DATA = {
     {lang:'Inglés',level:'Avanzado'}
   ],
   videos:[],
-  podcasts:[]
+  podcasts:[],
+  projects:[]
 };
 
 // Static UI strings
 const UI = {
-  es:{expHeading:'Experiencia',eduHeading:'Educación y Certificaciones',skillsHeading:'Habilidades',langsHeading:'Idiomas',videosHeading:'Videos',podcastsHeading:'Podcasts',noContent:'No hay contenido aún.'},
-  en:{expHeading:'Experience',eduHeading:'Education & Certifications',skillsHeading:'Skills',langsHeading:'Languages',videosHeading:'Videos',podcastsHeading:'Podcasts',noContent:'No content yet.'}
+  es:{expHeading:'Experiencia',eduHeading:'Educación y Certificaciones',skillsHeading:'Habilidades',projectsHeading:'Proyectos',langsHeading:'Idiomas',videosHeading:'Videos',podcastsHeading:'Podcasts',noContent:'No hay contenido aún.'},
+  en:{expHeading:'Experience',eduHeading:'Education & Certifications',skillsHeading:'Skills',projectsHeading:'Projects',langsHeading:'Languages',videosHeading:'Videos',podcastsHeading:'Podcasts',noContent:'No content yet.'}
 };
 
 // ═══════════════════════════════════════════════
@@ -666,6 +721,8 @@ function _cacheKey(){
   const sig='cv_v1_'+(D.title||'')+(D.experience.length)+(D.experience[0]?.title||'');
   return 'cvEN_'+btoa(unescape(encodeURIComponent(sig))).replace(/[^a-zA-Z0-9]/g,'').slice(0,28);
 }
+
+function stripHtml(html){return (html||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();}
 
 async function _tx(text){
   if(!text||!text.trim())return text;
@@ -701,13 +758,14 @@ async function buildTranslations(){
   const queue=[];
   const add=(key,val)=>{if(val&&val.trim())queue.push({key,val});};
   add('title',D.title);
-  add('about',D.about);
+  add('about',stripHtml(D.about));
   add('loc',D.loc);
-  D.experience.forEach((e,i)=>{add(`exp_${i}_title`,e.title);add(`exp_${i}_period`,e.period);add(`exp_${i}_desc`,e.desc);});
+  D.experience.forEach((e,i)=>{add(`exp_${i}_title`,e.title);add(`exp_${i}_period`,e.period);add(`exp_${i}_desc`,stripHtml(e.desc));});
   D.education.forEach((e,i)=>{add(`edu_${i}_title`,e.title);});
   D.languages.forEach((l,i)=>{add(`lang_${i}_name`,l.lang);add(`lang_${i}_level`,l.level);});
   (D.videos||[]).forEach((v,i)=>{add(`vid_${i}_title`,v.title);});
-  (D.podcasts||[]).forEach((p,i)=>{add(`pod_${i}_title`,p.title);add(`pod_${i}_desc`,p.desc);});
+  (D.podcasts||[]).forEach((p,i)=>{add(`pod_${i}_title`,p.title);add(`pod_${i}_desc`,stripHtml(p.desc));});
+  (D.projects||[]).forEach((p,i)=>{add(`proj_${i}_title`,p.title);add(`proj_${i}_desc`,stripHtml(p.desc));add(`proj_${i}_tags`,p.tags);});
   const map={};
   let done=0;
   for(const item of queue){
@@ -737,6 +795,7 @@ function applyTranslations(map){
   Dt.languages.forEach((l,i)=>{if(g(`lang_${i}_name`))l.lang=g(`lang_${i}_name`);if(g(`lang_${i}_level`))l.level=g(`lang_${i}_level`);});
   (Dt.videos||[]).forEach((v,i)=>{if(g(`vid_${i}_title`))v.title=g(`vid_${i}_title`);});
   (Dt.podcasts||[]).forEach((p,i)=>{if(g(`pod_${i}_title`))p.title=g(`pod_${i}_title`);if(g(`pod_${i}_desc`))p.desc=g(`pod_${i}_desc`);});
+  (Dt.projects||[]).forEach((p,i)=>{if(g(`proj_${i}_title`))p.title=g(`proj_${i}_title`);if(g(`proj_${i}_desc`))p.desc=g(`proj_${i}_desc`);if(g(`proj_${i}_tags`))p.tags=g(`proj_${i}_tags`);});
   return Dt;
 }
 
@@ -754,6 +813,7 @@ async function setLang(lang){
   document.getElementById('expHeading').textContent=u.expHeading;
   document.getElementById('eduHeading').textContent=u.eduHeading;
   document.getElementById('skillsHeading').textContent=u.skillsHeading;
+  const ph=document.getElementById('projectsHeading');if(ph)ph.textContent=u.projectsHeading;
   document.getElementById('langsHeading').textContent=u.langsHeading;
   document.getElementById('videosHeading').textContent=u.videosHeading;
   document.getElementById('podcastsHeading').textContent=u.podcastsHeading;
@@ -843,14 +903,14 @@ function initReveal(){
 }
 
 function renderAll(){
-  renderHero();renderSocial();renderExperience();renderEducation();renderSkills();renderLanguages();renderVideos();renderPodcasts();updateWaButton();
+  renderHero();renderSocial();renderExperience();renderEducation();renderSkills();renderProjects();renderLanguages();renderVideos();renderPodcasts();updateWaButton();
   setTimeout(initReveal,80);
 }
 
 function renderHero(){
   document.getElementById('heroName').textContent=D.name||'';
   document.getElementById('heroTitleEl').textContent=D.title||'';
-  document.getElementById('heroAboutEl').textContent=D.about||'';
+  document.getElementById('heroAboutEl').innerHTML=D.about||'';
   const wrap=document.getElementById('heroPhotoWrap');
   const ph=document.getElementById('heroPh');
   let img=document.getElementById('heroPhotoImg');
@@ -899,7 +959,6 @@ function renderExperience(){
       </div>
     </div>`).join('');
 }
-
 function renderEducation(){
   document.getElementById('eduGrid').innerHTML=(D.education||[]).map((e,i)=>`
     <div class="edu-card reveal-scale reveal-d${Math.min((i%6)+1,6)}">
@@ -1071,7 +1130,10 @@ function populateAdminFields(){
   document.getElementById('p-loc').value=D_ORIGINAL.loc||'';
   if(D_ORIGINAL.photo){document.getElementById('photoPreviewPh').style.display='none';document.getElementById('photoPreviewImg').src=D_ORIGINAL.photo;document.getElementById('photoPreviewImg').style.display='block';}
   else{document.getElementById('photoPreviewPh').style.display='flex';document.getElementById('photoPreviewImg').style.display='none';}
-  renderSocialAdmin();renderExpAdmin();renderEduAdmin();renderSkillsAdmin();renderLangsAdmin();renderVideosAdmin();renderPodcastsAdmin();
+  renderSocialAdmin();renderExpAdmin();renderEduAdmin();renderSkillsAdmin();renderProjectsAdmin();renderLangsAdmin();renderVideosAdmin();renderPodcastsAdmin();
+  // Init RTE for about field
+  initRTE('rte-about-bar','rte-about');
+  setRTEValue('rte-about',D_ORIGINAL.about||'');
   const gh=getGhCfg();
   if(gh.user)document.getElementById('gh-user').value=gh.user;
   if(gh.repo)document.getElementById('gh-repo').value=gh.repo;
@@ -1090,12 +1152,12 @@ function populateAdminFields(){
 function saveAdmin(){
   D_ORIGINAL.name=document.getElementById('p-name').value.trim();
   D_ORIGINAL.title=document.getElementById('p-title').value.trim();
-  D_ORIGINAL.about=document.getElementById('p-about').value.trim();
+  D_ORIGINAL.about=getRTEValue('rte-about');
   D_ORIGINAL.phone=document.getElementById('p-phone').value.trim();
   D_ORIGINAL.email=document.getElementById('p-email').value.trim();
   D_ORIGINAL.loc=document.getElementById('p-loc').value.trim();
   collectSocialFromAdmin();collectExpFromAdmin();collectEduFromAdmin();
-  collectLangsFromAdmin();collectVideosFromAdmin();collectPodcastsFromAdmin();
+  collectProjectsFromAdmin();collectLangsFromAdmin();collectVideosFromAdmin();collectPodcastsFromAdmin();
   const ghDom=readGhDom();
   if(ghDom.user&&ghDom.repo&&ghDom.token)localStorage.setItem(GH_LS_KEY,JSON.stringify(ghDom));
   D=JSON.parse(JSON.stringify(D_ORIGINAL));
@@ -1191,16 +1253,32 @@ function renderExpAdmin(){
       <div class="adm-fld"><label>Título del puesto</label><input id="et-${i}" value="${(e.title||'').replace(/"/g,'&quot;')}"></div>
       <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-${i}" value="${(e.company||'').replace(/"/g,'&quot;')}"></div><div class="adm-fld"><label>Ubicación</label><input id="el-${i}" value="${(e.location||'').replace(/"/g,'&quot;')}"></div></div>
       <div class="adm-fld"><label>Período</label><input id="ep-${i}" value="${(e.period||'').replace(/"/g,'&quot;')}"></div>
-      <div class="adm-fld"><label>Descripción</label><textarea id="ed-${i}" rows="4">${e.desc||''}</textarea></div>
+      <div class="adm-fld"><label>Descripción</label>
+        <div class="rte-wrap"><div class="rte-toolbar" id="rte-exp-bar-${i}"></div><div class="rte-area" id="rte-exp-${i}" contenteditable="true"></div></div>
+      </div>
       <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(${i},-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(${i},1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(${i})">🗑 Eliminar</button></div>
     </div></div>`).join('');
+  // Init RTE for each experience description
+  (D_ORIGINAL.experience||[]).forEach((e,i)=>{
+    initRTE(`rte-exp-bar-${i}`,`rte-exp-${i}`);
+    setRTEValue(`rte-exp-${i}`,e.desc||'');
+  });
 }
 function addExpItem(){D_ORIGINAL.experience=D_ORIGINAL.experience||[];D_ORIGINAL.experience.unshift({title:'',company:'',location:'',period:'',desc:''});renderExpAdmin();}
-function removeExp(i){if(confirm('¿Eliminar?')){collectExpFromAdmin();D_ORIGINAL.experience.splice(i,1);renderExpAdmin();}}
+function removeExp(i){if(confirm('¿Eliminar?')){collectExpFromAdmin();D_ORIGINAL.experience.splice(i,1);renderExpAdmin();}  }
 function moveExp(i,dir){collectExpFromAdmin();const arr=D_ORIGINAL.experience;const j=i+dir;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];renderExpAdmin();}
 function collectExpFromAdmin(){
   const n=(D_ORIGINAL.experience||[]).length;
-  for(let i=0;i<n;i++){if(!document.getElementById(`et-${i}`))continue;D_ORIGINAL.experience[i]={title:document.getElementById(`et-${i}`)?.value||'',company:document.getElementById(`ec-${i}`)?.value||'',location:document.getElementById(`el-${i}`)?.value||'',period:document.getElementById(`ep-${i}`)?.value||'',desc:document.getElementById(`ed-${i}`)?.value||''};}
+  for(let i=0;i<n;i++){
+    if(!document.getElementById(`et-${i}`))continue;
+    D_ORIGINAL.experience[i]={
+      title:document.getElementById(`et-${i}`)?.value||'',
+      company:document.getElementById(`ec-${i}`)?.value||'',
+      location:document.getElementById(`el-${i}`)?.value||'',
+      period:document.getElementById(`ep-${i}`)?.value||'',
+      desc:getRTEValue(`rte-exp-${i}`)
+    };
+  }
 }
 
 // Education
@@ -1228,6 +1306,139 @@ function addSkill(){const inp=document.getElementById('newSkillInput');const v=i
 function removeSkill(i){D_ORIGINAL.skills.splice(i,1);renderSkillsAdmin();}
 
 // Languages
+// ══════════════════════════════════════════════
+// RICH TEXT EDITOR (RTE)
+// ══════════════════════════════════════════════
+function initRTE(toolbarId,areaId){
+  const toolbar=document.getElementById(toolbarId);
+  const area=document.getElementById(areaId);
+  if(!toolbar||!area)return;
+  toolbar.innerHTML='';
+  const tools=[
+    {cmd:'bold',icon:'<b>B</b>',title:'Negrita'},
+    {cmd:'italic',icon:'<i>I</i>',title:'Itálica'},
+    {cmd:'underline',icon:'<u>U</u>',title:'Subrayado'},
+    {sep:true},
+    {cmd:'insertUnorderedList',icon:'☰',title:'Lista viñetas'},
+    {cmd:'insertOrderedList',icon:'①',title:'Lista numerada'},
+    {sep:true},
+    {cmd:'outdent',icon:'◀',title:'Quitar sangría'},
+    {cmd:'indent',icon:'▶',title:'Sangría'},
+    {sep:true},
+    {cmd:'removeFormat',icon:'✕',title:'Limpiar formato'},
+  ];
+  tools.forEach(t=>{
+    if(t.sep){const s=document.createElement('div');s.className='rte-sep';toolbar.appendChild(s);return;}
+    const btn=document.createElement('button');
+    btn.className='rte-btn';btn.type='button';btn.title=t.title;btn.innerHTML=t.icon;
+    btn.onmousedown=e=>{e.preventDefault();document.execCommand(t.cmd,false,null);area.focus();updateRTEBtns(toolbar);};
+    toolbar.appendChild(btn);
+  });
+  area.addEventListener('keyup',()=>updateRTEBtns(toolbar));
+  area.addEventListener('mouseup',()=>updateRTEBtns(toolbar));
+}
+function updateRTEBtns(toolbar){
+  const map={Negrita:'bold',Itálica:'italic',Subrayado:'underline'};
+  toolbar.querySelectorAll('.rte-btn').forEach(btn=>{
+    const cmd=map[btn.title];
+    if(cmd)btn.classList.toggle('active',document.queryCommandState(cmd));
+  });
+}
+function getRTEValue(areaId){const el=document.getElementById(areaId);return el?el.innerHTML.trim():'';}
+function setRTEValue(areaId,html){const el=document.getElementById(areaId);if(el)el.innerHTML=html||'';}
+
+// ══════════════════════════════════════════════
+// PROJECTS RENDER
+// ══════════════════════════════════════════════
+function renderProjects(){
+  const section=document.getElementById('projectsSection');
+  const grid=document.getElementById('projectsGrid');
+  const projs=(D.projects||[]).filter(p=>p.title);
+  if(!section||!grid)return;
+  section.style.display=projs.length?'':'none';
+  if(!projs.length)return;
+  grid.innerHTML=projs.map((p,i)=>{
+    const tags=(p.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
+    const tagsHtml=tags.map(t=>`<span class="project-tag">${t}</span>`).join('');
+    const thumb=p.image?`<img src="${p.image}" alt="${p.title}" loading="lazy">`:`<span>${p.emoji||'🚀'}</span>`;
+    const links=[];
+    if(p.url)links.push(`<a class="project-link live" href="${p.url}" target="_blank" rel="noopener">🔗 Ver proyecto</a>`);
+    if(p.repo)links.push(`<a class="project-link repo" href="${p.repo}" target="_blank" rel="noopener">📂 Código</a>`);
+    return `<div class="project-card reveal-scale reveal-d${Math.min(i%4+1,4)}">
+      <div class="project-thumb">${thumb}</div>
+      <div class="project-body">
+        <div class="project-title">${p.title}</div>
+        ${p.desc?`<div class="project-desc">${p.desc}</div>`:''}
+        ${tagsHtml?`<div class="project-tags">${tagsHtml}</div>`:''}
+        ${links.length?`<div class="project-links">${links.join('')}</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
+// PROJECTS ADMIN
+// ══════════════════════════════════════════════
+function renderProjectsAdmin(){
+  const list=document.getElementById('projectsAdmList');if(!list)return;
+  list.innerHTML=(D_ORIGINAL.projects||[]).map((p,i)=>`
+    <div class="adm-card-item">
+      <div class="adm-card-hd" onclick="toggleCard('prbd-${i}',this)"><span>#${i+1} ${p.title||'Sin título'}</span><span class="ci-arrow">▼</span></div>
+      <div class="adm-card-bd" id="prbd-${i}">
+        <div class="adm-fld"><label>Título</label><input id="pr-t-${i}" value="${(p.title||'').replace(/"/g,'&quot;')}" placeholder="Jeff Adventures CR"></div>
+        <div class="adm-fld"><label>Descripción</label>
+          <div class="rte-wrap"><div class="rte-toolbar" id="rte-pr-bar-${i}"></div><div class="rte-area" id="rte-pr-${i}" contenteditable="true"></div></div>
+        </div>
+        <div class="adm-fld"><label>Tags (separados por coma)</label><input id="pr-tags-${i}" value="${(p.tags||'').replace(/"/g,'&quot;')}" placeholder="HTML, JavaScript, GitHub Pages"></div>
+        <div class="adm-row">
+          <div class="adm-fld"><label>🔗 URL del proyecto</label><input id="pr-url-${i}" value="${(p.url||'').replace(/"/g,'&quot;')}" placeholder="https://..."></div>
+          <div class="adm-fld"><label>📂 Repositorio GitHub</label><input id="pr-repo-${i}" value="${(p.repo||'').replace(/"/g,'&quot;')}" placeholder="https://github.com/..."></div>
+        </div>
+        <div class="adm-row">
+          <div class="adm-fld"><label>Emoji (si no hay imagen)</label><input id="pr-emoji-${i}" value="${(p.emoji||'🚀').replace(/"/g,'&quot;')}" placeholder="🚀" style="max-width:80px"></div>
+          <div class="adm-fld"><label>Imagen (URL o subir)</label>
+            <input id="pr-img-${i}" value="${(p.image||'').replace(/"/g,'&quot;')}" placeholder="https://...">
+            <button class="btn btn-outline btn-sm" style="margin-top:6px" onclick="document.getElementById('pr-imgfile-${i}').click()">📷 Subir</button>
+            <input type="file" id="pr-imgfile-${i}" accept="image/*" style="display:none" onchange="handleProjectImg(this,${i})">
+          </div>
+        </div>
+        <div class="adm-card-actions">
+          <button class="btn btn-outline btn-sm" onclick="moveProject(${i},-1)">↑</button>
+          <button class="btn btn-outline btn-sm" onclick="moveProject(${i},1)">↓</button>
+          <button class="btn btn-danger btn-sm" onclick="removeProject(${i})">🗑 Eliminar</button>
+        </div>
+      </div>
+    </div>`).join('');
+  (D_ORIGINAL.projects||[]).forEach((p,i)=>{
+    initRTE(`rte-pr-bar-${i}`,`rte-pr-${i}`);
+    setRTEValue(`rte-pr-${i}`,p.desc||'');
+  });
+}
+function addProjectItem(){D_ORIGINAL.projects=D_ORIGINAL.projects||[];D_ORIGINAL.projects.push({title:'',desc:'',tags:'',url:'',repo:'',emoji:'🚀',image:''});renderProjectsAdmin();}
+function removeProject(i){if(confirm('¿Eliminar proyecto?')){collectProjectsFromAdmin();D_ORIGINAL.projects.splice(i,1);renderProjectsAdmin();}}
+function moveProject(i,dir){collectProjectsFromAdmin();const arr=D_ORIGINAL.projects;const j=i+dir;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];renderProjectsAdmin();}
+function handleProjectImg(input,i){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{compressPhoto(e.target.result,999,(c)=>{if(document.getElementById(`pr-img-${i}`))document.getElementById(`pr-img-${i}`).value=c;});};
+  reader.readAsDataURL(file);
+}
+function collectProjectsFromAdmin(){
+  const n=(D_ORIGINAL.projects||[]).length;
+  for(let i=0;i<n;i++){
+    if(!document.getElementById(`pr-t-${i}`))continue;
+    D_ORIGINAL.projects[i]={
+      title:document.getElementById(`pr-t-${i}`)?.value||'',
+      desc:getRTEValue(`rte-pr-${i}`),
+      tags:document.getElementById(`pr-tags-${i}`)?.value||'',
+      url:document.getElementById(`pr-url-${i}`)?.value?.trim()||'',
+      repo:document.getElementById(`pr-repo-${i}`)?.value?.trim()||'',
+      emoji:document.getElementById(`pr-emoji-${i}`)?.value||'🚀',
+      image:document.getElementById(`pr-img-${i}`)?.value?.trim()||''
+    };
+  }
+}
+
 function renderLangsAdmin(){
   document.getElementById('langsAdmList').innerHTML=(D_ORIGINAL.languages||[]).map((l,i)=>`
     <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('lgbd-${i}',this)"><span>#${i+1} ${l.lang||'Idioma'}</span><span class="ci-arrow">▼</span></div>
