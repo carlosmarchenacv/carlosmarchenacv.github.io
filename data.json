@@ -1,1561 +1,233 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Carlos Marchena — CV</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
-<style>
-:root{
-  --navy:#0f172a;--navy-l:#1e3a5f;--navy-m:#2d4a7a;
-  --cyan:#0ea5e9;--cyan-l:#38bdf8;--cyan-d:#0369a1;
-  --amber:#f59e0b;
-  --bg:#f0f4f8;--white:#ffffff;
-  --text:#0f172a;--text-m:#475569;--text-l:#94a3b8;
-  --card:#ffffff;--border:#e2e8f0;
-  --r:16px;--r-sm:10px;
-  --shadow:0 2px 16px rgba(15,23,42,.07);
-  --shadow-md:0 4px 28px rgba(15,23,42,.10);
-  --shadow-lg:0 8px 48px rgba(15,23,42,.14);
-  --tr:.2s ease;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
-
-/* ── TOP BAR ── */
-.top-bar{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:14px 20px;pointer-events:none}
-.top-bar button{pointer-events:all;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;border:none;cursor:pointer;border-radius:30px;padding:7px 16px;transition:all var(--tr)}
-.lang-btns{display:flex;background:rgba(255,255,255,.15);border-radius:30px;overflow:hidden;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);pointer-events:all}
-.lang-btn{background:transparent;color:rgba(255,255,255,.7);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;padding:7px 14px;transition:all var(--tr)}
-.lang-btn.active{background:rgba(255,255,255,.25);color:#fff}
-.lang-btn:hover:not(.active){color:#fff}
-
-/* ── LANG LOADING OVERLAY ── */
-.lang-load-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.75);z-index:9900;flex-direction:column;align-items:center;justify-content:center;gap:16px;backdrop-filter:blur(4px)}
-.lang-load-overlay.show{display:flex}
-.lang-load-box{background:#fff;border-radius:var(--r);padding:28px 36px;text-align:center;min-width:260px;box-shadow:var(--shadow-lg)}
-.lang-load-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:6px}
-.lang-load-sub{font-size:.8rem;color:var(--text-l);margin-bottom:16px}
-.lang-load-track{background:var(--border);border-radius:30px;height:8px;overflow:hidden}
-.lang-load-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--cyan-d));border-radius:30px;width:0%;transition:width .3s ease}
-.lang-load-pct{font-size:.78rem;color:var(--cyan-d);font-weight:700;margin-top:8px}
-
-/* ── HERO ── */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-l) 50%,#1a4a8a 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px 60px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(14,165,233,.18) 0%,transparent 60%),radial-gradient(circle at 20% 80%,rgba(245,158,11,.1) 0%,transparent 50%);pointer-events:none}
-.hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:22px;max-width:680px;width:100%;text-align:center}
-.hero-photo-wrap{position:relative;width:130px;height:130px}
-.hero-photo{width:130px;height:130px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,.2);box-shadow:0 0 0 1px rgba(14,165,233,.4),0 12px 40px rgba(0,0,0,.3)}
-.hero-photo-ph{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,var(--navy-m),var(--cyan-d));border:4px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:3.2rem;color:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(14,165,233,.4),0 12px 40px rgba(0,0,0,.3)}
-.hero-badge{position:absolute;bottom:4px;right:4px;background:var(--cyan);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(0,0,0,.3);border:2px solid var(--navy)}
-.hero-name{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,6vw,3rem);color:#fff;line-height:1.1;letter-spacing:-.02em;cursor:default;user-select:none}
-.hero-title{font-size:1rem;color:var(--cyan-l);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
-.hero-about{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.7;max-width:520px}
-.hero-contact{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.contact-chip{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:30px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);text-decoration:none;transition:all var(--tr)}
-.contact-chip:hover{background:rgba(255,255,255,.2)}
-.social-grid{display:flex;flex-direction:column;gap:10px;width:100%;max-width:400px}
-.social-btn{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px 18px;color:#fff;text-decoration:none;font-size:.9rem;font-weight:500;transition:all var(--tr);backdrop-filter:blur(6px)}
-.social-btn:hover{background:rgba(255,255,255,.16);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
-.social-btn svg{width:20px;height:20px;flex-shrink:0}
-.social-btn span{flex:1}
-.social-btn .s-arrow{opacity:.5;font-size:.8rem}
-.social-btn.linkedin{border-color:rgba(10,102,194,.5);background:rgba(10,102,194,.18)}
-.social-btn.linkedin:hover{background:rgba(10,102,194,.32)}
-.social-btn.instagram{border-color:rgba(228,64,95,.4);background:rgba(228,64,95,.15)}
-.social-btn.instagram:hover{background:rgba(228,64,95,.28)}
-.social-btn.facebook{border-color:rgba(24,119,242,.4);background:rgba(24,119,242,.15)}
-.social-btn.facebook:hover{background:rgba(24,119,242,.28)}
-.social-btn.whatsapp{border-color:rgba(37,211,102,.4);background:rgba(37,211,102,.15)}
-.social-btn.whatsapp:hover{background:rgba(37,211,102,.28)}
-.social-btn.custom,.social-btn.github{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.08)}
-
-/* ── MAIN ── */
-.main{max-width:860px;margin:0 auto;padding:60px 20px 80px}
-.section{margin-bottom:56px}
-.section-head{display:flex;align-items:center;gap:12px;margin-bottom:28px}
-.section-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--cyan),var(--cyan-d));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;box-shadow:0 4px 14px rgba(14,165,233,.25)}
-.section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.35rem;color:var(--navy)}
-.section-line{flex:1;height:2px;background:linear-gradient(to right,var(--border),transparent)}
-
-/* Experience */
-.exp-list{display:flex;flex-direction:column}
-.exp-item{display:grid;grid-template-columns:auto 1fr;gap:0 20px}
-.exp-left{display:flex;flex-direction:column;align-items:center;padding-top:4px}
-.exp-dot{width:14px;height:14px;border-radius:50%;background:var(--cyan);border:3px solid #fff;box-shadow:0 0 0 3px var(--cyan-l);flex-shrink:0;z-index:1}
-.exp-line{width:2px;flex:1;background:linear-gradient(to bottom,var(--cyan-l),var(--border));margin-top:6px;min-height:20px}
-.exp-item:last-child .exp-line{display:none}
-.exp-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:18px 22px;margin-bottom:16px;box-shadow:var(--shadow);transition:box-shadow var(--tr)}
-.exp-card:hover{box-shadow:var(--shadow-md)}
-.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:8px}
-.exp-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--navy)}
-.exp-period{font-size:.74rem;font-weight:600;color:var(--cyan-d);background:rgba(14,165,233,.08);border-radius:20px;padding:3px 10px;white-space:nowrap}
-.exp-company{font-size:.84rem;color:var(--text-m);margin-bottom:8px;font-weight:500}
-.exp-company strong{color:var(--navy-m)}
-.exp-desc{font-size:.85rem;color:var(--text-m);line-height:1.65;white-space:pre-line}
-
-/* Education */
-.edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.edu-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:16px 20px;box-shadow:var(--shadow);transition:all var(--tr)}
-.edu-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--cyan-l)}
-.edu-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:4px;line-height:1.3}
-.edu-inst{font-size:.8rem;color:var(--text-m);margin-bottom:6px}
-.edu-period{font-size:.73rem;color:var(--cyan-d);font-weight:600}
-
-/* Skills */
-.skills-wrap{display:flex;flex-wrap:wrap;gap:10px}
-.skill-tag{background:var(--card);border:1px solid var(--border);border-radius:30px;padding:7px 16px;font-size:.84rem;font-weight:500;color:var(--navy);box-shadow:var(--shadow);transition:all var(--tr)}
-.skill-tag:hover{border-color:var(--cyan);color:var(--cyan-d);background:rgba(14,165,233,.05)}
-
-/* Languages */
-.langs-wrap{display:flex;flex-wrap:wrap;gap:12px}
-.lang-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 22px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;min-width:160px}
-.lang-flag{font-size:1.6rem}
-.lang-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy)}
-.lang-level{font-size:.78rem;color:var(--cyan-d);font-weight:600}
-
-/* Videos */
-.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
-.video-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);transition:all var(--tr)}
-.video-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-.video-thumb{width:100%;aspect-ratio:16/9;background:var(--navy);position:relative;overflow:hidden;cursor:pointer}
-.video-thumb img{width:100%;height:100%;object-fit:cover}
-.video-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);transition:background var(--tr)}
-.video-play:hover{background:rgba(0,0,0,.5)}
-.video-info{padding:12px 16px}
-.video-title{font-family:'Syne',sans-serif;font-weight:600;font-size:.88rem;color:var(--navy)}
-.content-empty{text-align:center;padding:40px;color:var(--text-l);font-size:.9rem;background:var(--card);border-radius:var(--r);border:2px dashed var(--border)}
-
-/* Podcasts */
-.podcasts-list{display:flex;flex-direction:column;gap:14px}
-.podcast-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:18px 20px;box-shadow:var(--shadow);display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;transition:all var(--tr)}
-.podcast-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--cyan-l)}
-.podcast-cover{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--navy-m));display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;overflow:hidden}
-.podcast-cover img{width:100%;height:100%;object-fit:cover;border-radius:12px}
-.podcast-info{min-width:0}
-.podcast-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:3px}
-.podcast-desc{font-size:.81rem;color:var(--text-m);margin-bottom:8px;line-height:1.5;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.podcast-actions{display:flex;gap:8px;flex-wrap:wrap}
-.podcast-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:.75rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all var(--tr)}
-.podcast-btn.play{background:var(--cyan);color:#fff}.podcast-btn.play:hover{background:var(--cyan-d)}
-.podcast-btn.spotify{background:#1DB954;color:#fff}
-.podcast-btn.apple{background:#fc3c44;color:#fff}
-.podcast-btn.link{background:var(--border);color:var(--navy)}
-
-/* ── ANIMATIONS ── */
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes heroFadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(14,165,233,.4)}70%{box-shadow:0 0 0 12px rgba(14,165,233,0)}100%{box-shadow:0 0 0 0 rgba(14,165,233,0)}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-@keyframes dotPop{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1)}}
-
-/* Hero entrance — staggered */
-.hero-inner>*{opacity:0;animation:heroFadeUp .7s ease forwards}
-.hero-inner>*:nth-child(1){animation-delay:.05s}
-.hero-inner>*:nth-child(2){animation-delay:.2s}
-.hero-inner>*:nth-child(3){animation-delay:.35s}
-.hero-inner>*:nth-child(4){animation-delay:.48s}
-.hero-inner>*:nth-child(5){animation-delay:.58s}
-
-/* Hero photo float */
-.hero-photo,.hero-photo-ph{animation:float 5s ease-in-out infinite}
-.hero-badge{animation:pulse-ring 2.5s infinite}
-
-/* Scroll reveal */
-.reveal{opacity:0;transform:translateY(36px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
-.reveal.vis{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.08s}
-.reveal-d2{transition-delay:.16s}
-.reveal-d3{transition-delay:.24s}
-.reveal-d4{transition-delay:.32s}
-.reveal-d5{transition-delay:.40s}
-.reveal-d6{transition-delay:.48s}
-.reveal-scale{opacity:0;transform:translateY(20px) scale(.96);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
-.reveal-scale.vis{opacity:1;transform:translateY(0) scale(1)}
-
-/* Section icon animated */
-.section-icon{transition:transform .3s ease,box-shadow .3s ease}
-.section-icon:hover{transform:scale(1.15) rotate(-5deg)}
-
-/* Skill tag pop on scroll */
-.skill-tag{opacity:0;transform:scale(.85);transition:opacity .4s ease,transform .4s ease,border-color .2s,color .2s,background .2s}
-.skill-tag.vis{opacity:1;transform:scale(1)}
-
-/* Exp card hover lift */
-.exp-card{transition:box-shadow .25s ease,transform .25s ease,border-color .25s}
-.exp-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--cyan-l)}
-
-/* Edu card */
-.edu-card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
-
-/* Lang card float on hover */
-.lang-card{transition:transform .25s ease,box-shadow .25s ease}
-.lang-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-
-/* Dot timeline pulse */
-.exp-dot{animation:dotPop 2s ease-in-out infinite}
-/* Notification */
-.notif{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--navy);color:#fff;padding:12px 24px;border-radius:30px;font-size:.85rem;z-index:9999;transition:transform .3s ease,opacity .3s;opacity:0;box-shadow:var(--shadow-lg);pointer-events:none;white-space:nowrap}
-.notif.show{transform:translateX(-50%) translateY(0);opacity:1}
-
-/* ── ADMIN ── */
-.adm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9000;overflow-y:auto;padding:20px 16px}
-.adm-overlay.open{display:flex;align-items:flex-start;justify-content:center}
-.adm-panel{background:#fff;border-radius:20px;width:100%;max-width:880px;display:flex;flex-direction:column;max-height:92vh;animation:fadeIn .3s ease;box-shadow:0 20px 80px rgba(0,0,0,.3)}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.adm-head{background:var(--navy);color:#fff;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-radius:20px 20px 0 0}
-.adm-head h2{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700}
-.adm-head-r{display:flex;align-items:center;gap:14px}
-.adm-save-status{font-size:.75rem;color:rgba(255,255,255,.45)}
-.adm-close{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7;transition:opacity var(--tr)}
-.adm-close:hover{opacity:1}
-.adm-tabs{display:flex;flex-wrap:wrap;border-bottom:2px solid #f0f4f8;background:#f8fafc;flex-shrink:0}
-.adm-tab{flex:0 0 auto;padding:10px 13px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--text-l);transition:all var(--tr);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap}
-.adm-tab.act{color:var(--cyan-d);border-bottom-color:var(--cyan)}
-.adm-body{padding:24px 26px;overflow-y:auto;flex:1;min-height:0}
-.adm-sec{display:none}.adm-sec.act{display:block}
-.adm-note{background:#dbeafe;border-radius:8px;padding:10px 14px;font-size:.8rem;color:#1e40af;margin-bottom:18px;line-height:1.5}
-.adm-note.warn{background:#fef3c7;color:#92400e}
-.adm-fld{margin-bottom:14px}
-.adm-fld label{display:block;font-size:.78rem;font-weight:700;color:var(--text-m);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
-.adm-fld input,.adm-fld textarea,.adm-fld select{width:100%;padding:9px 12px;border:2px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.86rem;color:var(--text);outline:none;transition:border-color var(--tr);background:#f8fafc}
-.adm-fld input:focus,.adm-fld textarea:focus{border-color:var(--cyan);background:#fff}
-.adm-fld textarea{resize:vertical;min-height:80px}
-.adm-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.adm-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.adm-section-title{font-family:'Syne',sans-serif;font-weight:700;color:var(--navy);font-size:.9rem;margin:20px 0 12px;padding-bottom:6px;border-bottom:2px solid #f0f4f8}
-.adm-actions{display:flex;gap:10px;justify-content:flex-end;padding:16px 26px;border-top:2px solid #f0f4f8;flex-wrap:wrap;background:#f8fafc;flex-shrink:0;border-radius:0 0 20px 20px}
-.btn{font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;padding:9px 20px;border-radius:30px;border:none;cursor:pointer;transition:all var(--tr);display:inline-flex;align-items:center;gap:6px}
-.btn-primary{background:var(--navy);color:#fff}.btn-primary:hover{background:var(--navy-m)}
-.btn-cyan{background:var(--cyan);color:#fff}.btn-cyan:hover{background:var(--cyan-d)}
-.btn-outline{background:transparent;color:var(--navy);border:2px solid var(--border)}.btn-outline:hover{border-color:var(--navy)}
-.btn-danger{background:transparent;color:#dc2626;border:2px solid #fecaca}.btn-danger:hover{background:#fef2f2}
-.btn-green{background:#16a34a;color:#fff}.btn-green:hover{background:#15803d}
-.btn-sm{padding:6px 14px;font-size:.78rem}
-.photo-upload-area{border:2px dashed var(--border);border-radius:var(--r);padding:24px;text-align:center;cursor:pointer;transition:all var(--tr);background:#f8fafc;margin-bottom:14px}
-.photo-upload-area:hover{border-color:var(--cyan);background:rgba(14,165,233,.04)}
-.photo-preview{width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 10px;display:block}
-.photo-preview-ph{width:80px;height:80px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 10px}
-.adm-card-list{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-.adm-card-item{background:#f8fafc;border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.adm-card-hd{display:flex;align-items:center;gap:8px;padding:11px 14px;cursor:pointer;font-weight:600;color:var(--navy);font-size:.87rem}
-.adm-card-hd .ci-arrow{margin-left:auto;font-size:.75rem;color:var(--text-l);transition:transform .2s}
-.adm-card-hd.open .ci-arrow{transform:rotate(180deg)}
-.adm-card-bd{display:none;padding:0 14px 14px}.adm-card-bd.open{display:block}
-.adm-card-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
-.adm-social-item{display:grid;grid-template-columns:100px 1fr 80px;gap:10px;align-items:start;background:#f8fafc;border-radius:8px;padding:10px 12px;border:1px solid var(--border);margin-bottom:8px}
-.skills-tags-edit{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.skill-edit-tag{display:inline-flex;align-items:center;gap:4px;background:var(--border);border-radius:20px;padding:4px 12px;font-size:.8rem}
-.skill-del{background:none;border:none;cursor:pointer;color:var(--text-l);font-size:.85rem;padding:0}
-.skill-del:hover{color:#dc2626}
-.gh-arch-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
-.gh-arch-item{display:flex;align-items:center;gap:10px;font-size:.82rem}
-.gh-arch-desc{color:var(--text-l);margin-left:6px;font-weight:400}
-.gh-badge-freq{background:#dcfce7;color:#166534;border-radius:20px;padding:2px 9px;font-size:.72rem;font-weight:700;white-space:nowrap}
-.gh-badge-rare{background:#fef9c3;color:#713f12;border-radius:20px;padding:2px 9px;font-size:.72rem;font-weight:700;white-space:nowrap}
-.gh-status-card{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:14px}
-.gh-status-row{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--navy)}
-.gh-status-dot{width:10px;height:10px;border-radius:50%;background:var(--border);flex-shrink:0}
-.gh-status-dot.ok{background:#22c55e}
-.gh-status-dot.err{background:#ef4444}
-.gh-status-dot.busy{background:var(--amber);animation:ghPulse 1s infinite}
-@keyframes ghPulse{0%,100%{opacity:1}50%{opacity:.4}}
-.gh-progress{background:var(--border);border-radius:30px;height:7px;overflow:hidden}
-.gh-progress-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--cyan-d));border-radius:30px;width:0%;transition:width .4s ease}
-.gh-pub-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
-.gh-pub-card{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px 16px}
-.gh-pub-card-head{display:flex;align-items:center;gap:6px;font-size:.85rem;margin-bottom:6px;flex-wrap:wrap}
-.gh-pub-card p{font-size:.8rem;color:var(--text-m);line-height:1.5;margin:0}
-@media(max-width:560px){.gh-pub-actions{grid-template-columns:1fr}}
-.deploy-log{background:var(--navy);color:#a5f3fc;font-family:monospace;font-size:.75rem;border-radius:8px;padding:14px;max-height:180px;overflow-y:auto;margin-top:10px;display:none;line-height:1.6}
-.deploy-log.show{display:block}
-
-@keyframes wa-pulse{0%,100%{box-shadow:0 5px 22px rgba(37,211,102,.5)}50%{box-shadow:0 5px 30px rgba(37,211,102,.75),0 0 0 7px rgba(37,211,102,.1)}}
-.wa-float{position:fixed;bottom:26px;right:26px;z-index:700;width:56px;height:56px;background:#25D366;border-radius:50%;display:none;align-items:center;justify-content:center;text-decoration:none;transition:all .2s ease;animation:wa-pulse 2.5s infinite;box-shadow:0 5px 22px rgba(37,211,102,.5)}
-.wa-float.show{display:flex}
-.wa-float:hover{background:#1ebe5d;transform:scale(1.1)}
-.wa-float svg{width:28px;height:28px;fill:#fff}
-@media(max-width:900px){.main{padding:48px 28px 70px}.edu-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.videos-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.hero{padding:80px 28px 52px}}
-@media(max-width:768px){
-  .hero{padding:72px 20px 48px;min-height:auto}.hero-name{font-size:2.2rem}.hero-about{font-size:.9rem}
-  .contact-chip{font-size:.75rem;padding:5px 12px}.social-grid{max-width:100%}.social-btn{padding:11px 16px;font-size:.87rem}
-  .main{padding:40px 18px 60px}.section{margin-bottom:44px}.section-title{font-size:1.2rem}
-  .exp-card{padding:15px 18px}.exp-header{flex-direction:column;align-items:flex-start;gap:6px}.exp-period{align-self:flex-start}
-  .edu-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-  .videos-grid{grid-template-columns:1fr 1fr;gap:14px}
-  .podcast-card{grid-template-columns:56px 1fr;gap:12px}.podcast-cover{width:56px;height:56px}
-  .adm-row,.adm-row3{grid-template-columns:1fr 1fr}.adm-body{padding:20px 18px}.adm-actions{padding:14px 18px}}
-@media(max-width:520px){
-  .top-bar{padding:12px 14px}.hero{padding:64px 16px 44px}
-  .hero-photo-wrap{width:110px;height:110px}.hero-photo,.hero-photo-ph{width:110px;height:110px}
-  .hero-name{font-size:1.8rem}.hero-title{font-size:.82rem}.hero-about{font-size:.88rem;line-height:1.65}
-  .hero-contact{flex-direction:column;align-items:center}.contact-chip{width:100%;max-width:280px;justify-content:center}
-  .social-btn{padding:10px 14px;font-size:.85rem;border-radius:12px}
-  .main{padding:32px 14px 56px}.section{margin-bottom:36px}
-  .section-icon{width:30px;height:30px;font-size:.85rem;border-radius:8px}.section-title{font-size:1.1rem}
-  .exp-card{padding:13px 15px}.exp-title{font-size:.93rem}.exp-desc{font-size:.82rem}
-  .edu-grid{grid-template-columns:1fr;gap:10px}.edu-card{padding:13px 16px}
-  .skills-wrap{gap:8px}.skill-tag{padding:6px 14px;font-size:.8rem}
-  .videos-grid{grid-template-columns:1fr;gap:12px}
-  .podcast-card{grid-template-columns:50px 1fr;gap:10px;padding:14px 15px}.podcast-cover{width:50px;height:50px;border-radius:10px}
-  .podcast-title{font-size:.88rem}.podcast-btn{padding:4px 10px;font-size:.72rem}
-  .adm-row,.adm-row3{grid-template-columns:1fr}.adm-body{padding:16px 14px}.adm-actions{padding:12px 14px}
-  .adm-tab{padding:9px 10px;font-size:.72rem}.adm-head{padding:15px 18px}.adm-head h2{font-size:1rem}
-  .adm-social-item{grid-template-columns:1fr}.adm-overlay{padding:12px 8px}
-}
-@media(max-width:380px){
-  .hero-name{font-size:1.55rem}.hero-photo-wrap{width:96px;height:96px}.hero-photo,.hero-photo-ph{width:96px;height:96px;font-size:2.6rem}
-  .main{padding:28px 12px 50px}
-}
-</style>
-</head>
-<body>
-
-<!-- LANG LOADING OVERLAY -->
-<div class="lang-load-overlay" id="langLoadOverlay">
-  <div class="lang-load-box">
-    <div class="lang-load-title">🌐 Traduciendo contenido...</div>
-    <div class="lang-load-sub">Un momento, esto solo ocurre la primera vez</div>
-    <div class="lang-load-track"><div class="lang-load-bar" id="langLoadBar"></div></div>
-    <div class="lang-load-pct" id="langLoadPct">0%</div>
-  </div>
-</div>
-
-<!-- TOP BAR -->
-<div class="top-bar">
-  <div class="lang-btns">
-    <button class="lang-btn active" id="btnES" onclick="setLang('es')">ES</button>
-    <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
-  </div>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-photo-wrap" id="heroPhotoWrap">
-      <div class="hero-photo-ph" id="heroPh">👤</div>
-      <div class="hero-badge">✨</div>
-    </div>
-    <div>
-      <div class="hero-name" id="heroName">Carlos Marchena Alpízar</div>
-      <div class="hero-title" id="heroTitleEl"></div>
-    </div>
-    <p class="hero-about" id="heroAboutEl"></p>
-    <div class="hero-contact" id="heroContact"></div>
-    <div class="social-grid" id="socialGrid"></div>
-  </div>
-</section>
-
-<!-- MAIN CV -->
-<main class="main">
-  <section class="section reveal">
-    <div class="section-head"><div class="section-icon">💼</div><h2 class="section-title" id="expHeading">Experiencia</h2><div class="section-line"></div></div>
-    <div class="exp-list" id="expList"></div>
-  </section>
-  <section class="section reveal">
-    <div class="section-head"><div class="section-icon">🎓</div><h2 class="section-title" id="eduHeading">Educación y Certificaciones</h2><div class="section-line"></div></div>
-    <div class="edu-grid" id="eduGrid"></div>
-  </section>
-  <section class="section reveal">
-    <div class="section-head"><div class="section-icon">⚙️</div><h2 class="section-title" id="skillsHeading">Habilidades</h2><div class="section-line"></div></div>
-    <div class="skills-wrap" id="skillsWrap"></div>
-  </section>
-  <section class="section reveal">
-    <div class="section-head"><div class="section-icon">🗣️</div><h2 class="section-title" id="langsHeading">Idiomas</h2><div class="section-line"></div></div>
-    <div class="langs-wrap" id="langsWrap"></div>
-  </section>
-  <section class="section reveal" id="videosSection">
-    <div class="section-head"><div class="section-icon">🎬</div><h2 class="section-title" id="videosHeading">Videos</h2><div class="section-line"></div></div>
-    <div class="videos-grid" id="videosGrid"></div>
-  </section>
-  <section class="section reveal" id="podcastsSection">
-    <div class="section-head"><div class="section-icon">🎙️</div><h2 class="section-title" id="podcastsHeading">Podcasts</h2><div class="section-line"></div></div>
-    <div class="podcasts-list" id="podcastsList"></div>
-  </section>
-</main>
-
-<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
-<div class="notif" id="notifEl"></div>
-
-<!-- ADMIN PANEL -->
-<div class="adm-overlay" id="admOverlay">
- <div class="adm-panel" onclick="event.stopPropagation()">
-  <div class="adm-head">
-    <h2>⚙️ Panel Administrativo</h2>
-    <div class="adm-head-r"><span class="adm-save-status" id="admSaveStatus">Carlos Marchena CV</span><button class="adm-close" onclick="closeAdmin()">✕</button></div>
-  </div>
-  <div class="adm-tabs">
-    <button class="adm-tab act" onclick="switchTab('perfil',this)">👤 Perfil</button>
-    <button class="adm-tab" onclick="switchTab('social',this)">🔗 Redes</button>
-    <button class="adm-tab" onclick="switchTab('exp',this)">💼 Experiencia</button>
-    <button class="adm-tab" onclick="switchTab('edu',this)">🎓 Educación</button>
-    <button class="adm-tab" onclick="switchTab('skills',this)">⚙️ Habilidades</button>
-    <button class="adm-tab" onclick="switchTab('langs',this)">🗣️ Idiomas</button>
-    <button class="adm-tab" onclick="switchTab('videos',this)">🎬 Videos</button>
-    <button class="adm-tab" onclick="switchTab('podcasts',this)">🎙️ Podcasts</button>
-    <button class="adm-tab" onclick="switchTab('security',this)">🔐 Seguridad</button>
-    <button class="adm-tab" onclick="switchTab('deploy',this)">🚀 Publicar</button>
-  </div>
-  <div class="adm-body">
-
-    <!-- PERFIL -->
-    <div class="adm-sec act" id="sec-perfil">
-      <div class="adm-note">Escribe el contenido en <strong>español</strong> — se traducirá automáticamente al inglés al cambiar idioma.</div>
-      <div class="adm-section-title">Foto de Perfil</div>
-      <div class="photo-upload-area" onclick="document.getElementById('photoFileInput').click()">
-        <div class="photo-preview-ph" id="photoPreviewPh">👤</div>
-        <img id="photoPreviewImg" class="photo-preview" style="display:none">
-        <p style="font-size:.82rem;color:var(--text-l)">Click para subir foto · JPG/PNG/WEBP</p>
-      </div>
-      <input type="file" id="photoFileInput" accept="image/*" style="display:none" onchange="handlePhotoUpload(this)">
-      <button class="btn btn-outline btn-sm" onclick="removePhoto()" style="margin-bottom:18px">🗑 Eliminar foto</button>
-      <div class="adm-section-title">Nombre y Título</div>
-      <div class="adm-fld"><label>Nombre completo</label><input id="p-name" placeholder="Carlos Marchena Alpízar"></div>
-      <div class="adm-fld"><label>Título / Rol</label><input id="p-title" placeholder="Ingeniero de Soporte · Especialista IAM"></div>
-      <div class="adm-section-title">Sobre Mí</div>
-      <div class="adm-fld"><label>Descripción personal</label><textarea id="p-about" rows="4"></textarea></div>
-      <div class="adm-section-title">Contacto</div>
-      <div class="adm-row">
-        <div class="adm-fld"><label>Teléfono</label><input id="p-phone" placeholder="8828-0987"></div>
-        <div class="adm-fld"><label>Email</label><input id="p-email" placeholder="correo@gmail.com"></div>
-      </div>
-      <div class="adm-fld"><label>Ubicación</label><input id="p-loc" placeholder="Heredia, Costa Rica"></div>
-    </div>
-
-    <!-- SOCIAL -->
-    <div class="adm-sec" id="sec-social">
-      <div class="adm-note">Agrega o edita tus redes sociales.</div>
-      <div id="socialAdmList"></div>
-      <button class="btn btn-outline" onclick="addSocialItem()">+ Agregar enlace</button>
-    </div>
-
-    <!-- EXPERIENCIA -->
-    <div class="adm-sec" id="sec-exp">
-      <div class="adm-note">Escribe en <strong>español</strong> — el motor de traducción hace el resto al cambiar a EN.</div>
-      <div class="adm-card-list" id="expAdmList"></div>
-      <button class="btn btn-outline" onclick="addExpItem()">+ Agregar posición</button>
-    </div>
-
-    <!-- EDUCACIÓN -->
-    <div class="adm-sec" id="sec-edu">
-      <div class="adm-note">Títulos y certificaciones.</div>
-      <div class="adm-card-list" id="eduAdmList"></div>
-      <button class="btn btn-outline" onclick="addEduItem()">+ Agregar</button>
-    </div>
-
-    <!-- HABILIDADES -->
-    <div class="adm-sec" id="sec-skills">
-      <div class="adm-note">Términos técnicos — generalmente no necesitan traducción.</div>
-      <div class="skills-tags-edit" id="skillsAdmTags"></div>
-      <div style="display:flex;gap:8px;margin-top:4px">
-        <input id="newSkillInput" placeholder="Nueva habilidad..." style="flex:1;padding:8px 12px;border:2px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none" onkeydown="if(event.key==='Enter')addSkill()">
-        <button class="btn btn-cyan" onclick="addSkill()">+ Agregar</button>
-      </div>
-    </div>
-
-    <!-- IDIOMAS -->
-    <div class="adm-sec" id="sec-langs">
-      <div class="adm-note">Idiomas que hablás y tu nivel de dominio.</div>
-      <div class="adm-card-list" id="langsAdmList"></div>
-      <button class="btn btn-outline" onclick="addLangItem()">+ Agregar idioma</button>
-    </div>
-
-    <!-- VIDEOS -->
-    <div class="adm-sec" id="sec-videos">
-      <div class="adm-note">Pega URLs de YouTube o Vimeo. Thumbnail automático.</div>
-      <div class="adm-card-list" id="videosAdmList"></div>
-      <button class="btn btn-outline" onclick="addVideoItem()">+ Agregar video</button>
-    </div>
-
-    <!-- PODCASTS -->
-    <div class="adm-sec" id="sec-podcasts">
-      <div class="adm-note">Links a Spotify, Apple Podcasts u otras plataformas.</div>
-      <div class="adm-card-list" id="podcastsAdmList"></div>
-      <button class="btn btn-outline" onclick="addPodcastItem()">+ Agregar podcast</button>
-    </div>
-
-    <!-- SEGURIDAD -->
-    <div class="adm-sec" id="sec-security">
-      <div class="adm-note">Cambia la contraseña del panel administrativo.</div>
-      <div class="adm-fld"><label>Contraseña actual</label><input id="a-pwCurrent" type="password"></div>
-      <div class="adm-fld"><label>Nueva contraseña</label><input id="a-pwNew" type="password"></div>
-      <div class="adm-fld"><label>Confirmar nueva contraseña</label><input id="a-pwConfirm" type="password"></div>
-      <button class="btn btn-primary" onclick="changePassword()">🔐 Cambiar contraseña</button>
-    </div>
-
-    <!-- DEPLOY -->
-    <div class="adm-sec" id="sec-deploy">
-      <div class="adm-note" style="background:#dbeafe;color:#1e40af">
-        💡 <strong>Arquitectura de archivos:</strong>
-        <div class="gh-arch-list">
-          <div class="gh-arch-item"><span>📊</span><div><strong>data.json</strong><span class="gh-arch-desc">Contenido del CV — actualizar frecuentemente</span></div><span class="gh-badge-freq">Frecuente</span></div>
-          <div class="gh-arch-item"><span>📄</span><div><strong>index.html</strong><span class="gh-arch-desc">Código y diseño — solo en rediseños</span></div><span class="gh-badge-rare">Raro</span></div>
-        </div>
-      </div>
-
-      <div id="ghFileWarn" style="display:none;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;border-radius:8px;padding:10px 14px;font-size:.8rem;margin-bottom:14px;line-height:1.5">
-        ⚠️ <strong>Estás en modo local (file://)</strong> — los botones de publicar no funcionan desde aquí.<br>
-        Subí los archivos manualmente a GitHub primero, luego abrí tu sitio en GitHub Pages y usá el panel desde ahí.
-      </div>
-
-      <div class="adm-section-title">🔑 Configuración GitHub</div>
-      <div class="adm-note">Primera vez: creá un token con permiso <code>repo</code> en GitHub.
-        <a href="https://github.com/settings/tokens/new?scopes=repo&description=CV+Admin" target="_blank" rel="noopener" style="color:var(--cyan-d);font-weight:700;margin-left:4px">Crear token aquí ↗</a>
-      </div>
-      <div class="adm-row">
-        <div class="adm-fld"><label>Usuario de GitHub</label><input id="gh-user" placeholder="tu-usuario" autocomplete="off"></div>
-        <div class="adm-fld"><label>Repositorio</label><input id="gh-repo" placeholder="mi-cv.github.io" autocomplete="off"></div>
-      </div>
-      <div class="adm-row">
-        <div class="adm-fld"><label>Rama (branch)</label><input id="gh-branch" placeholder="main" autocomplete="off"></div>
-        <div class="adm-fld"><label>Token de acceso personal</label>
-          <div class="gh-fld-wrap"><input id="gh-token" type="password" placeholder="ghp_... o github_pat_..." autocomplete="off"><button class="gh-eye" onclick="toggleGhToken()" type="button">👁</button></div>
-        </div>
-      </div>
-      <div style="display:flex;gap:8px;margin-bottom:6px">
-        <button class="btn btn-cyan" onclick="verifyGhConnection()">🔍 Verificar y Guardar</button>
-        <button class="btn btn-outline" onclick="saveGhCfgBtn()">💾 Solo Guardar</button>
-      </div>
-      <div id="ghConfigStatus" style="font-size:.8rem;margin-bottom:14px"></div>
-
-      <div class="adm-section-title">📤 Publicar</div>
-      <div class="adm-note warn" id="ghPublishNote">Guardá la configuración arriba para habilitar la publicación.</div>
-
-      <div id="ghPublishSection" style="display:none">
-        <div class="gh-status-card">
-          <div class="gh-status-row"><span class="gh-status-dot" id="ghDot"></span><span id="ghStatusMsg">Listo para publicar</span></div>
-          <div id="ghProgressWrap" style="display:none;margin-top:8px">
-            <div class="gh-progress"><div class="gh-progress-fill" id="ghProgressFill"></div></div>
-            <div id="ghProgressTxt" style="font-size:.76rem;color:var(--text-l);margin-top:4px"></div>
-          </div>
-        </div>
-        <div class="gh-pub-actions">
-          <div class="gh-pub-card">
-            <div class="gh-pub-card-head">📊 <strong>Publicar contenido</strong> <span class="gh-badge-freq">Uso frecuente</span></div>
-            <p>Actualiza <code>data.json</code> — experiencia, educación, habilidades, fotos. Rápido y seguro.</p>
-            <button class="btn btn-green" id="ghPublishDataBtn" onclick="publishDataJson()" style="width:100%;margin-top:10px">🚀 Publicar data.json</button>
-          </div>
-          <div class="gh-pub-card">
-            <div class="gh-pub-card-head">📄 <strong>Actualizar código</strong> <span class="gh-badge-rare">Raro</span></div>
-            <p>Sube el nuevo <code>index.html</code> — solo cuando el diseño o las funciones cambiaron.</p>
-            <button class="btn btn-outline" id="ghPublishHtmlBtn" onclick="publishIndexHtml()" style="width:100%;margin-top:10px">📄 Publicar index.html</button>
-          </div>
-        </div>
-        <div id="ghLastPublish" style="font-size:.78rem;color:var(--text-l);margin-top:10px"></div>
-        <div class="adm-note" style="background:#dbeafe;color:#1e40af;margin-top:12px">
-          ⏱ Los cambios aparecen en
-          <a id="ghSiteLink" href="#" target="_blank" rel="noopener" style="color:var(--cyan-d);font-weight:700">tu sitio ↗</a>
-          en <strong>~1 minuto</strong>.
-        </div>
-      </div>
-
-      <div class="adm-section-title" style="margin-top:20px">Otras opciones</div>
-      <button class="btn btn-outline" onclick="downloadDataJson()">⬇️ Descargar data.json</button>
-      <button class="btn btn-danger btn-sm" onclick="resetAllData()" style="margin-left:8px">🗑 Borrar datos locales</button>
-    </div>
-  </div>
-  <div class="adm-actions">
-    <button class="btn btn-outline" onclick="saveAdmin()">💾 Guardar</button>
-    <button class="btn btn-green" onclick="saveAndPublish()">🚀 Guardar y Publicar</button>
-  </div>
- </div>
-</div>
-
-<!-- LOGIN -->
-<div class="adm-overlay" id="loginOverlay">
- <div class="adm-panel" style="max-width:400px">
-  <div class="adm-head"><h2>🔐 Acceso Administrativo</h2><button class="adm-close" onclick="closeLogin()">✕</button></div>
-  <div class="adm-body">
-    <div class="adm-fld" style="margin-top:8px"><label>Contraseña</label>
-      <input id="loginPw" type="password" placeholder="Ingresa tu contraseña" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
-  </div>
-  <div class="adm-actions">
-    <button class="btn btn-outline" onclick="closeLogin()">Cancelar</button>
-    <button class="btn btn-primary" onclick="doLogin()">Entrar</button>
-  </div>
- </div>
-</div>
-
-<script>
-// ═══════════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════════
-let D = {}, D_ORIGINAL = null, D_view = null;
-let currentLang = localStorage.getItem('cvLang') || 'es';
-
-const DEFAULT_DATA = {
-  adminPw: '',
-  photo: '',
-  name: 'Carlos Marchena Alpízar',
-  title: 'Ingeniero de Soporte Técnico · Especialista en IAM y Redes',
-  about: 'Ingeniero de soporte técnico con más de 4 años de experiencia en soporte Tier 2, especializado en Gestión de Identidades y Accesos (IAM), redes y sistemas en la nube. Sólida experiencia en troubleshooting de sistemas distribuidos, APIs y entornos contenerizados (Kubernetes, Docker).',
-  phone: '8828-0987',
-  email: 'carlosmarchena@gmail.com',
-  loc: 'Heredia, Costa Rica',
-  social: [
-    {type:'linkedin',label:'LinkedIn',url:'https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139'},
-    {type:'whatsapp',label:'WhatsApp',url:'https://wa.me/50688280987'},
-    {type:'instagram',label:'Instagram',url:''},
-    {type:'facebook',label:'Facebook',url:''},
-    {type:'github',label:'GitHub',url:''}
-  ],
-  experience: [
-    {title:'Ingeniero de Soporte Técnico',company:'Encora · Proyecto: AuthID',location:'Heredia, Costa Rica',period:'2024 – 2026',
-     desc:'AuthID.ai es una plataforma de verificación de identidad biométrica. Troubleshooting avanzado de autenticación y detección de liveness. Análisis de logs y respuestas de API para identificar fallas del sistema. Reproducción de incidencias en entornos controlados. Colaboración con equipos de desarrollo, backend y business units.\n\n🏆 Reducí tasas de escalamiento mediante análisis profundo de causa raíz. Establecí procesos SLA-driven. Lideré la creación de documentación técnica y aproveché Databricks para troubleshooting basado en datos.'},
-    {title:'TAC Engineer Tier 2 – Cisco DNA Center',company:'Sykes · Proyecto: Cisco DNA Center',location:'Heredia, Costa Rica',period:'2022 – 2023',
-     desc:'Troubleshooting de clusters y servicios de Cisco DNA Center. Gestión de entornos Kubernetes y Docker. Actualizaciones de sistema (SWIM, IMC) y mantenimiento. CLI troubleshooting con Linux y comandos Maglev.\n\n🏆 Reduje interrupciones de servicio validando proactivamente procesos de upgrade. Aceleré resolución de incidentes mejorando workflows de troubleshooting en servicios Kubernetes.'},
-    {title:'Okta Administrator',company:'Sykes · Proyecto: Okta',location:'Heredia, Costa Rica',period:'2021 – 2022',
-     desc:'Configuración y troubleshooting de SSO (SAML, OIDC, OAuth, WS-Fed). Gestión de políticas MFA y flujos de autenticación. Integración de Okta con Active Directory y LDAP. Provisioning, roles y ciclo de vida de usuarios.\n\n🏆 Reduje fallas de autenticación y disrupciones de acceso. Mejoré la confiabilidad de flujos de identidad estandarizando enfoques de troubleshooting.'},
-    {title:'TAC Engineer Tier 2 – Cisco ACI',company:'Sykes · Proyecto: Cisco ACI',location:'Heredia, Costa Rica',period:'2019 – 2021',
-     desc:'Troubleshooting avanzado de ACI fabric, políticas y servicios de red. Troubleshooting en Linux y análisis de logs. Gestión de certificados y APIs. Configuración de SNMP, DNS y NTP. Upgrades de ACI e IMC.\n\n🏆 Reduje incidentes recurrentes mediante análisis de causa raíz. Fortalecí la estabilidad general de la red en entornos distribuidos.'},
-    {title:'Agente de Detección de Fraude',company:'Sykes · Proyecto: Capital One',location:'Heredia, Costa Rica',period:'2018 – 2019',
-     desc:'Contacto principal para consultas de fraude. Investigación de transacciones marcadas y actividad sospechosa. Análisis de patrones de transacciones e indicadores de riesgo.\n\n🏆 Reduje el riesgo financiero identificando patrones sospechosos. Fortalecí la confianza del cliente mejorando la efectividad de respuesta.'},
-    {title:'Representante de Soporte Técnico',company:'Netcom S.A · Proyecto: ISP Support (ICE/Kölbi)',location:'San José, Costa Rica',period:'2017 – 2018',
-     desc:'Soporte técnico por llamada y correo electrónico. Troubleshooting de conectividad a internet. Configuración de módems y dispositivos de red. Resolución de problemas DSL, Fibra Óptica, Triple Play y VoIP.\n\n🏆 Reduje incidentes repetitivos resolviendo problemas de conectividad eficientemente en el primer contacto.'},
-    {title:'Técnico de Service Desk',company:'Fujitsu · Proyecto: IT Service Desk',location:'Heredia, Costa Rica',period:'Mayo – Dic 2016',
-     desc:'Creación y gestión de tickets de incidencias. Soporte técnico básico (resets de contraseñas, impresoras, troubleshooting). Gestión de usuarios en Active Directory y Windows Server.\n\n🏆 Mejoré la eficiencia del servicio con documentación precisa. Reduje tiempo de inactividad de usuarios con soporte IT confiable.'}
-  ],
-  education: [
-    {title:'Data Analyst',institution:'Databricks',period:'2026'},
-    {title:'Licenciatura en Docencia',institution:'Universidad San Marcos',period:'2024 – 2025'},
-    {title:'Ciencias de la Computación',institution:'Universidad Nacional',period:'2000 – 2005'},
-    {title:'IA Generativa: Introducción y Aplicaciones',institution:'IBM',period:'2025'},
-    {title:'Ruta de Entrenamiento Gen AI – Técnico',institution:'Coursera',period:'2025'},
-    {title:'AI-Powered Software and System Design',institution:'DeepLearning AI',period:'2025'},
-    {title:'Team Software Engineering with AI',institution:'DeepLearning AI',period:'2025'},
-    {title:'IA Generativa con Large Language Models',institution:'DeepLearning AI / AWS',period:'2025'},
-    {title:'Introducción a la IA Generativa para Dev de Software',institution:'DeepLearning AI',period:'2025'},
-    {title:'Advanced Prompt Engineering for Everyone',institution:'Vanderbilt University',period:'2025'},
-    {title:'Ruta de Entrenamiento Gen AI – Fundacional',institution:'Coursera',period:'2025'},
-    {title:'Containers & Kubernetes Essentials',institution:'IBM Developer Skills Network',period:'2023'},
-    {title:'Docker Essentials – A Developer Introduction',institution:'IBM Developer Skills Network',period:'2023'},
-    {title:'Kubernetes',institution:'Tech Academy – Sykes',period:'2023'},
-    {title:'Introducción a Containers, Kubernetes y OpenShift V2',institution:'IBM Developer Skills Network',period:'2023'},
-    {title:'Introducción a Windows Server Administration',institution:'Alison',period:'2023'},
-    {title:'Endpoint Security',institution:'Cisco',period:'2023'},
-    {title:'Introducción a Ciberseguridad',institution:'Cisco',period:'2023'},
-    {title:'Linux Essentials',institution:'Tech Academy – Sykes',period:'2022'},
-    {title:'Okta Certified Administrator',institution:'Okta',period:'2021'},
-    {title:'CCNA v7',institution:'Tech Academy – Sykes',period:'2024 – 2026'}
-  ],
-  skills:['Python','APIs / REST','Postman','Kubernetes','Docker','Bash / Shell','Linux (Ubuntu/CentOS)','Windows Server','VMware ESXi','OpenSSL','Cisco DNA Center','Cisco ACI','Okta / IAM','SSO (SAML · OIDC · OAuth)','LDAP / Active Directory','PostgreSQL','MongoDB','Cassandra','InfluxDB','Databricks','Log Analysis','Jira','Git','Prompt Engineering','Generative AI'],
-  languages:[
-    {lang:'Español',level:'Nativo'},
-    {lang:'Inglés',level:'Avanzado'}
-  ],
-  videos:[],
-  podcasts:[]
-};
-
-// Static UI strings
-const UI = {
-  es:{expHeading:'Experiencia',eduHeading:'Educación y Certificaciones',skillsHeading:'Habilidades',langsHeading:'Idiomas',videosHeading:'Videos',podcastsHeading:'Podcasts',noContent:'No hay contenido aún.'},
-  en:{expHeading:'Experience',eduHeading:'Education & Certifications',skillsHeading:'Skills',langsHeading:'Languages',videosHeading:'Videos',podcastsHeading:'Podcasts',noContent:'No content yet.'}
-};
-
-// ═══════════════════════════════════════════════
-// AUTO-TRANSLATION ENGINE (MyMemory API)
-// ═══════════════════════════════════════════════
-function _cacheKey(){
-  const sig='cv_v1_'+(D.title||'')+(D.experience.length)+(D.experience[0]?.title||'');
-  return 'cvEN_'+btoa(unescape(encodeURIComponent(sig))).replace(/[^a-zA-Z0-9]/g,'').slice(0,28);
-}
-
-async function _tx(text){
-  if(!text||!text.trim())return text;
-  // Split into chunks ≤480 chars at sentence/paragraph boundaries
-  const chunks=[];
-  const sentences=text.split(/(?<=[.!?])\s+|\n\n+/);
-  let buf='';
-  for(const s of sentences){
-    if((buf+' '+s).trim().length>480&&buf){chunks.push(buf.trim());buf=s;}
-    else{buf=buf?buf+' '+s:s;}
-  }
-  if(buf.trim())chunks.push(buf.trim());
-  const parts=[];
-  for(const chunk of chunks){
-    try{
-      const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(chunk)+'&langpair=es|en');
-      const j=await r.json();
-      parts.push(j.responseData?.translatedText||chunk);
-    }catch{parts.push(chunk);}
-    if(chunks.length>1)await new Promise(r=>setTimeout(r,180));
-  }
-  return parts.join(' ');
-}
-
-async function buildTranslations(){
-  const ck=_cacheKey();
-  try{const c=localStorage.getItem(ck);if(c)return JSON.parse(c);}catch{}
-  // Show loading overlay
-  const overlay=document.getElementById('langLoadOverlay');
-  const bar=document.getElementById('langLoadBar');
-  const pct=document.getElementById('langLoadPct');
-  overlay.classList.add('show');
-  const queue=[];
-  const add=(key,val)=>{if(val&&val.trim())queue.push({key,val});};
-  add('title',D.title);
-  add('about',D.about);
-  add('loc',D.loc);
-  D.experience.forEach((e,i)=>{add(`exp_${i}_title`,e.title);add(`exp_${i}_period`,e.period);add(`exp_${i}_desc`,e.desc);});
-  D.education.forEach((e,i)=>{add(`edu_${i}_title`,e.title);});
-  D.languages.forEach((l,i)=>{add(`lang_${i}_name`,l.lang);add(`lang_${i}_level`,l.level);});
-  (D.videos||[]).forEach((v,i)=>{add(`vid_${i}_title`,v.title);});
-  (D.podcasts||[]).forEach((p,i)=>{add(`pod_${i}_title`,p.title);add(`pod_${i}_desc`,p.desc);});
-  const map={};
-  let done=0;
-  for(const item of queue){
-    map[item.key]=await _tx(item.val);
-    done++;
-    const p=Math.round(done/queue.length*100);
-    bar.style.width=p+'%';
-    pct.textContent=p+'%';
-  }
-  try{localStorage.setItem(ck,JSON.stringify(map));}catch{}
-  overlay.classList.remove('show');
-  return map;
-}
-
-function applyTranslations(map){
-  const g=k=>map[k]||undefined;
-  const Dt=JSON.parse(JSON.stringify(D_ORIGINAL));
-  if(g('title'))Dt.title=g('title');
-  if(g('about'))Dt.about=g('about');
-  if(g('loc'))Dt.loc=g('loc');
-  Dt.experience.forEach((e,i)=>{
-    if(g(`exp_${i}_title`))e.title=g(`exp_${i}_title`);
-    if(g(`exp_${i}_period`))e.period=g(`exp_${i}_period`);
-    if(g(`exp_${i}_desc`))e.desc=g(`exp_${i}_desc`);
-  });
-  Dt.education.forEach((e,i)=>{if(g(`edu_${i}_title`))e.title=g(`edu_${i}_title`);});
-  Dt.languages.forEach((l,i)=>{if(g(`lang_${i}_name`))l.lang=g(`lang_${i}_name`);if(g(`lang_${i}_level`))l.level=g(`lang_${i}_level`);});
-  (Dt.videos||[]).forEach((v,i)=>{if(g(`vid_${i}_title`))v.title=g(`vid_${i}_title`);});
-  (Dt.podcasts||[]).forEach((p,i)=>{if(g(`pod_${i}_title`))p.title=g(`pod_${i}_title`);if(g(`pod_${i}_desc`))p.desc=g(`pod_${i}_desc`);});
-  return Dt;
-}
-
-// ═══════════════════════════════════════════════
-// I18N
-// ═══════════════════════════════════════════════
-async function setLang(lang){
-  currentLang=lang;
-  localStorage.setItem('cvLang',lang);
-  document.documentElement.lang=lang;
-  document.getElementById('btnES').classList.toggle('active',lang==='es');
-  document.getElementById('btnEN').classList.toggle('active',lang==='en');
-  // Apply static UI strings
-  const u=UI[lang]||UI.es;
-  document.getElementById('expHeading').textContent=u.expHeading;
-  document.getElementById('eduHeading').textContent=u.eduHeading;
-  document.getElementById('skillsHeading').textContent=u.skillsHeading;
-  document.getElementById('langsHeading').textContent=u.langsHeading;
-  document.getElementById('videosHeading').textContent=u.videosHeading;
-  document.getElementById('podcastsHeading').textContent=u.podcastsHeading;
-  if(lang==='en'){
-    const map=await buildTranslations();
-    const Dt=applyTranslations(map);
-    D_view=Dt;
-    const _D=D; D=Dt; renderAll(); D=_D;
-  } else {
-    D_view=null;
-    if(D_ORIGINAL)D=D_ORIGINAL;
-    renderAll();
-  }
-}
-
-// ═══════════════════════════════════════════════
-// PERSISTENCE
-// ═══════════════════════════════════════════════
-async function sha256(pw){
-  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw.trim()));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-
-async function loadData(){
-  // Migration: convert old _es/_en structure to new single-field structure
-  function migrate(d){
-    if(!d)return d;
-    if(d.title_es&&!d.title)d.title=d.title_es;
-    if(d.about_es&&!d.about)d.about=d.about_es;
-    if(d.loc_es&&!d.loc)d.loc=d.loc_es;
-    (d.experience||[]).forEach(e=>{if(e.title_es&&!e.title)e.title=e.title_es;if(e.period_es&&!e.period)e.period=e.period_es;if(e.desc_es&&!e.desc)e.desc=e.desc_es;});
-    (d.education||[]).forEach(e=>{if(e.title_es&&!e.title)e.title=e.title_es;});
-    (d.languages||[]).forEach(l=>{if(l.lang_es&&!l.lang)l.lang=l.lang_es;if(l.level_es&&!l.level)l.level=l.level_es;});
-    (d.videos||[]).forEach(v=>{if(v.title_es&&!v.title)v.title=v.title_es;});
-    (d.podcasts||[]).forEach(p=>{if(p.title_es&&!p.title)p.title=p.title_es;if(p.desc_es&&!p.desc)p.desc=p.desc_es;});
-    return d;
-  }
-  try{
-    const r=await fetch('./data.json?t='+Date.now());
-    if(r.ok){D=migrate(await r.json());resolvePhoto();D_ORIGINAL=JSON.parse(JSON.stringify(D));return;}
-  }catch{}
-  try{
-    const s=localStorage.getItem('cv_data');
-    if(s){D=migrate(JSON.parse(s));resolvePhoto();D_ORIGINAL=JSON.parse(JSON.stringify(D));return;}
-  }catch{}
-  D=JSON.parse(JSON.stringify(DEFAULT_DATA));
-  D.adminPw=await sha256('lipeca10');
-  D_ORIGINAL=JSON.parse(JSON.stringify(D));
-  saveData();
-}
-
-function saveData(){
-  const photoBackup=D.photo;
-  const dLite={...D,photo:D.photo&&D.photo.startsWith('data:')?'__local__':D.photo};
-  try{
-    localStorage.setItem('cv_data',JSON.stringify(dLite));
-    if(D.photo&&D.photo.startsWith('data:')){
-      try{localStorage.setItem('cv_photo',D.photo);}catch{D.photo='';showNotif('⚠️ Foto muy grande. Usa URL externa.');}
+{
+  "photo": "",
+  "name": "Carlos Marchena Alpízar",
+  "title": "Ingeniero de Soporte Técnico · Especialista en IAM y Redes",
+  "about": "Ingeniero de soporte técnico con más de 4 años de experiencia en soporte Tier 2, especializado en Gestión de Identidades y Accesos (IAM), redes y sistemas en la nube. Sólida experiencia en troubleshooting de sistemas distribuidos, APIs y entornos contenerizados (Kubernetes, Docker).",
+  "phone": "8828-0987",
+  "email": "carlosmarchena@gmail.com",
+  "loc": "Heredia, Costa Rica",
+  "social": [
+    {
+      "type": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/carlos-marchena-alp%C3%ADzar-0b9745139"
+    },
+    {
+      "type": "whatsapp",
+      "label": "WhatsApp",
+      "url": "https://wa.me/50688280987"
+    },
+    {
+      "type": "instagram",
+      "label": "Instagram",
+      "url": ""
+    },
+    {
+      "type": "facebook",
+      "label": "Facebook",
+      "url": ""
+    },
+    {
+      "type": "github",
+      "label": "GitHub",
+      "url": ""
     }
-  }catch{showNotif('⚠️ Almacenamiento lleno.');}
-  D.photo=photoBackup;
-  // Invalidate translation cache so new content gets re-translated
-  clearTxCache();
-}
-
-function clearTxCache(){
-  Object.keys(localStorage).filter(k=>k.startsWith('cvEN_')).forEach(k=>localStorage.removeItem(k));
-}
-
-function resolvePhoto(){
-  if(D.photo==='__local__')D.photo=localStorage.getItem('cv_photo')||'';
-}
-
-// ═══════════════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════════════
-let _revealObs=null;
-function initReveal(){
-  if(_revealObs)_revealObs.disconnect();
-  _revealObs=new IntersectionObserver(entries=>{
-    entries.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');_revealObs.unobserve(x.target);}});
-  },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal,.reveal-scale,.skill-tag').forEach(el=>{
-    el.classList.remove('vis');
-    _revealObs.observe(el);
-  });
-}
-
-function renderAll(){
-  renderHero();renderSocial();renderExperience();renderEducation();renderSkills();renderLanguages();renderVideos();renderPodcasts();updateWaButton();
-  setTimeout(initReveal,80);
-}
-
-function renderHero(){
-  document.getElementById('heroName').textContent=D.name||'';
-  document.getElementById('heroTitleEl').textContent=D.title||'';
-  document.getElementById('heroAboutEl').textContent=D.about||'';
-  const wrap=document.getElementById('heroPhotoWrap');
-  const ph=document.getElementById('heroPh');
-  let img=document.getElementById('heroPhotoImg');
-  if(D.photo){
-    ph.style.display='none';
-    if(!img){img=document.createElement('img');img.id='heroPhotoImg';img.className='hero-photo';wrap.insertBefore(img,wrap.firstChild);}
-    img.src=D.photo;img.style.display='';
-  }else{ph.style.display='';if(img)img.style.display='none';}
-  const cc=document.getElementById('heroContact');
-  const chips=[];
-  if(D.phone)chips.push({href:`tel:${D.phone.replace(/\D/g,'')}`,icon:'📞',text:D.phone});
-  if(D.email)chips.push({href:`mailto:${D.email}`,icon:'✉️',text:D.email});
-  if(D.loc)chips.push({href:'#',icon:'📍',text:D.loc});
-  cc.innerHTML=chips.map(c=>`<a class="contact-chip" href="${c.href}">${c.icon} ${c.text}</a>`).join('');
-}
-
-const SOCIAL_ICONS={
-  linkedin:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`,
-  instagram:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
-  facebook:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
-  github:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`,
-  whatsapp:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>`,
-  email:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>`,
-  custom:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>`
-};
-
-function renderSocial(){
-  const grid=document.getElementById('socialGrid');
-  grid.innerHTML=(D.social||[]).filter(s=>s.url).map(s=>`
-    <a class="social-btn ${s.type||'custom'}" href="${s.url}" target="_blank" rel="noopener">
-      ${SOCIAL_ICONS[s.type]||SOCIAL_ICONS.custom}<span>${s.label||s.type}</span><span class="s-arrow">→</span>
-    </a>`).join('');
-}
-
-function renderExperience(){
-  document.getElementById('expList').innerHTML=(D.experience||[]).map((e,i)=>`
-    <div class="exp-item reveal reveal-d${Math.min(i+1,6)}">
-      <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
-      <div class="exp-card">
-        <div class="exp-header">
-          <div class="exp-title">${e.title}</div>
-          <div class="exp-period">${e.period}</div>
-        </div>
-        <div class="exp-company"><strong>${e.company}</strong> · ${e.location||''}</div>
-        <div class="exp-desc">${e.desc||''}</div>
-      </div>
-    </div>`).join('');
-}
-
-function renderEducation(){
-  document.getElementById('eduGrid').innerHTML=(D.education||[]).map((e,i)=>`
-    <div class="edu-card reveal-scale reveal-d${Math.min((i%6)+1,6)}">
-      <div class="edu-title">${e.title}</div>
-      <div class="edu-inst">${e.institution||''}</div>
-      <div class="edu-period">${e.period||''}</div>
-    </div>`).join('');
-}
-
-function renderSkills(){
-  document.getElementById('skillsWrap').innerHTML=(D.skills||[]).map((s,i)=>
-    `<div class="skill-tag" style="transition-delay:${(i*0.04).toFixed(2)}s">${s}</div>`
-  ).join('');
-}
-
-function renderLanguages(){
-  const flags={español:'🇨🇷',spanish:'🇨🇷',inglés:'🇺🇸',english:'🇺🇸'};
-  document.getElementById('langsWrap').innerHTML=(D.languages||[]).map(l=>`
-    <div class="lang-card reveal">
-      <div class="lang-flag">${flags[(l.lang||'').toLowerCase()]||'🌐'}</div>
-      <div><div class="lang-name">${l.lang}</div><div class="lang-level">${l.level}</div></div>
-    </div>`).join('');
-}
-
-function updateWaButton(){
-  const wa=document.getElementById('waFloat');
-  if(!wa)return;
-  const waLink=(D.social||[]).find(s=>s.type==='whatsapp'&&s.url);
-  if(waLink){wa.href=waLink.url;wa.classList.add('show');}
-  else{wa.classList.remove('show');}
-}
-
-function getYTId(url){const m=(url||'').match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^&?/\s]{11})/);return m?m[1]:null;}
-
-function renderVideos(){
-  const grid=document.getElementById('videosGrid');
-  const section=document.getElementById('videosSection');
-  const vids=(D.videos||[]).filter(v=>v.url);
-  section.style.display=vids.length?'':'none';
-  if(!vids.length)return;
-  grid.innerHTML=vids.map(v=>{
-    const ytId=getYTId(v.url);
-    const thumb=ytId?`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`:(v.thumbnail||'');
-    return `<div class="video-card">
-      <div class="video-thumb" onclick="openVideo('${v.url}')">
-        ${thumb?`<img src="${thumb}" alt="video" loading="lazy">`:'<div style="width:100%;height:100%;background:linear-gradient(135deg,var(--navy),var(--navy-m));display:flex;align-items:center;justify-content:center;font-size:2rem">🎬</div>'}
-        <div class="video-play"><svg viewBox="0 0 24 24" fill="currentColor" width="44" height="44"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,.5)"/><polygon points="10,8 18,12 10,16" fill="white"/></svg></div>
-      </div>
-      <div class="video-info"><div class="video-title">${v.title||v.url}</div></div>
-    </div>`;
-  }).join('');
-}
-
-function openVideo(url){const ytId=getYTId(url);window.open(ytId?`https://www.youtube.com/watch?v=${ytId}`:url,'_blank');}
-
-function renderPodcasts(){
-  const list=document.getElementById('podcastsList');
-  const section=document.getElementById('podcastsSection');
-  const pods=(D.podcasts||[]).filter(p=>p.title||p.url||p.spotify);
-  section.style.display=pods.length?'':'none';
-  if(!pods.length)return;
-  list.innerHTML=pods.map(p=>{
-    const cover=p.cover?`<img src="${p.cover}" alt="cover">`:`<span>🎙️</span>`;
-    const btns=[];
-    if(p.spotify)btns.push(`<a class="podcast-btn spotify" href="${p.spotify}" target="_blank">🎵 Spotify</a>`);
-    if(p.apple)btns.push(`<a class="podcast-btn apple" href="${p.apple}" target="_blank">🎵 Apple</a>`);
-    if(p.url)btns.push(`<a class="podcast-btn link" href="${p.url}" target="_blank">🔗 Ver más</a>`);
-    if(p.embed)btns.push(`<button class="podcast-btn play" onclick="openEmbedModal('${encodeURIComponent(p.embed)}')">▶ Reproducir</button>`);
-    return `<div class="podcast-card">
-      <div class="podcast-cover">${cover}</div>
-      <div class="podcast-info">
-        <div class="podcast-title">${p.title||'Podcast'}</div>
-        <div class="podcast-desc">${p.desc||''}</div>
-        <div class="podcast-actions">${btns.join('')}</div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function openEmbedModal(enc){
-  const url=decodeURIComponent(enc);
-  const m=document.createElement('div');
-  m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9500;display:flex;align-items:center;justify-content:center;padding:20px';
-  m.innerHTML=`<div style="background:#fff;border-radius:16px;overflow:hidden;width:100%;max-width:640px;position:relative"><button onclick="this.closest('div').parentElement.remove()" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.4rem;cursor:pointer;z-index:1">✕</button><iframe src="${url}" width="100%" height="200" frameborder="0" allow="encrypted-media" style="display:block"></iframe></div>`;
-  document.body.appendChild(m);
-  m.addEventListener('click',e=>{if(e.target===m)m.remove();});
-}
-
-// ═══════════════════════════════════════════════
-// ADMIN
-// ═══════════════════════════════════════════════
-let _adminAuthed=false;
-let _secretClicks=0,_secretTimer;
-let _secretEnabled=false;
-
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    _secretEnabled=true;
-    const el=document.getElementById('heroName');
-    if(!el)return;
-
-    let _tx=0,_ty=0;
-
-    el.addEventListener('touchstart',(e)=>{
-      _tx=e.touches[0].clientX;
-      _ty=e.touches[0].clientY;
-    },{passive:true});
-
-    el.addEventListener('touchend',(e)=>{
-      if(!_secretEnabled)return;
-      const dx=Math.abs(e.changedTouches[0].clientX-_tx);
-      const dy=Math.abs(e.changedTouches[0].clientY-_ty);
-      // Only count if finger barely moved (real tap, not scroll)
-      if(dx>12||dy>12)return;
-      e.preventDefault();
-      _countSecret();
-    },{passive:false});
-
-    // Desktop fallback
-    el.addEventListener('click',()=>{
-      if(!_secretEnabled)return;
-      _countSecret();
-    });
-  },1500);
-});
-
-function _countSecret(){
-  _secretClicks++;
-  clearTimeout(_secretTimer);
-  if(_secretClicks>=5){
-    _secretClicks=0;
-    openAdmin();
-  } else {
-    _secretTimer=setTimeout(()=>{_secretClicks=0;},1200);
-  }
-}
-// Always close admin on page load or bfcache restore
-window.addEventListener('pageshow',()=>{
-  document.getElementById('admOverlay')?.classList.remove('open');
-  document.getElementById('loginOverlay')?.classList.remove('open');
-});
-function openAdmin(){
-  _adminAuthed=false;
-  document.getElementById('loginOverlay').classList.add('open');
-  setTimeout(()=>document.getElementById('loginPw').focus(),100);
-}
-function closeLogin(){document.getElementById('loginOverlay').classList.remove('open');}
-async function doLogin(){
-  const pw=document.getElementById('loginPw').value;
-  if(await sha256(pw)===D.adminPw){
-    _adminAuthed=true;closeLogin();showAdminPanel();document.getElementById('loginPw').value='';
-  }else{showNotif('❌ Contraseña incorrecta');document.getElementById('loginPw').select();}
-}
-function showAdminPanel(){populateAdminFields();document.getElementById('admOverlay').classList.add('open');}
-function closeAdmin(){document.getElementById('admOverlay').classList.remove('open');}
-function switchTab(name,btn){
-  document.querySelectorAll('.adm-sec').forEach(s=>s.classList.remove('act'));
-  document.querySelectorAll('.adm-tab').forEach(b=>b.classList.remove('act'));
-  document.getElementById('sec-'+name).classList.add('act');
-  btn.classList.add('act');
-}
-
-function populateAdminFields(){
-  document.getElementById('p-name').value=D_ORIGINAL.name||'';
-  document.getElementById('p-title').value=D_ORIGINAL.title||'';
-  document.getElementById('p-about').value=D_ORIGINAL.about||'';
-  document.getElementById('p-phone').value=D_ORIGINAL.phone||'';
-  document.getElementById('p-email').value=D_ORIGINAL.email||'';
-  document.getElementById('p-loc').value=D_ORIGINAL.loc||'';
-  if(D_ORIGINAL.photo){document.getElementById('photoPreviewPh').style.display='none';document.getElementById('photoPreviewImg').src=D_ORIGINAL.photo;document.getElementById('photoPreviewImg').style.display='block';}
-  else{document.getElementById('photoPreviewPh').style.display='flex';document.getElementById('photoPreviewImg').style.display='none';}
-  renderSocialAdmin();renderExpAdmin();renderEduAdmin();renderSkillsAdmin();renderLangsAdmin();renderVideosAdmin();renderPodcastsAdmin();
-  const gh=getGhCfg();
-  if(gh.user)document.getElementById('gh-user').value=gh.user;
-  if(gh.repo)document.getElementById('gh-repo').value=gh.repo;
-  document.getElementById('gh-branch').value=gh.branch||'main';
-  if(gh.token)document.getElementById('gh-token').value=gh.token;
-  if(gh.user&&gh.repo&&gh.token){
-    document.getElementById('ghPublishNote').style.display='none';
-    document.getElementById('ghPublishSection').style.display='block';
-    updateSiteLink(gh);
-    const last=localStorage.getItem(GH_LAST_KEY);
-    if(last)document.getElementById('ghLastPublish').textContent=`Última publicación: ${last}`;
-  }
-  if(location.protocol==='file:')document.getElementById('ghFileWarn').style.display='block';
-}
-
-function saveAdmin(){
-  D_ORIGINAL.name=document.getElementById('p-name').value.trim();
-  D_ORIGINAL.title=document.getElementById('p-title').value.trim();
-  D_ORIGINAL.about=document.getElementById('p-about').value.trim();
-  D_ORIGINAL.phone=document.getElementById('p-phone').value.trim();
-  D_ORIGINAL.email=document.getElementById('p-email').value.trim();
-  D_ORIGINAL.loc=document.getElementById('p-loc').value.trim();
-  collectSocialFromAdmin();collectExpFromAdmin();collectEduFromAdmin();
-  collectLangsFromAdmin();collectVideosFromAdmin();collectPodcastsFromAdmin();
-  const ghDom=readGhDom();
-  if(ghDom.user&&ghDom.repo&&ghDom.token)localStorage.setItem(GH_LS_KEY,JSON.stringify(ghDom));
-  D=JSON.parse(JSON.stringify(D_ORIGINAL));
-  D_view=null;
-  saveData();
-  renderAll();
-  showNotif('✅ Cambios guardados');
-  // Panel stays open — only ✕ closes it
-}
-
-async function saveAndPublish(){
-  saveAdmin();
-  // Switch to deploy tab so user sees progress
-  const deployTab=document.querySelector('.adm-tab[onclick*="deploy"]');
-  if(deployTab)switchTab('deploy',deployTab);
-  await publishDataJson();
-}
-
-// Photo
-function handlePhotoUpload(input){
-  const file=input.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=e=>{D_ORIGINAL.photo=e.target.result;document.getElementById('photoPreviewPh').style.display='none';document.getElementById('photoPreviewImg').src=e.target.result;document.getElementById('photoPreviewImg').style.display='block';};
-  reader.readAsDataURL(file);
-}
-function removePhoto(){D_ORIGINAL.photo='';document.getElementById('photoPreviewPh').style.display='flex';document.getElementById('photoPreviewImg').style.display='none';localStorage.removeItem('cv_photo');}
-
-// Social
-function renderSocialAdmin(){
-  document.getElementById('socialAdmList').innerHTML=(D_ORIGINAL.social||[]).map((s,i)=>`
-    <div class="adm-social-item" id="sadm-${i}">
-      <div class="adm-fld" style="margin:0"><label>Tipo</label><select id="st-${i}"><option value="linkedin"${s.type==='linkedin'?' selected':''}>LinkedIn</option><option value="instagram"${s.type==='instagram'?' selected':''}>Instagram</option><option value="facebook"${s.type==='facebook'?' selected':''}>Facebook</option><option value="github"${s.type==='github'?' selected':''}>GitHub</option><option value="whatsapp"${s.type==='whatsapp'?' selected':''}>WhatsApp</option><option value="email"${s.type==='email'?' selected':''}>Email</option><option value="custom"${s.type==='custom'?' selected':''}>Otro</option></select></div>
-      <div><div class="adm-fld" style="margin-bottom:6px"><label>URL</label><input id="su-${i}" value="${(s.url||'').replace(/"/g,'&quot;')}" placeholder="https://..."></div><div class="adm-fld" style="margin:0"><label>Etiqueta</label><input id="sl-${i}" value="${(s.label||'').replace(/"/g,'&quot;')}"></div></div>
-      <div style="padding-top:20px"><button class="btn btn-danger btn-sm" onclick="removeSocial(${i})">🗑</button></div>
-    </div>`).join('');
-}
-function addSocialItem(){D_ORIGINAL.social=D_ORIGINAL.social||[];D_ORIGINAL.social.push({type:'custom',label:'',url:''});renderSocialAdmin();}
-function removeSocial(i){collectSocialFromAdmin();D_ORIGINAL.social.splice(i,1);renderSocialAdmin();}
-function collectSocialFromAdmin(){
-  const n=(D_ORIGINAL.social||[]).length;const arr=[];
-  for(let i=0;i<n;i++){if(!document.getElementById(`sadm-${i}`))continue;arr.push({type:document.getElementById(`st-${i}`)?.value||'custom',url:document.getElementById(`su-${i}`)?.value?.trim()||'',label:document.getElementById(`sl-${i}`)?.value?.trim()||''});}
-  D_ORIGINAL.social=arr;
-}
-
-// Experience
-function renderExpAdmin(){
-  document.getElementById('expAdmList').innerHTML=(D_ORIGINAL.experience||[]).map((e,i)=>`
-    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('ebd-${i}',this)"><span>#${i+1} ${e.title||'Sin título'}</span><span class="ci-arrow">▼</span></div>
-    <div class="adm-card-bd" id="ebd-${i}">
-      <div class="adm-fld"><label>Título del puesto</label><input id="et-${i}" value="${(e.title||'').replace(/"/g,'&quot;')}"></div>
-      <div class="adm-row"><div class="adm-fld"><label>Empresa / Proyecto</label><input id="ec-${i}" value="${(e.company||'').replace(/"/g,'&quot;')}"></div><div class="adm-fld"><label>Ubicación</label><input id="el-${i}" value="${(e.location||'').replace(/"/g,'&quot;')}"></div></div>
-      <div class="adm-fld"><label>Período</label><input id="ep-${i}" value="${(e.period||'').replace(/"/g,'&quot;')}"></div>
-      <div class="adm-fld"><label>Descripción</label><textarea id="ed-${i}" rows="4">${e.desc||''}</textarea></div>
-      <div class="adm-card-actions"><button class="btn btn-outline btn-sm" onclick="moveExp(${i},-1)">↑</button><button class="btn btn-outline btn-sm" onclick="moveExp(${i},1)">↓</button><button class="btn btn-danger btn-sm" onclick="removeExp(${i})">🗑 Eliminar</button></div>
-    </div></div>`).join('');
-}
-function addExpItem(){D_ORIGINAL.experience=D_ORIGINAL.experience||[];D_ORIGINAL.experience.unshift({title:'',company:'',location:'',period:'',desc:''});renderExpAdmin();}
-function removeExp(i){if(confirm('¿Eliminar?')){collectExpFromAdmin();D_ORIGINAL.experience.splice(i,1);renderExpAdmin();}}
-function moveExp(i,dir){collectExpFromAdmin();const arr=D_ORIGINAL.experience;const j=i+dir;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];renderExpAdmin();}
-function collectExpFromAdmin(){
-  const n=(D_ORIGINAL.experience||[]).length;
-  for(let i=0;i<n;i++){if(!document.getElementById(`et-${i}`))continue;D_ORIGINAL.experience[i]={title:document.getElementById(`et-${i}`)?.value||'',company:document.getElementById(`ec-${i}`)?.value||'',location:document.getElementById(`el-${i}`)?.value||'',period:document.getElementById(`ep-${i}`)?.value||'',desc:document.getElementById(`ed-${i}`)?.value||''};}
-}
-
-// Education
-function renderEduAdmin(){
-  document.getElementById('eduAdmList').innerHTML=(D_ORIGINAL.education||[]).map((e,i)=>`
-    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('edbd-${i}',this)"><span>#${i+1} ${e.title||'Sin título'}</span><span class="ci-arrow">▼</span></div>
-    <div class="adm-card-bd" id="edbd-${i}">
-      <div class="adm-row"><div class="adm-fld"><label>Título</label><input id="edu-t-${i}" value="${(e.title||'').replace(/"/g,'&quot;')}"></div><div class="adm-fld"><label>Período</label><input id="edu-p-${i}" value="${(e.period||'').replace(/"/g,'&quot;')}"></div></div>
-      <div class="adm-fld"><label>Institución</label><input id="edu-i-${i}" value="${(e.institution||'').replace(/"/g,'&quot;')}"></div>
-      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeEdu(${i})">🗑 Eliminar</button></div>
-    </div></div>`).join('');
-}
-function addEduItem(){D_ORIGINAL.education=D_ORIGINAL.education||[];D_ORIGINAL.education.unshift({title:'',institution:'',period:''});renderEduAdmin();}
-function removeEdu(i){if(confirm('¿Eliminar?')){collectEduFromAdmin();D_ORIGINAL.education.splice(i,1);renderEduAdmin();}}
-function collectEduFromAdmin(){
-  const n=(D_ORIGINAL.education||[]).length;
-  for(let i=0;i<n;i++){if(!document.getElementById(`edu-t-${i}`))continue;D_ORIGINAL.education[i]={title:document.getElementById(`edu-t-${i}`)?.value||'',institution:document.getElementById(`edu-i-${i}`)?.value||'',period:document.getElementById(`edu-p-${i}`)?.value||''};}
-}
-
-// Skills
-function renderSkillsAdmin(){
-  document.getElementById('skillsAdmTags').innerHTML=(D_ORIGINAL.skills||[]).map((s,i)=>`<span class="skill-edit-tag">${s}<button class="skill-del" onclick="removeSkill(${i})">✕</button></span>`).join('');
-}
-function addSkill(){const inp=document.getElementById('newSkillInput');const v=inp.value.trim();if(!v)return;D_ORIGINAL.skills=D_ORIGINAL.skills||[];D_ORIGINAL.skills.push(v);inp.value='';renderSkillsAdmin();}
-function removeSkill(i){D_ORIGINAL.skills.splice(i,1);renderSkillsAdmin();}
-
-// Languages
-function renderLangsAdmin(){
-  document.getElementById('langsAdmList').innerHTML=(D_ORIGINAL.languages||[]).map((l,i)=>`
-    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('lgbd-${i}',this)"><span>#${i+1} ${l.lang||'Idioma'}</span><span class="ci-arrow">▼</span></div>
-    <div class="adm-card-bd" id="lgbd-${i}">
-      <div class="adm-row"><div class="adm-fld"><label>Idioma</label><input id="lg-n-${i}" value="${(l.lang||'').replace(/"/g,'&quot;')}" placeholder="Español"></div><div class="adm-fld"><label>Nivel</label><input id="lg-l-${i}" value="${(l.level||'').replace(/"/g,'&quot;')}" placeholder="Nativo / Avanzado"></div></div>
-      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeLang(${i})">🗑 Eliminar</button></div>
-    </div></div>`).join('');
-}
-function addLangItem(){D_ORIGINAL.languages=D_ORIGINAL.languages||[];D_ORIGINAL.languages.push({lang:'',level:''});renderLangsAdmin();}
-function removeLang(i){if(confirm('¿Eliminar?')){collectLangsFromAdmin();D_ORIGINAL.languages.splice(i,1);renderLangsAdmin();}}
-function collectLangsFromAdmin(){
-  const n=(D_ORIGINAL.languages||[]).length;
-  for(let i=0;i<n;i++){if(!document.getElementById(`lg-n-${i}`))continue;D_ORIGINAL.languages[i]={lang:document.getElementById(`lg-n-${i}`)?.value||'',level:document.getElementById(`lg-l-${i}`)?.value||''};}
-}
-
-// Videos
-function renderVideosAdmin(){
-  document.getElementById('videosAdmList').innerHTML=(D_ORIGINAL.videos||[]).map((v,i)=>`
-    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('vbd-${i}',this)"><span>#${i+1} ${v.title||v.url||'Sin título'}</span><span class="ci-arrow">▼</span></div>
-    <div class="adm-card-bd" id="vbd-${i}">
-      <div class="adm-fld"><label>URL (YouTube/Vimeo)</label><input id="vu-${i}" value="${(v.url||'').replace(/"/g,'&quot;')}" placeholder="https://youtube.com/watch?v=..."></div>
-      <div class="adm-fld"><label>Título</label><input id="vt-${i}" value="${(v.title||'').replace(/"/g,'&quot;')}"></div>
-      <div class="adm-fld"><label>Thumbnail URL (opcional)</label><input id="vth-${i}" value="${(v.thumbnail||'').replace(/"/g,'&quot;')}"></div>
-      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removeVideo(${i})">🗑 Eliminar</button></div>
-    </div></div>`).join('');
-}
-function addVideoItem(){D_ORIGINAL.videos=D_ORIGINAL.videos||[];D_ORIGINAL.videos.push({url:'',title:'',thumbnail:''});renderVideosAdmin();}
-function removeVideo(i){if(confirm('¿Eliminar?')){collectVideosFromAdmin();D_ORIGINAL.videos.splice(i,1);renderVideosAdmin();}}
-function collectVideosFromAdmin(){
-  const n=(D_ORIGINAL.videos||[]).length;
-  for(let i=0;i<n;i++){if(!document.getElementById(`vu-${i}`))continue;D_ORIGINAL.videos[i]={url:document.getElementById(`vu-${i}`)?.value?.trim()||'',title:document.getElementById(`vt-${i}`)?.value||'',thumbnail:document.getElementById(`vth-${i}`)?.value?.trim()||''};}
-}
-
-// Podcasts
-function renderPodcastsAdmin(){
-  document.getElementById('podcastsAdmList').innerHTML=(D_ORIGINAL.podcasts||[]).map((p,i)=>`
-    <div class="adm-card-item"><div class="adm-card-hd" onclick="toggleCard('pbd-${i}',this)"><span>#${i+1} ${p.title||'Sin título'}</span><span class="ci-arrow">▼</span></div>
-    <div class="adm-card-bd" id="pbd-${i}">
-      <div class="adm-fld"><label>Título</label><input id="pt-${i}" value="${(p.title||'').replace(/"/g,'&quot;')}"></div>
-      <div class="adm-fld"><label>Descripción</label><textarea id="pd-${i}" rows="2">${p.desc||''}</textarea></div>
-      <div class="adm-row"><div class="adm-fld"><label>🎵 Spotify URL</label><input id="ps-${i}" value="${(p.spotify||'').replace(/"/g,'&quot;')}"></div><div class="adm-fld"><label>🎵 Apple Podcasts URL</label><input id="pa-${i}" value="${(p.apple||'').replace(/"/g,'&quot;')}"></div></div>
-      <div class="adm-row"><div class="adm-fld"><label>🔗 Otro link</label><input id="pu-${i}" value="${(p.url||'').replace(/"/g,'&quot;')}"></div><div class="adm-fld"><label>▶ Embed URL</label><input id="pe-${i}" value="${(p.embed||'').replace(/"/g,'&quot;')}"></div></div>
-      <div class="adm-fld"><label>Imagen de portada (URL)</label><input id="pc-${i}" value="${(p.cover||'').replace(/"/g,'&quot;')}"><button class="btn btn-outline btn-sm" style="margin-top:6px" onclick="document.getElementById('pcfile-${i}').click()">📷 Subir imagen</button><input type="file" id="pcfile-${i}" accept="image/*" style="display:none" onchange="handlePodcastCover(this,${i})"></div>
-      <div class="adm-card-actions"><button class="btn btn-danger btn-sm" onclick="removePodcast(${i})">🗑 Eliminar</button></div>
-    </div></div>`).join('');
-}
-function addPodcastItem(){D_ORIGINAL.podcasts=D_ORIGINAL.podcasts||[];D_ORIGINAL.podcasts.push({title:'',desc:'',spotify:'',apple:'',url:'',embed:'',cover:''});renderPodcastsAdmin();}
-function removePodcast(i){if(confirm('¿Eliminar?')){collectPodcastsFromAdmin();D_ORIGINAL.podcasts.splice(i,1);renderPodcastsAdmin();}}
-function handlePodcastCover(input,i){const file=input.files[0];if(!file)return;const r=new FileReader();r.onload=e=>{document.getElementById(`pc-${i}`).value=e.target.result;};r.readAsDataURL(file);}
-function collectPodcastsFromAdmin(){
-  const n=(D_ORIGINAL.podcasts||[]).length;
-  for(let i=0;i<n;i++){if(!document.getElementById(`pt-${i}`))continue;D_ORIGINAL.podcasts[i]={title:document.getElementById(`pt-${i}`)?.value||'',desc:document.getElementById(`pd-${i}`)?.value||'',spotify:document.getElementById(`ps-${i}`)?.value?.trim()||'',apple:document.getElementById(`pa-${i}`)?.value?.trim()||'',url:document.getElementById(`pu-${i}`)?.value?.trim()||'',embed:document.getElementById(`pe-${i}`)?.value?.trim()||'',cover:document.getElementById(`pc-${i}`)?.value?.trim()||''};}
-}
-
-function toggleCard(id,hd){const bd=document.getElementById(id);if(!bd)return;bd.classList.toggle('open');hd.classList.toggle('open');}
-
-// Password
-async function changePassword(){
-  const cur=document.getElementById('a-pwCurrent').value;
-  const n1=document.getElementById('a-pwNew').value;
-  const n2=document.getElementById('a-pwConfirm').value;
-  if(await sha256(cur)!==D.adminPw){showNotif('❌ Contraseña actual incorrecta');return;}
-  if(n1.length<6){showNotif('❌ Mínimo 6 caracteres');return;}
-  if(n1!==n2){showNotif('❌ Las contraseñas no coinciden');return;}
-  D.adminPw=D_ORIGINAL.adminPw=await sha256(n1);
-  saveData();
-  document.getElementById('a-pwCurrent').value='';document.getElementById('a-pwNew').value='';document.getElementById('a-pwConfirm').value='';
-  showNotif('✅ Contraseña actualizada');
-}
-
-// ═══════════════════════════════════════════════
-// GITHUB PUBLISH SYSTEM
-// ═══════════════════════════════════════════════
-// ═══════════════════════════════════════════════
-// GITHUB PUBLISH SYSTEM
-// ═══════════════════════════════════════════════
-const GH_LS_KEY='cv_gh';
-const GH_LAST_KEY='cv_gh_last';
-
-function getGhCfg(){
-  try{return JSON.parse(localStorage.getItem(GH_LS_KEY)||'{}')}catch{return {}}
-}
-
-function readGhDom(){
-  return {
-    user:(document.getElementById('gh-user')?.value||'').trim(),
-    repo:(document.getElementById('gh-repo')?.value||'').trim(),
-    branch:(document.getElementById('gh-branch')?.value||'').trim()||'main',
-    token:(document.getElementById('gh-token')?.value||'').trim()
-  };
-}
-
-// Always prefer localStorage (saved config) over DOM (might be empty if tab not visited)
-function getActiveCfg(){
-  const dom=readGhDom();
-  const saved=getGhCfg();
-  return {
-    user:dom.user||saved.user||'',
-    repo:dom.repo||saved.repo||'',
-    branch:dom.branch||saved.branch||'main',
-    token:dom.token||saved.token||''
-  };
-}
-
-function toggleGhToken(){const i=document.getElementById('gh-token');i.type=i.type==='password'?'text':'password';}
-
-function updateSiteLink(cfg){
-  const sl=document.getElementById('ghSiteLink');if(!sl)return;
-  const url=`https://${cfg.user}.github.io${cfg.repo!==(cfg.user+'.github.io')?'/'+cfg.repo:''}`;
-  sl.href=url;sl.textContent=url.replace('https://','')+' ↗';
-}
-
-function setGhStatus(state,msg,pct){
-  const dot=document.getElementById('ghDot');
-  const txt=document.getElementById('ghStatusMsg');
-  const wrap=document.getElementById('ghProgressWrap');
-  const fill=document.getElementById('ghProgressFill');
-  const ptxt=document.getElementById('ghProgressTxt');
-  if(dot)dot.className='gh-status-dot'+(state?' '+state:'');
-  if(txt)txt.textContent=msg||'';
-  if(pct!==undefined&&wrap){
-    wrap.style.display='block';
-    if(fill)fill.style.width=Math.min(pct,100)+'%';
-    if(ptxt)ptxt.textContent=pct<100?pct+'%':'✅ Completado';
-  }else if(pct===undefined&&wrap){wrap.style.display='none';}
-}
-
-function ghLog(msg){
-  // Update status message with latest step
-  setGhStatus('busy',msg);
-  console.log('[GH]',msg);
-}
-
-async function saveGhCfgBtn(){
-  const cfg=readGhDom();
-  if(!cfg.user||!cfg.repo||!cfg.token){
-    setGhStatus('err','⚠️ Usuario, repositorio y token son obligatorios');return;
-  }
-  localStorage.setItem(GH_LS_KEY,JSON.stringify(cfg));
-  document.getElementById('ghConfigStatus').textContent='✅ Configuración guardada en este dispositivo';
-  document.getElementById('ghConfigStatus').style.color='#16a34a';
-  document.getElementById('ghPublishNote').style.display='none';
-  document.getElementById('ghPublishSection').style.display='block';
-  updateSiteLink(cfg);
-  showNotif('✅ Configuración guardada');
-}
-
-async function verifyGhConnection(){
-  const cfg=readGhDom();
-  if(!cfg.token||!cfg.user||!cfg.repo){showNotif('⚠️ Completá usuario, repositorio y token');return;}
-  if(location.protocol==='file:'){
-    setGhStatus('err','⚠️ No funciona desde archivo local (file://). Subí el archivo a GitHub Pages primero.');return;
-  }
-  document.getElementById('ghPublishNote').style.display='none';
-  document.getElementById('ghPublishSection').style.display='block';
-  setGhStatus('busy','Verificando conexión con GitHub...',50);
-  try{
-    const r=await fetch(`https://api.github.com/repos/${cfg.user}/${cfg.repo}`,{
-      headers:{Authorization:`Bearer ${cfg.token}`,Accept:'application/vnd.github+json'}
-    });
-    const data=await r.json().catch(()=>({}));
-    if(r.status===200){
-      cfg.branch=data.default_branch||'main';
-      localStorage.setItem(GH_LS_KEY,JSON.stringify(cfg));
-      document.getElementById('gh-branch').value=cfg.branch;
-      document.getElementById('ghConfigStatus').textContent=`✅ Conectado — rama detectada: ${cfg.branch}`;
-      document.getElementById('ghConfigStatus').style.color='#16a34a';
-      updateSiteLink(cfg);
-      setGhStatus('ok',`✅ Conectado a ${data.full_name} — rama: ${cfg.branch}`);
-      showNotif(`✅ Conectado. Rama: ${cfg.branch}`);
-    } else if(r.status===401){
-      setGhStatus('err','❌ Token sin acceso. Token clásico (ghp_): necesita scope "repo". Token fine-grained (github_pat_): "Contents → Read and Write".');
-    } else if(r.status===404){
-      setGhStatus('err',`❌ Repositorio "${cfg.user}/${cfg.repo}" no encontrado. Verificá el nombre exacto.`);
-    } else {
-      setGhStatus('err',`❌ Error ${r.status}: ${data.message||'respuesta inesperada de GitHub'}`);
+  ],
+  "experience": [
+    {
+      "title": "Ingeniero de Soporte Técnico",
+      "company": "Encora · Proyecto: AuthID",
+      "location": "Heredia, Costa Rica",
+      "period": "2024 – 2026",
+      "desc": "AuthID.ai es una plataforma de verificación de identidad biométrica. Troubleshooting avanzado de autenticación y detección de liveness. Análisis de logs y respuestas de API para identificar fallas del sistema. Reproducción de incidencias en entornos controlados. Colaboración con equipos de desarrollo, backend y business units.\n\n🏆 Reducí tasas de escalamiento mediante análisis profundo de causa raíz. Establecí procesos SLA-driven. Lideré la creación de documentación técnica y aproveché Databricks para troubleshooting basado en datos."
+    },
+    {
+      "title": "TAC Engineer Tier 2 – Cisco DNA Center",
+      "company": "Sykes · Proyecto: Cisco DNA Center",
+      "location": "Heredia, Costa Rica",
+      "period": "2022 – 2023",
+      "desc": "Troubleshooting de clusters y servicios de Cisco DNA Center. Gestión de entornos Kubernetes y Docker. Actualizaciones de sistema (SWIM, IMC) y mantenimiento. CLI troubleshooting con Linux y comandos Maglev.\n\n🏆 Reduje interrupciones de servicio validando proactivamente procesos de upgrade. Aceleré resolución de incidentes mejorando workflows de troubleshooting en servicios Kubernetes."
+    },
+    {
+      "title": "Okta Administrator",
+      "company": "Sykes · Proyecto: Okta",
+      "location": "Heredia, Costa Rica",
+      "period": "2021 – 2022",
+      "desc": "Configuración y troubleshooting de SSO (SAML, OIDC, OAuth, WS-Fed). Gestión de políticas MFA y flujos de autenticación. Integración de Okta con Active Directory y LDAP. Provisioning, roles y ciclo de vida de usuarios.\n\n🏆 Reduje fallas de autenticación y disrupciones de acceso. Mejoré la confiabilidad de flujos de identidad estandarizando enfoques de troubleshooting."
+    },
+    {
+      "title": "TAC Engineer Tier 2 – Cisco ACI",
+      "company": "Sykes · Proyecto: Cisco ACI",
+      "location": "Heredia, Costa Rica",
+      "period": "2019 – 2021",
+      "desc": "Troubleshooting avanzado de ACI fabric, políticas y servicios de red. Troubleshooting en Linux y análisis de logs. Gestión de certificados y APIs. Configuración de SNMP, DNS y NTP. Upgrades de ACI e IMC.\n\n🏆 Reduje incidentes recurrentes mediante análisis de causa raíz. Fortalecí la estabilidad general de la red en entornos distribuidos."
+    },
+    {
+      "title": "Agente de Detección de Fraude",
+      "company": "Sykes · Proyecto: Capital One",
+      "location": "Heredia, Costa Rica",
+      "period": "2018 – 2019",
+      "desc": "Contacto principal para consultas de fraude. Investigación de transacciones marcadas y actividad sospechosa. Análisis de patrones de transacciones e indicadores de riesgo.\n\n🏆 Reduje el riesgo financiero identificando patrones sospechosos. Fortalecí la confianza del cliente mejorando la efectividad de respuesta."
+    },
+    {
+      "title": "Representante de Soporte Técnico",
+      "company": "Netcom S.A · Proyecto: ISP Support (ICE/Kölbi)",
+      "location": "San José, Costa Rica",
+      "period": "2017 – 2018",
+      "desc": "Soporte técnico por llamada y correo electrónico. Troubleshooting de conectividad a internet. Configuración de módems y dispositivos de red. Resolución de problemas DSL, Fibra Óptica, Triple Play y VoIP.\n\n🏆 Reduje incidentes repetitivos resolviendo problemas de conectividad eficientemente en el primer contacto."
+    },
+    {
+      "title": "Técnico de Service Desk",
+      "company": "Fujitsu · Proyecto: IT Service Desk",
+      "location": "Heredia, Costa Rica",
+      "period": "Mayo – Dic 2016",
+      "desc": "Creación y gestión de tickets de incidencias. Soporte técnico básico (resets de contraseñas, impresoras, troubleshooting). Gestión de usuarios en Active Directory y Windows Server.\n\n🏆 Mejoré la eficiencia del servicio con documentación precisa. Reduje tiempo de inactividad de usuarios con soporte IT confiable."
     }
-  }catch(e){
-    setGhStatus('err',`❌ Error de red: ${e.message}`);
-  }
-}
-
-// ── Core Git Data API file pusher ──
-async function ghPushFile(cfg, filePath, content, onProgress){
-  if(!cfg.user||!cfg.repo||!cfg.token||!cfg.branch){
-    throw new Error('Configuración incompleta — verificá usuario, repositorio, rama y token.');
-  }
-  const h={
-    Authorization:`Bearer ${cfg.token}`,
-    Accept:'application/vnd.github+json',
-    'Content-Type':'application/json'
-  };
-  const base=`https://api.github.com/repos/${cfg.user}/${cfg.repo}`;
-  const prog=(pct,msg)=>{if(onProgress)onProgress(pct,msg);};
-
-  // Step 1 — Get branch ref
-  prog(10,'Leyendo rama...');
-  const r1=await fetch(`${base}/git/ref/heads/${encodeURIComponent(cfg.branch)}`,{headers:h});
-  if(r1.status===401)throw new Error('Token sin permisos de escritura. Necesitás scope "repo" o "Contents: Write".');
-  if(r1.status===404)throw new Error(`Rama "${cfg.branch}" no encontrada. Usá "Verificar y Guardar" para detectar la rama correcta.`);
-  if(!r1.ok){const e=await r1.json().catch(()=>({}));throw new Error(`Error ${r1.status} al leer rama: ${e.message||''}`);}
-  const d1=await r1.json();
-  const commitSha=d1.object?.sha;
-  if(!commitSha)throw new Error('No se pudo obtener el SHA del commit actual.');
-
-  // Step 2 — Get tree SHA
-  prog(22,'Leyendo commit actual...');
-  const r2=await fetch(`${base}/git/commits/${commitSha}`,{headers:h});
-  if(!r2.ok){const e=await r2.json().catch(()=>({}));throw new Error(`Error ${r2.status} al leer commit: ${e.message||''}`);}
-  const d2=await r2.json();
-  const treeSha=d2.tree?.sha;
-  if(!treeSha)throw new Error('No se pudo obtener el SHA del árbol.');
-
-  // Step 3 — Create blob (UTF-8 safe encoding)
-  prog(38,'Creando blob del archivo...');
-  const bytes=new TextEncoder().encode(content);
-  const encoded=btoa(Array.from(bytes,b=>String.fromCharCode(b)).join(''));
-  const r3=await fetch(`${base}/git/blobs`,{
-    method:'POST',headers:h,
-    body:JSON.stringify({content:encoded,encoding:'base64'})
-  });
-  if(r3.status===413)throw new Error('Archivo demasiado grande (>100MB). Usá URLs externas para imágenes en lugar de base64.');
-  if(!r3.ok){const e=await r3.json().catch(()=>({}));throw new Error(`Error ${r3.status} al crear blob: ${e.message||''}`);}
-  const d3=await r3.json();
-  const blobSha=d3.sha;
-  if(!blobSha)throw new Error('No se recibió SHA del blob.');
-
-  // Step 4 — Create tree
-  prog(55,'Preparando árbol de archivos...');
-  const r4=await fetch(`${base}/git/trees`,{
-    method:'POST',headers:h,
-    body:JSON.stringify({base_tree:treeSha,tree:[{path:filePath,mode:'100644',type:'blob',sha:blobSha}]})
-  });
-  if(!r4.ok){const e=await r4.json().catch(()=>({}));throw new Error(`Error ${r4.status} al crear árbol: ${e.message||''}`);}
-  const d4=await r4.json();
-  if(!d4.sha)throw new Error('No se recibió SHA del árbol nuevo.');
-
-  // Step 5 — Create commit
-  prog(72,'Creando commit...');
-  const now=new Date().toLocaleString('es-CR');
-  const r5=await fetch(`${base}/git/commits`,{
-    method:'POST',headers:h,
-    body:JSON.stringify({message:`CV Update — ${filePath} — ${now}`,tree:d4.sha,parents:[commitSha]})
-  });
-  if(!r5.ok){const e=await r5.json().catch(()=>({}));throw new Error(`Error ${r5.status} al crear commit: ${e.message||''}`);}
-  const d5=await r5.json();
-  if(!d5.sha)throw new Error('No se recibió SHA del commit nuevo.');
-
-  // Step 6 — Update branch ref
-  prog(88,'Actualizando rama...');
-  const r6=await fetch(`${base}/git/refs/heads/${encodeURIComponent(cfg.branch)}`,{
-    method:'PATCH',headers:h,
-    body:JSON.stringify({sha:d5.sha,force:true})
-  });
-  if(!r6.ok){const e=await r6.json().catch(()=>({}));throw new Error(`Error ${r6.status} al actualizar rama: ${e.message||''}`);}
-
-  prog(100,'✅ Publicado correctamente');
-  return now;
-}
-
-// ── Build clean data.json — no adminPw, no base64 photos ──
-function buildDataJson(){
-  if(!D_ORIGINAL){throw new Error('No hay datos cargados. Recargá la página.');}
-  const d=JSON.parse(JSON.stringify(D_ORIGINAL));
-  delete d.adminPw; // never publish password hash
-  if(d.photo&&d.photo.startsWith('data:'))d.photo=''; // strip base64 photos
-  return d;
-}
-
-async function publishDataJson(){
-  const cfg=getActiveCfg();
-  if(!cfg.token||!cfg.user||!cfg.repo){
-    showNotif('⚠️ Configurá y guardá GitHub primero');
-    switchTab('deploy',document.querySelectorAll('.adm-tab')[9]);
-    return;
-  }
-  if(location.protocol==='file:'){
-    setGhStatus('err','⚠️ No funciona desde archivo local (file://). Abrí el sitio en GitHub Pages.');return;
-  }
-  const dataBtn=document.getElementById('ghPublishDataBtn');
-  const htmlBtn=document.getElementById('ghPublishHtmlBtn');
-  if(dataBtn)dataBtn.disabled=true;
-  if(htmlBtn)htmlBtn.disabled=true;
-  setGhStatus('busy','Construyendo data.json...',5);
-  try{
-    const d=buildDataJson();
-    const json=JSON.stringify(d,null,2);
-    const sizeKB=(json.length/1024).toFixed(1);
-    if(json.length>2*1024*1024){
-      const ok=confirm(`⚠️ El data.json pesa ${(json.length/1048576).toFixed(1)} MB — probablemente tiene imágenes en base64 muy pesadas. ¿Continuar?`);
-      if(!ok){if(dataBtn)dataBtn.disabled=false;if(htmlBtn)htmlBtn.disabled=false;setGhStatus('','');return;}
+  ],
+  "education": [
+    {
+      "title": "Data Analyst",
+      "institution": "Databricks",
+      "period": "2026"
+    },
+    {
+      "title": "Licenciatura en Docencia",
+      "institution": "Universidad San Marcos",
+      "period": "2024 – 2025"
+    },
+    {
+      "title": "Ciencias de la Computación",
+      "institution": "Universidad Nacional",
+      "period": "2000 – 2005"
+    },
+    {
+      "title": "IA Generativa: Introducción y Aplicaciones",
+      "institution": "IBM",
+      "period": "2025"
+    },
+    {
+      "title": "Ruta de Entrenamiento Gen AI – Técnico",
+      "institution": "Coursera",
+      "period": "2025"
+    },
+    {
+      "title": "AI-Powered Software and System Design",
+      "institution": "DeepLearning AI",
+      "period": "2025"
+    },
+    {
+      "title": "Team Software Engineering with AI",
+      "institution": "DeepLearning AI",
+      "period": "2025"
+    },
+    {
+      "title": "IA Generativa con Large Language Models",
+      "institution": "DeepLearning AI / AWS",
+      "period": "2025"
+    },
+    {
+      "title": "Introducción a la IA Generativa para Dev de Software",
+      "institution": "DeepLearning AI",
+      "period": "2025"
+    },
+    {
+      "title": "Advanced Prompt Engineering for Everyone",
+      "institution": "Vanderbilt University",
+      "period": "2025"
+    },
+    {
+      "title": "Ruta de Entrenamiento Gen AI – Fundacional",
+      "institution": "Coursera",
+      "period": "2025"
+    },
+    {
+      "title": "Containers & Kubernetes Essentials",
+      "institution": "IBM Developer Skills Network",
+      "period": "2023"
+    },
+    {
+      "title": "Docker Essentials – A Developer Introduction",
+      "institution": "IBM Developer Skills Network",
+      "period": "2023"
+    },
+    {
+      "title": "Kubernetes",
+      "institution": "Tech Academy – Sykes",
+      "period": "2023"
+    },
+    {
+      "title": "Introducción a Containers, Kubernetes y OpenShift V2",
+      "institution": "IBM Developer Skills Network",
+      "period": "2023"
+    },
+    {
+      "title": "Introducción a Windows Server Administration",
+      "institution": "Alison",
+      "period": "2023"
+    },
+    {
+      "title": "Endpoint Security",
+      "institution": "Cisco",
+      "period": "2023"
+    },
+    {
+      "title": "Introducción a Ciberseguridad",
+      "institution": "Cisco",
+      "period": "2023"
+    },
+    {
+      "title": "Linux Essentials",
+      "institution": "Tech Academy – Sykes",
+      "period": "2022"
+    },
+    {
+      "title": "Okta Certified Administrator",
+      "institution": "Okta",
+      "period": "2021"
+    },
+    {
+      "title": "CCNA v7",
+      "institution": "Tech Academy – Sykes",
+      "period": "2024 – 2026"
     }
-    const now=await ghPushFile(cfg,'data.json',json,(pct,msg)=>setGhStatus('busy',`${msg} — data.json ${sizeKB}KB`,pct));
-    const lastStr=`${now} — data.json (${sizeKB} KB)`;
-    localStorage.setItem(GH_LAST_KEY,lastStr);
-    const lastEl=document.getElementById('ghLastPublish');
-    if(lastEl)lastEl.textContent=`Última publicación: ${lastStr}`;
-    setGhStatus('ok',`✅ data.json publicado (${sizeKB} KB) — cambios en vivo en ~1 min`,100);
-    showNotif(`🚀 Publicado (${sizeKB} KB). Visible en ~1 minuto.`);
-    setTimeout(()=>setGhStatus('ok',`✅ Listo — ${now}`),5000);
-  }catch(e){
-    console.error('[publishDataJson]',e);
-    setGhStatus('err','❌ '+e.message);
-    showNotif('❌ '+e.message.slice(0,80));
-  }finally{
-    if(dataBtn)dataBtn.disabled=false;
-    if(htmlBtn)htmlBtn.disabled=false;
-  }
+  ],
+  "skills": [
+    "Python",
+    "APIs / REST",
+    "Postman",
+    "Kubernetes",
+    "Docker",
+    "Bash / Shell",
+    "Linux (Ubuntu/CentOS)",
+    "Windows Server",
+    "VMware ESXi",
+    "OpenSSL",
+    "Cisco DNA Center",
+    "Cisco ACI",
+    "Okta / IAM",
+    "SSO (SAML · OIDC · OAuth)",
+    "LDAP / Active Directory",
+    "PostgreSQL",
+    "MongoDB",
+    "Cassandra",
+    "InfluxDB",
+    "Databricks",
+    "Log Analysis",
+    "Jira",
+    "Git",
+    "Prompt Engineering",
+    "Generative AI"
+  ],
+  "languages": [
+    {
+      "lang": "Español",
+      "level": "Nativo"
+    },
+    {
+      "lang": "Inglés",
+      "level": "Avanzado"
+    }
+  ],
+  "videos": [],
+  "podcasts": []
 }
-
-async function publishIndexHtml(){
-  const cfg=getActiveCfg();
-  if(!cfg.token||!cfg.user||!cfg.repo){showNotif('⚠️ Configurá GitHub primero');return;}
-  if(location.protocol==='file:'){setGhStatus('err','⚠️ No funciona desde archivo local (file://)');return;}
-  if(!confirm('¿Publicar el index.html completo? Esto actualiza el código de la página para todos los visitantes.'))return;
-  const dataBtn=document.getElementById('ghPublishDataBtn');
-  const htmlBtn=document.getElementById('ghPublishHtmlBtn');
-  if(htmlBtn)htmlBtn.disabled=true;
-  if(dataBtn)dataBtn.disabled=true;
-  setGhStatus('busy','Capturando index.html...',5);
-  try{
-    // Close admin overlays so they don't appear in the saved HTML
-    document.getElementById('admOverlay')?.classList.remove('open');
-    document.getElementById('loginOverlay')?.classList.remove('open');
-    await new Promise(r=>setTimeout(r,200)); // let DOM settle
-    const html=document.documentElement.outerHTML;
-    const sizeKB=(html.length/1024).toFixed(1);
-    const now=await ghPushFile(cfg,'index.html',html,(pct,msg)=>setGhStatus('busy',`${msg} — index.html ${sizeKB}KB`,pct));
-    const lastStr=`${now} — index.html (${sizeKB} KB)`;
-    localStorage.setItem(GH_LAST_KEY,lastStr);
-    const lastEl=document.getElementById('ghLastPublish');
-    if(lastEl)lastEl.textContent=`Última publicación: ${lastStr}`;
-    setGhStatus('ok',`✅ index.html publicado (${sizeKB} KB) — diseño en vivo en ~1 min`,100);
-    showNotif(`📄 index.html actualizado. Visible en ~1 minuto.`);
-    setTimeout(()=>setGhStatus('ok',`✅ Listo — ${now}`),5000);
-  }catch(e){
-    console.error('[publishIndexHtml]',e);
-    setGhStatus('err','❌ '+e.message);
-    showNotif('❌ '+e.message.slice(0,80));
-  }finally{
-    if(htmlBtn)htmlBtn.disabled=false;
-    if(dataBtn)dataBtn.disabled=false;
-  }
-}
-
-function downloadDataJson(){
-  const d={...D_ORIGINAL,photo:D_ORIGINAL.photo&&D_ORIGINAL.photo.startsWith('data:')?'':D_ORIGINAL.photo};
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:'application/json'}));a.download='data.json';a.click();URL.revokeObjectURL(a.href);
-  showNotif('⬇️ data.json descargado');
-}
-
-function resetAllData(){if(!confirm('⚠️ Borrar TODOS los datos locales. ¿Continuar?'))return;localStorage.clear();location.reload();}
-
-// Notification
-let _nt;
-function showNotif(msg){const el=document.getElementById('notifEl');el.textContent=msg;el.classList.add('show');clearTimeout(_nt);_nt=setTimeout(()=>el.classList.remove('show'),3000);}
-
-// ═══════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════
-(async()=>{
-  await loadData();
-  const validHash=/^[a-f0-9]{64}$/;
-  const oldHash=await sha256('admin123');
-  // If password is still the old default, upgrade to new default
-  if(!validHash.test(D.adminPw)||D.adminPw===oldHash){
-    D.adminPw=D_ORIGINAL.adminPw=await sha256('lipeca10');
-    saveData();
-  }
-  await setLang(currentLang);
-})();
-</script>
-</body>
-</html>
