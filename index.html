@@ -1780,17 +1780,217 @@ function removeHeroImage(){removeCover();}
 
 // ── PDF Download (respects current language) ──
 function downloadPDF(){
-  const wa=document.getElementById('waFloat');
-  const pdfWrap=document.querySelector('.pdf-btn-wrap');
-  if(wa)wa.style.display='none';
-  if(pdfWrap)pdfWrap.style.display='none';
-  document.title='Carlos_Marchena_CV_'+(currentLang==='en'?'EN':'ES');
-  window.print();
-  setTimeout(()=>{
-    document.title='Carlos Marchena — CV';
-    if(wa)wa.classList.contains('show')&&(wa.style.display='');
-    if(pdfWrap)pdfWrap.style.display='';
-  },1500);
+  const u=UI[currentLang]||UI.es;
+  const isEN=currentLang==='en';
+  // Use D_view (translated) if in EN, otherwise D_ORIGINAL
+  const d=isEN&&D_view?D_view:(D_ORIGINAL||D);
+
+  // Strip HTML tags helper
+  const strip=h=>(h||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+
+  // Build social links text
+  const socials=(d.social||[]).filter(s=>s.url).map(s=>`${s.label}: ${s.url}`).join('  |  ');
+
+  // Build experience HTML
+  const expHTML=(d.experience||[])
+    .sort((a,b)=>extractYear(b.period)-extractYear(a.period))
+    .map(e=>`
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title">${e.title||''}</div>
+          <div class="exp-period">${e.period||''}</div>
+        </div>
+        <div class="exp-company">${e.company||''}${e.location?' · '+e.location:''}</div>
+        <div class="exp-desc">${strip(e.desc||'')}</div>
+      </div>`).join('');
+
+  // Build education HTML — 2 columns
+  const eduHTML=(d.education||[]).map(e=>`
+    <div class="edu-item">
+      <div class="edu-title">${e.title||''}</div>
+      <div class="edu-inst">${e.institution||''}</div>
+      <div class="edu-period">${e.period||''}</div>
+    </div>`).join('');
+
+  // Build skills — by category if available
+  const cats=d.skillCategories||[];
+  let skillsHTML='';
+  if(cats.length){
+    skillsHTML=cats.map(c=>`
+      <div class="skill-cat">
+        <div class="skill-cat-name">${c.icon} ${c.name}</div>
+        <div class="skill-tags">${(c.skills||[]).map(s=>`<span class="skill-tag">${s}</span>`).join('')}</div>
+      </div>`).join('');
+  } else {
+    skillsHTML=`<div class="skill-tags">${(d.skills||[]).map(s=>`<span class="skill-tag">${s}</span>`).join('')}</div>`;
+  }
+
+  // Languages
+  const langsHTML=(d.languages||[]).map(l=>`
+    <span class="lang-item"><strong>${l.lang}</strong> — ${l.level}</span>`).join('  ·  ');
+
+  // References
+  const refsHTML=(d.references||[]).filter(r=>r.name).map(r=>`
+    <div class="ref-item">
+      <div class="ref-quote">"${strip(r.quote||'')}"</div>
+      <div class="ref-author">${r.name}${r.role?' — '+r.role:''}</div>
+    </div>`).join('');
+
+  const name=d.name||'Carlos Marchena Alpízar';
+  const title=d.title||'';
+  const about=strip(d.about||'');
+  const phone=d.phone||'';
+  const email=d.email||'';
+  const loc=d.loc||'';
+
+  const sectionLabel=(es,en)=>isEN?en:es;
+
+  const pdfDoc=`<!DOCTYPE html>
+<html lang="${currentLang}">
+<head>
+<meta charset="UTF-8">
+<title>${name} — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0f172a;--cyan:#0ea5e9;--cyan-d:#0369a1;--text:#1e293b;--text-m:#475569;--text-l:#64748b;--border:#e2e8f0;--bg:#f8fafc}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:#fff;line-height:1.5}
+@page{size:A4;margin:15mm 18mm 15mm 18mm}
+
+/* ── HEADER ── */
+.cv-header{background:var(--navy);color:#fff;padding:22px 28px 20px;display:flex;align-items:center;gap:22px}
+.cv-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.3);flex-shrink:0}
+.cv-photo-ph{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0}
+.cv-name-block{flex:1}
+.cv-name{font-family:'Syne',sans-serif;font-weight:800;font-size:20pt;letter-spacing:-.02em;line-height:1.1;margin-bottom:4px}
+.cv-title{font-size:9pt;color:rgba(255,255,255,.7);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.cv-contact{display:flex;flex-wrap:wrap;gap:10px;font-size:8pt;color:rgba(255,255,255,.8)}
+.cv-contact span{display:flex;align-items:center;gap:4px}
+
+/* ── BODY ── */
+.cv-body{display:grid;grid-template-columns:1fr 220px;gap:0}
+.cv-main{padding:20px 24px 20px 0;border-right:2px solid var(--border)}
+.cv-side{padding:20px 0 20px 20px}
+
+/* ── SECTIONS ── */
+.sec{margin-bottom:20px}
+.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:9.5pt;color:var(--cyan-d);text-transform:uppercase;letter-spacing:.08em;border-bottom:1.5px solid var(--border);padding-bottom:5px;margin-bottom:12px}
+
+/* ── ABOUT ── */
+.about-text{font-size:9.5pt;color:var(--text-m);line-height:1.65}
+
+/* ── EXPERIENCE ── */
+.exp-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--border)}
+.exp-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:3px}
+.exp-title{font-family:'Syne',sans-serif;font-weight:700;font-size:10pt;color:var(--navy)}
+.exp-period{font-size:8pt;color:var(--cyan-d);font-weight:600;white-space:nowrap;background:rgba(14,165,233,.08);border-radius:10px;padding:2px 8px}
+.exp-company{font-size:8.5pt;color:var(--text-m);margin-bottom:5px;font-weight:500}
+.exp-desc{font-size:8.5pt;color:var(--text-m);line-height:1.55}
+
+/* ── SIDEBAR SECTIONS ── */
+.side-sec{margin-bottom:18px}
+.side-title{font-family:'Syne',sans-serif;font-weight:700;font-size:8.5pt;color:var(--cyan-d);text-transform:uppercase;letter-spacing:.08em;border-bottom:1.5px solid var(--border);padding-bottom:4px;margin-bottom:10px}
+
+/* ── EDUCATION ── */
+.edu-item{margin-bottom:10px}
+.edu-title{font-family:'Syne',sans-serif;font-weight:700;font-size:8.5pt;color:var(--navy);line-height:1.3}
+.edu-inst{font-size:7.5pt;color:var(--text-m)}
+.edu-period{font-size:7pt;color:var(--cyan-d);font-weight:600;margin-top:1px}
+
+/* ── SKILLS ── */
+.skill-cat{margin-bottom:10px}
+.skill-cat-name{font-size:7.5pt;font-weight:700;color:var(--text-m);margin-bottom:5px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:4px}
+.skill-tag{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:2px 8px;font-size:7pt;color:var(--text);font-weight:500}
+
+/* ── LANGUAGES ── */
+.lang-item{display:block;font-size:8.5pt;margin-bottom:5px}
+.lang-item strong{color:var(--navy)}
+
+/* ── REFERENCES ── */
+.ref-item{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border)}
+.ref-item:last-child{border-bottom:none}
+.ref-quote{font-size:8pt;font-style:italic;color:var(--text-m);line-height:1.5;margin-bottom:4px}
+.ref-author{font-size:7.5pt;font-weight:600;color:var(--navy)}
+
+/* ── FOOTER ── */
+.cv-footer{background:var(--navy);color:rgba(255,255,255,.5);font-size:7pt;text-align:center;padding:8px;margin-top:0}
+
+@media print{
+  body{margin:0}
+  .cv-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cv-footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .exp-period{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<div class="cv-header">
+  ${d.photo?`<img class="cv-photo" src="${d.photo}" alt="${name}">`:`<div class="cv-photo-ph">👤</div>`}
+  <div class="cv-name-block">
+    <div class="cv-name">${name}</div>
+    <div class="cv-title">${title}</div>
+    <div class="cv-contact">
+      ${phone?`<span>📞 ${phone}</span>`:''}
+      ${email?`<span>✉️ ${email}</span>`:''}
+      ${loc?`<span>📍 ${loc}</span>`:''}
+    </div>
+  </div>
+</div>
+
+<div class="cv-body">
+  <div class="cv-main">
+
+    ${about?`<div class="sec">
+      <div class="sec-title">${sectionLabel('Sobre Mí','About Me')}</div>
+      <div class="about-text">${about}</div>
+    </div>`:''}
+
+    <div class="sec">
+      <div class="sec-title">${sectionLabel('Experiencia','Experience')}</div>
+      ${expHTML}
+    </div>
+
+  </div>
+  <div class="cv-side">
+
+    <div class="side-sec">
+      <div class="side-title">${sectionLabel('Educación','Education')}</div>
+      ${eduHTML}
+    </div>
+
+    <div class="side-sec">
+      <div class="side-title">${sectionLabel('Habilidades','Skills')}</div>
+      ${skillsHTML}
+    </div>
+
+    ${langsHTML?`<div class="side-sec">
+      <div class="side-title">${sectionLabel('Idiomas','Languages')}</div>
+      ${(d.languages||[]).map(l=>`<div class="lang-item"><strong>${l.lang}</strong> — ${l.level}</div>`).join('')}
+    </div>`:''}
+
+    ${refsHTML?`<div class="side-sec">
+      <div class="side-title">${sectionLabel('Referencias','References')}</div>
+      ${refsHTML}
+    </div>`:''}
+
+  </div>
+</div>
+
+<div class="cv-footer">${name} · CV · ${new Date().getFullYear()}</div>
+
+<script>window.onload=()=>{window.print();setTimeout(()=>window.close(),1000);}<\/script>
+</body>
+</html>`;
+
+  const win=window.open('','_blank');
+  if(!win){showNotif(isEN?'❌ Allow popups to download PDF':'❌ Habilitá ventanas emergentes para descargar el PDF');return;}
+  win.document.write(pdfDoc);
+  win.document.close();
+  win.document.title=`${name}_CV_${isEN?'EN':'ES'}`;
 }
 
 // Photo
