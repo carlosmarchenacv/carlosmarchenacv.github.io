@@ -273,7 +273,44 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .deploy-log{background:var(--navy);color:#a5f3fc;font-family:monospace;font-size:.75rem;border-radius:8px;padding:14px;max-height:180px;overflow-y:auto;margin-top:10px;display:none;line-height:1.6}
 .deploy-log.show{display:block}
 
-/* ── RICH TEXT EDITOR ── */
+/* ── HERO BACKGROUND IMAGE ── */
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;transition:opacity .5s}
+.hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.88) 0%,rgba(30,58,95,.82) 50%,rgba(26,74,138,.78) 100%)}
+
+
+/* ── PDF DOWNLOAD BUTTON ── */
+.pdf-btn-wrap{position:fixed;bottom:26px;left:26px;z-index:700}
+.pdf-btn{display:flex;align-items:center;gap:7px;background:var(--navy);color:#fff;border:none;border-radius:30px;padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:var(--shadow-lg);transition:all .2s ease}
+.pdf-btn:hover{background:var(--navy-m);transform:translateY(-2px)}
+.pdf-btn svg{width:16px;height:16px;fill:currentColor}
+
+/* ── PRINT / PDF STYLES ── */
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .top-bar,.wa-float,.pdf-btn-wrap,.adm-overlay,#loginOverlay,.lang-load-overlay,.notif{display:none!important}
+  .hero{min-height:auto;padding:40px 30px 30px;break-inside:avoid}
+  .hero-bg{display:none}
+  .hero::before{display:none}
+  .hero-inner{gap:14px}
+  .hero-photo,.hero-photo-ph{width:90px;height:90px;animation:none}
+  .hero-name{font-size:1.8rem}
+  .hero-badge{display:none}
+  .contact-chip,.social-btn{animation:none}
+  .social-grid{display:none}
+  .headline-section{padding:18px 30px;break-inside:avoid}
+  .main{padding:20px 30px;max-width:100%}
+  .section{margin-bottom:28px;break-inside:avoid}
+  .reveal,.reveal-scale,.skill-tag{opacity:1!important;transform:none!important}
+  .exp-card{box-shadow:none;border:1px solid #e2e8f0;break-inside:avoid}
+  .exp-dot{animation:none}
+  .edu-card{break-inside:avoid}
+  .lang-card,.project-card,.video-card,.podcast-card{break-inside:avoid}
+  .projects-grid,.videos-grid{grid-template-columns:1fr 1fr}
+  a{color:inherit!important;text-decoration:none}
+  body{font-size:11pt;color:#000}
+  .hero-about{color:rgba(255,255,255,.9)!important}
+  .hero-title{color:var(--cyan-l)!important}
+}
 .rte-wrap{border:2px solid var(--border);border-radius:8px;overflow:hidden;background:#f8fafc;transition:border-color var(--tr)}
 .rte-wrap:focus-within{border-color:var(--cyan);background:#fff}
 .rte-toolbar{display:flex;gap:2px;padding:6px 8px;border-bottom:1px solid var(--border);background:#f1f5f9;flex-wrap:wrap}
@@ -347,6 +384,50 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .hero-name{font-size:1.55rem}.hero-photo-wrap{width:96px;height:96px}.hero-photo,.hero-photo-ph{width:96px;height:96px;font-size:2.6rem}
   .main{padding:28px 12px 50px}
 }
+
+/* ── HERO COVER IMAGE ── */
+.hero-cover{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;z-index:0}
+.hero-cover-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.88) 0%,rgba(30,58,95,.82) 50%,rgba(26,74,138,.80) 100%);z-index:1}
+.hero::before{z-index:2}
+.hero-inner{z-index:3}
+
+/* ── HEADLINE BANNER ── */
+.headline-banner{background:var(--card);border-bottom:2px solid var(--border);padding:32px 20px;text-align:center}
+.headline-inner{max-width:780px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px}
+.headline-text{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.1rem,2.8vw,1.45rem);color:var(--navy);line-height:1.35}
+.headline-text em{color:var(--cyan-d);font-style:normal}
+.headline-badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.headline-badge{display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--navy),var(--navy-m));color:#fff;border-radius:30px;padding:9px 20px;font-size:.82rem;font-weight:600;box-shadow:0 4px 14px rgba(15,23,42,.18);transition:transform .2s,box-shadow .2s;cursor:default}
+.headline-badge:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(15,23,42,.25)}
+.headline-badge .hb-icon{font-size:1rem}
+@media(max-width:520px){.headline-text{font-size:1.05rem}.headline-badge{padding:7px 14px;font-size:.78rem}}
+
+/* ── PDF BUTTON ── */
+.pdf-btn{position:fixed;bottom:90px;left:26px;z-index:700;display:flex;align-items:center;gap:7px;background:var(--navy);color:#fff;border:none;border-radius:30px;padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:var(--shadow-md);transition:all .2s}
+.pdf-btn:hover{background:var(--navy-m);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+@media(max-width:520px){.pdf-btn{bottom:80px;left:16px;padding:9px 14px;font-size:.75rem}}
+
+/* ── PRINT / PDF ── */
+@media print{
+  *{animation:none!important;transition:none!important;box-shadow:none!important}
+  .top-bar,.wa-float,.pdf-btn,.adm-overlay,#langLoadOverlay,.hero-badge,.lang-load-overlay{display:none!important}
+  .hero{min-height:auto!important;padding:36px 30px!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .hero-cover,.hero-cover-overlay,.hero::before{display:none!important}
+  .hero{background:linear-gradient(135deg,var(--navy),var(--navy-l))!important}
+  .hero-inner>*,.reveal,.reveal-scale,.skill-tag{opacity:1!important;transform:none!important}
+  .hero-photo-wrap,.hero-photo,.hero-photo-ph{width:85px!important;height:85px!important}
+  .hero-name{font-size:1.7rem!important}
+  .social-grid{display:none!important}
+  .main{padding:18px 26px 24px!important;max-width:100%!important}
+  .section{margin-bottom:20px!important;page-break-inside:avoid}
+  .exp-card{border:1px solid #ddd!important;page-break-inside:avoid}
+  .edu-grid{grid-template-columns:repeat(3,1fr)!important}
+  .skills-wrap{gap:5px!important}
+  .skill-tag{padding:3px 9px!important;font-size:.72rem!important;border:1px solid #ddd!important}
+  .exp-dot{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .section-icon{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  body{font-size:10.5pt}
+}
 </style>
 </head>
 <body>
@@ -370,7 +451,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 </div>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="heroSection">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg-overlay" id="heroBgOverlay" style="display:none"></div>
   <div class="hero-inner">
     <div class="hero-photo-wrap" id="heroPhotoWrap">
       <div class="hero-photo-ph" id="heroPh">👤</div>
@@ -385,6 +468,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="social-grid" id="socialGrid"></div>
   </div>
 </section>
+
+<!-- HEADLINE BANNER -->
+<div class="headline-banner reveal" id="headlineSection" style="display:none">
+  <div class="headline-inner">
+    <div class="headline-text" id="headlineText"></div>
+    <div class="headline-badges" id="headlineBadges"></div>
+  </div>
+</div>
+
+<!-- PDF BUTTON -->
+<div class="pdf-btn-wrap">
+  <button class="pdf-btn" onclick="downloadPDF()" title="Descargar CV en PDF">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17.5c-2.76 0-5-2.24-5-5h1.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5H17c0 2.76-2.24 5-5 5z"/></svg>
+    PDF
+  </button>
+</div>
 
 <!-- MAIN CV -->
 <main class="main">
@@ -432,6 +531,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </div>
   <div class="adm-tabs">
     <button class="adm-tab act" onclick="switchTab('perfil',this)">👤 Perfil</button>
+    <button class="adm-tab" onclick="switchTab('apariencia',this)">🎨 Apariencia</button>
     <button class="adm-tab" onclick="switchTab('social',this)">🔗 Redes</button>
     <button class="adm-tab" onclick="switchTab('exp',this)">💼 Experiencia</button>
     <button class="adm-tab" onclick="switchTab('edu',this)">🎓 Educación</button>
@@ -472,6 +572,30 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         <div class="adm-fld"><label>Email</label><input id="p-email" placeholder="correo@gmail.com"></div>
       </div>
       <div class="adm-fld"><label>Ubicación</label><input id="p-loc" placeholder="Heredia, Costa Rica"></div>
+    </div>
+
+    <!-- APARIENCIA -->
+    <div class="adm-sec" id="sec-apariencia">
+      <div class="adm-note">Personaliza la imagen de fondo del hero y el banner de presentación. Escribí en <strong>español</strong> — se traduce automáticamente.</div>
+
+      <div class="adm-section-title">🖼️ Foto de portada (fondo del hero)</div>
+      <div class="photo-upload-area" id="coverPreviewArea" onclick="document.getElementById('coverFileInput').click()" style="height:120px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center">
+        <div id="coverPreviewPh" style="text-align:center"><div style="font-size:2rem">🖼️</div><p style="font-size:.82rem;color:var(--text-l);margin-top:6px">Click para subir foto de portada · Se comprime automáticamente</p></div>
+      </div>
+      <input type="file" id="coverFileInput" accept="image/*" style="display:none" onchange="handleCoverUpload(this)">
+      <div style="display:flex;gap:8px;margin:10px 0 20px">
+        <input id="p-heroimg" placeholder="O pega una URL de imagen..." style="flex:1;padding:8px 12px;border:2px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none" oninput="updateCoverPreview()">
+        <button class="btn btn-danger btn-sm" onclick="removeCover()">🗑 Quitar</button>
+      </div>
+
+      <div class="adm-section-title">✨ Banner "Lo que busco"</div>
+      <div class="adm-note warn">Aparece entre el hero y el CV. Dejalo vacío para ocultarlo.</div>
+      <div class="adm-fld"><label>Frase principal</label>
+        <input id="p-headline" placeholder='Ej: Buscando nuevos retos en IAM y Cloud'>
+      </div>
+      <div class="adm-fld"><label>Badges de especialidad (uno por línea)</label>
+        <textarea id="p-badges" rows="5" placeholder="🔐 IAM / SSO&#10;🌐 Networking&#10;☁️ Cloud / Kubernetes&#10;🤖 AI / LLMs"></textarea>
+      </div>
     </div>
 
     <!-- SOCIAL -->
@@ -705,7 +829,12 @@ const DEFAULT_DATA = {
   ],
   videos:[],
   podcasts:[],
-  projects:[]
+  projects:[],
+  heroImage:'',
+  headline:{
+    text:'Buscando nuevos retos en IAM, Networking e Inteligencia Artificial',
+    badges:['IAM / SSO','Networking','Cloud / Kubernetes','AI / LLMs']
+  }
 };
 
 // Static UI strings
@@ -760,6 +889,8 @@ async function buildTranslations(){
   add('title',D.title);
   add('about',stripHtml(D.about));
   add('loc',D.loc);
+  add('headline_text',(D.headline||{}).text||'');
+  ((D.headline||{}).badges||[]).forEach((b,i)=>add(`badge_${i}`,b));
   D.experience.forEach((e,i)=>{add(`exp_${i}_title`,e.title);add(`exp_${i}_period`,e.period);add(`exp_${i}_desc`,stripHtml(e.desc));});
   D.education.forEach((e,i)=>{add(`edu_${i}_title`,e.title);});
   D.languages.forEach((l,i)=>{add(`lang_${i}_name`,l.lang);add(`lang_${i}_level`,l.level);});
@@ -786,6 +917,9 @@ function applyTranslations(map){
   if(g('title'))Dt.title=g('title');
   if(g('about'))Dt.about=g('about');
   if(g('loc'))Dt.loc=g('loc');
+  if(!Dt.headline)Dt.headline={};
+  if(g('headline_text'))Dt.headline.text=g('headline_text');
+  if(Dt.headline.badges)(Dt.headline.badges||[]).forEach((_,i)=>{if(g(`badge_${i}`))Dt.headline.badges[i]=g(`badge_${i}`);});
   Dt.experience.forEach((e,i)=>{
     if(g(`exp_${i}_title`))e.title=g(`exp_${i}_title`);
     if(g(`exp_${i}_period`))e.period=g(`exp_${i}_period`);
@@ -849,6 +983,9 @@ async function loadData(){
     (d.languages||[]).forEach(l=>{if(l.lang_es&&!l.lang)l.lang=l.lang_es;if(l.level_es&&!l.level)l.level=l.level_es;});
     (d.videos||[]).forEach(v=>{if(v.title_es&&!v.title)v.title=v.title_es;});
     (d.podcasts||[]).forEach(p=>{if(p.title_es&&!p.title)p.title=p.title_es;if(p.desc_es&&!p.desc)p.desc=p.desc_es;});
+    if(!d.projects)d.projects=[];
+    if(!d.heroImage)d.heroImage='';
+    if(!d.headline)d.headline={text:'',badges:[]};
     return d;
   }
   try{
@@ -903,14 +1040,39 @@ function initReveal(){
 }
 
 function renderAll(){
-  renderHero();renderSocial();renderExperience();renderEducation();renderSkills();renderProjects();renderLanguages();renderVideos();renderPodcasts();updateWaButton();
+  renderHero();renderSocial();renderExperience();renderEducation();renderSkills();renderProjects();renderLanguages();renderVideos();renderPodcasts();renderHeadline();updateWaButton();
   setTimeout(initReveal,80);
+}
+
+function renderHeadline(){
+  const section=document.getElementById('headlineSection');
+  const textEl=document.getElementById('headlineText');
+  const badgesEl=document.getElementById('headlineBadges');
+  if(!section||!textEl||!badgesEl)return;
+  const hl=D.headline||{};
+  const text=hl.text||'';
+  const badges=(hl.badges||[]).filter(b=>b.trim());
+  if(!text&&!badges.length){section.style.display='none';return;}
+  section.style.display='';
+  textEl.textContent=text;
+  badgesEl.innerHTML=badges.map(b=>`<div class="headline-badge">${b}</div>`).join('');
 }
 
 function renderHero(){
   document.getElementById('heroName').textContent=D.name||'';
   document.getElementById('heroTitleEl').textContent=D.title||'';
   document.getElementById('heroAboutEl').innerHTML=D.about||'';
+  // Hero background image
+  const bg=document.getElementById('heroBg');
+  const overlay=document.getElementById('heroBgOverlay');
+  const heroImg=D_ORIGINAL?.heroImage||D.heroImage||'';
+  if(heroImg&&bg){
+    bg.style.backgroundImage=`url('${heroImg}')`;
+    if(overlay)overlay.style.display='';
+  } else if(bg){
+    bg.style.backgroundImage='';
+    if(overlay)overlay.style.display='none';
+  }
   const wrap=document.getElementById('heroPhotoWrap');
   const ph=document.getElementById('heroPh');
   let img=document.getElementById('heroPhotoImg');
@@ -1124,13 +1286,14 @@ function switchTab(name,btn){
 function populateAdminFields(){
   document.getElementById('p-name').value=D_ORIGINAL.name||'';
   document.getElementById('p-title').value=D_ORIGINAL.title||'';
-  document.getElementById('p-about').value=D_ORIGINAL.about||'';
+  // about handled by RTE below
   document.getElementById('p-phone').value=D_ORIGINAL.phone||'';
   document.getElementById('p-email').value=D_ORIGINAL.email||'';
   document.getElementById('p-loc').value=D_ORIGINAL.loc||'';
   if(D_ORIGINAL.photo){document.getElementById('photoPreviewPh').style.display='none';document.getElementById('photoPreviewImg').src=D_ORIGINAL.photo;document.getElementById('photoPreviewImg').style.display='block';}
   else{document.getElementById('photoPreviewPh').style.display='flex';document.getElementById('photoPreviewImg').style.display='none';}
   renderSocialAdmin();renderExpAdmin();renderEduAdmin();renderSkillsAdmin();renderProjectsAdmin();renderLangsAdmin();renderVideosAdmin();renderPodcastsAdmin();
+  populateApariencia();
   // Init RTE for about field
   initRTE('rte-about-bar','rte-about');
   setRTEValue('rte-about',D_ORIGINAL.about||'');
@@ -1157,6 +1320,7 @@ function saveAdmin(){
   D_ORIGINAL.email=document.getElementById('p-email').value.trim();
   D_ORIGINAL.loc=document.getElementById('p-loc').value.trim();
   collectSocialFromAdmin();collectExpFromAdmin();collectEduFromAdmin();
+  collectAparienciaFromAdmin();
   collectProjectsFromAdmin();collectLangsFromAdmin();collectVideosFromAdmin();collectPodcastsFromAdmin();
   const ghDom=readGhDom();
   if(ghDom.user&&ghDom.repo&&ghDom.token)localStorage.setItem(GH_LS_KEY,JSON.stringify(ghDom));
@@ -1174,6 +1338,100 @@ async function saveAndPublish(){
   const deployTab=document.querySelector('.adm-tab[onclick*="deploy"]');
   if(deployTab)switchTab('deploy',deployTab);
   await publishDataJson();
+}
+
+// ── Hero image & headline admin helpers ──
+function populateApariencia(){
+  const hi=D_ORIGINAL.heroImage||'';
+  const hiEl=document.getElementById('p-heroimg');
+  if(hiEl)hiEl.value=hi.startsWith('data:')?'[imagen subida]':hi;
+  const area=document.getElementById('coverPreviewArea');
+  const ph=document.getElementById('coverPreviewPh');
+  if(area){
+    if(hi){area.style.backgroundImage=`url('${hi}')`;if(ph)ph.style.display='none';}
+    else{area.style.backgroundImage='';if(ph)ph.style.display='block';}
+  }
+  const hl=D_ORIGINAL.headline||{};
+  const hlEl=document.getElementById('p-headline');
+  const bdEl=document.getElementById('p-badges');
+  if(hlEl)hlEl.value=hl.text||'';
+  if(bdEl)bdEl.value=(hl.badges||[]).join('\n');
+}
+
+function collectAparienciaFromAdmin(){
+  const hiUrl=(document.getElementById('p-heroimg')?.value||'').trim();
+  if(hiUrl&&!hiUrl.startsWith('['))D_ORIGINAL.heroImage=hiUrl;
+  else if(!hiUrl)D_ORIGINAL.heroImage='';
+  const hlText=(document.getElementById('p-headline')?.value||'').trim();
+  const hlBadges=(document.getElementById('p-badges')?.value||'').split('\n').map(b=>b.trim()).filter(Boolean);
+  D_ORIGINAL.headline={text:hlText,badges:hlBadges};
+}
+
+function handleCoverUpload(input){
+  const file=input.files[0];if(!file)return;input.value='';
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const canvas=document.createElement('canvas');
+      const MAX=1000;let w=img.width,h=img.height;
+      if(w>MAX){h=Math.round(h*MAX/w);w=MAX;}
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      let q=0.82,result=canvas.toDataURL('image/jpeg',q);
+      while(result.length*3/4/1024>400&&q>0.35){q-=0.1;result=canvas.toDataURL('image/jpeg',q);}
+      D_ORIGINAL.heroImage=result;
+      const hiEl=document.getElementById('p-heroimg');if(hiEl)hiEl.value='[imagen subida]';
+      const area=document.getElementById('coverPreviewArea');
+      const ph=document.getElementById('coverPreviewPh');
+      if(area){area.style.backgroundImage=`url('${result}')`;if(ph)ph.style.display='none';}
+      showNotif('🖼️ Portada lista — '+Math.round(result.length*3/4/1024)+'KB');
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleHeroImageUpload(input){handleCoverUpload(input);}
+
+function updateCoverPreview(){
+  const url=(document.getElementById('p-heroimg')?.value||'').trim();
+  const area=document.getElementById('coverPreviewArea');
+  const ph=document.getElementById('coverPreviewPh');
+  if(!area)return;
+  if(url&&!url.startsWith('[')){
+    area.style.backgroundImage=`url('${url}')`;
+    if(ph)ph.style.display='none';
+  } else if(!url){
+    area.style.backgroundImage='';
+    if(ph)ph.style.display='block';
+  }
+}
+
+function removeCover(){
+  D_ORIGINAL.heroImage='';
+  const hiEl=document.getElementById('p-heroimg');if(hiEl)hiEl.value='';
+  const area=document.getElementById('coverPreviewArea');
+  const ph=document.getElementById('coverPreviewPh');
+  if(area){area.style.backgroundImage='';if(ph)ph.style.display='block';}
+  showNotif('🗑 Imagen de portada eliminada');
+}
+
+function removeHeroImage(){removeCover();}
+
+// ── PDF Download (respects current language) ──
+function downloadPDF(){
+  const wa=document.getElementById('waFloat');
+  const pdfWrap=document.querySelector('.pdf-btn-wrap');
+  if(wa)wa.style.display='none';
+  if(pdfWrap)pdfWrap.style.display='none';
+  document.title='Carlos_Marchena_CV_'+(currentLang==='en'?'EN':'ES');
+  window.print();
+  setTimeout(()=>{
+    document.title='Carlos Marchena — CV';
+    if(wa)wa.classList.contains('show')&&(wa.style.display='');
+    if(pdfWrap)pdfWrap.style.display='';
+  },1500);
 }
 
 // Photo
@@ -1703,14 +1961,14 @@ async function ghPushFile(cfg, filePath, content, onProgress){
 function buildDataJson(){
   if(!D_ORIGINAL){throw new Error('No hay datos cargados. Recargá la página.');}
   const d=JSON.parse(JSON.stringify(D_ORIGINAL));
-  delete d.adminPw; // never publish password hash
-  // Only strip base64 photos if they're still too large (>200KB after compression)
+  delete d.adminPw;
+  // Strip base64 profile photo if too large
   if(d.photo&&d.photo.startsWith('data:')){
-    const sizeKB=Math.round(d.photo.length*3/4/1024);
-    if(sizeKB>200){
-      d.photo=''; // too large even after compression — user should use URL
-      showNotif('⚠️ Foto muy grande para el JSON. Usá una URL externa.');
-    }
+    if(Math.round(d.photo.length*3/4/1024)>200){d.photo='';showNotif('⚠️ Foto de perfil muy grande. Usá URL externa.');}
+  }
+  // Strip hero image if too large
+  if(d.heroImage&&d.heroImage.startsWith('data:')){
+    if(Math.round(d.heroImage.length*3/4/1024)>400){d.heroImage='';showNotif('⚠️ Imagen de portada muy grande. Usá URL externa.');}
   }
   return d;
 }
