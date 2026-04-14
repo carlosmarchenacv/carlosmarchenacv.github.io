@@ -218,6 +218,63 @@
     "Prompt Engineering",
     "Generative AI"
   ],
+  "skillCategories": [
+    {
+      "icon": "🔐",
+      "name": "Identidad & Seguridad",
+      "skills": [
+        "Okta / IAM",
+        "SSO (SAML · OIDC · OAuth)",
+        "LDAP / Active Directory",
+        "OpenSSL"
+      ]
+    },
+    {
+      "icon": "☁️",
+      "name": "Infraestructura & Cloud",
+      "skills": [
+        "Kubernetes",
+        "Docker",
+        "Linux (Ubuntu/CentOS)",
+        "VMware ESXi",
+        "Windows Server",
+        "Bash / Shell"
+      ]
+    },
+    {
+      "icon": "🌐",
+      "name": "Networking",
+      "skills": [
+        "Cisco DNA Center",
+        "Cisco ACI",
+        "APIs / REST",
+        "Log Analysis"
+      ]
+    },
+    {
+      "icon": "🗄️",
+      "name": "Bases de Datos",
+      "skills": [
+        "PostgreSQL",
+        "MongoDB",
+        "Cassandra",
+        "InfluxDB",
+        "Databricks"
+      ]
+    },
+    {
+      "icon": "🤖",
+      "name": "AI & Desarrollo",
+      "skills": [
+        "Python",
+        "Prompt Engineering",
+        "Generative AI",
+        "Git",
+        "Jira",
+        "Postman"
+      ]
+    }
+  ],
   "languages": [
     {
       "lang": "Español",
