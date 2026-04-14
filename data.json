@@ -236,11 +236,10 @@
     "text": "Buscando nuevos retos en IAM, Networking e Inteligencia Artificial",
     "badges": [
       "IAM",
-      "Networking",
+      "Networking / API",
       "Cloud / Kubernetes",
       "Technical Support",
-      "IA / LLM",
-      "API"
+      "IA / LLM"
     ]
   }
 }
