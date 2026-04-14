@@ -440,6 +440,58 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .wa-float.show{display:flex}
 .wa-float:hover{background:#1ebe5d;transform:scale(1.1)}
 .wa-float svg{width:28px;height:28px;fill:#fff}
+
+/* ── COLLAPSIBLE EXPERIENCE DESC ── */
+.exp-desc{font-size:.85rem;color:var(--text-m);line-height:1.65;position:relative}
+.exp-desc-inner{overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1)}
+.exp-desc-inner.collapsed{max-height:72px}
+.exp-desc-inner.expanded{max-height:2000px}
+.exp-read-more{display:inline-flex;align-items:center;gap:4px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;color:var(--cyan-d);padding:4px 0;margin-top:4px;transition:color var(--tr)}
+.exp-read-more:hover{color:var(--cyan)}
+.exp-read-more svg{width:13px;height:13px;transition:transform .3s;flex-shrink:0}
+.exp-read-more.open svg{transform:rotate(180deg)}
+
+/* ── SKILL CATEGORIES ── */
+.skills-categories{display:flex;flex-direction:column;gap:20px}
+.skill-cat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;box-shadow:var(--shadow)}
+.skill-cat-head{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.skill-cat-icon{font-size:1.1rem}
+.skill-cat-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;color:var(--navy)}
+.skill-cat-tags{display:flex;flex-wrap:wrap;gap:8px}
+.skill-cat-tag{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:.8rem;font-weight:500;color:var(--text-m);transition:all var(--tr);opacity:0;transform:scale(.88)}
+.skill-cat-tag.vis{opacity:1;transform:scale(1)}
+.skill-cat-tag:hover{border-color:var(--cyan);color:var(--cyan-d);background:rgba(14,165,233,.06)}
+[data-theme="dark"] .skill-cat{background:var(--card);border-color:#334155}
+[data-theme="dark"] .skill-cat-name{color:#e2e8f0}
+[data-theme="dark"] .skill-cat-tag{background:#0f172a;color:var(--text-m);border-color:#334155}
+
+/* ── EDUCATION ICONS ── */
+.edu-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:14px 16px 16px;box-shadow:var(--shadow);transition:all .25s ease;display:flex;flex-direction:column;gap:0}
+.edu-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--cyan-l)}
+.edu-card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.edu-inst-icon{width:32px;height:32px;border-radius:8px;object-fit:contain;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;overflow:hidden}
+.edu-inst-icon img{width:100%;height:100%;object-fit:contain;padding:2px}
+.edu-badge{display:inline-block;font-size:.68rem;font-weight:700;border-radius:10px;padding:2px 8px;margin-bottom:6px;letter-spacing:.02em}
+.edu-badge.cert{background:rgba(14,165,233,.1);color:var(--cyan-d)}
+.edu-badge.degree{background:rgba(139,92,246,.1);color:#7c3aed}
+.edu-badge.ai{background:rgba(245,158,11,.1);color:#d97706}
+[data-theme="dark"] .edu-badge.cert{background:rgba(14,165,233,.2);color:var(--cyan-l)}
+[data-theme="dark"] .edu-badge.degree{background:rgba(139,92,246,.2);color:#a78bfa}
+[data-theme="dark"] .edu-badge.ai{background:rgba(245,158,11,.2);color:#fbbf24}
+[data-theme="dark"] .edu-card{background:var(--card);border-color:#334155}
+[data-theme="dark"] .edu-inst-icon{background:#0f172a;border-color:#334155}
+[data-theme="dark"] .edu-title{color:#e2e8f0}
+
+/* ── PARALLAX HERO BG ── */
+.hero-bg{position:absolute;inset:-20%;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .1s linear;will-change:transform}
+
+/* ── TYPING CURSOR ── */
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.typing-cursor{display:inline-block;width:3px;height:1em;background:var(--cyan-l);margin-left:3px;vertical-align:text-bottom;animation:blink 1s step-end infinite;border-radius:1px}
+
+/* ── READ MORE LABEL TRANSLATE ── */
+.read-more-lbl,.read-less-lbl{display:none}
+
 @media(max-width:900px){.main{padding:48px 28px 70px}.edu-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.videos-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.hero{padding:80px 28px 52px}}
 @media(max-width:768px){
   .hero{padding:72px 20px 48px;min-height:auto}.hero-name{font-size:2.2rem}.hero-about{font-size:.9rem}
@@ -973,6 +1025,13 @@ const DEFAULT_DATA = {
     {title:'CCNA v7',institution:'Tech Academy – Sykes',period:'2024 – 2026'}
   ],
   skills:['Python','APIs / REST','Postman','Kubernetes','Docker','Bash / Shell','Linux (Ubuntu/CentOS)','Windows Server','VMware ESXi','OpenSSL','Cisco DNA Center','Cisco ACI','Okta / IAM','SSO (SAML · OIDC · OAuth)','LDAP / Active Directory','PostgreSQL','MongoDB','Cassandra','InfluxDB','Databricks','Log Analysis','Jira','Git','Prompt Engineering','Generative AI'],
+  skillCategories:[
+    {icon:'🔐',name:'Identidad & Seguridad',skills:['Okta / IAM','SSO (SAML · OIDC · OAuth)','LDAP / Active Directory','OpenSSL']},
+    {icon:'☁️',name:'Infraestructura & Cloud',skills:['Kubernetes','Docker','Linux (Ubuntu/CentOS)','VMware ESXi','Windows Server','Bash / Shell']},
+    {icon:'🌐',name:'Networking',skills:['Cisco DNA Center','Cisco ACI','APIs / REST','Log Analysis']},
+    {icon:'🗄️',name:'Bases de Datos',skills:['PostgreSQL','MongoDB','Cassandra','InfluxDB','Databricks']},
+    {icon:'🤖',name:'AI & Desarrollo',skills:['Python','Prompt Engineering','Generative AI','Git','Jira','Postman']}
+  ],
   languages:[
     {lang:'Español',level:'Nativo'},
     {lang:'Inglés',level:'Avanzado'}
@@ -997,7 +1056,9 @@ const UI = {
     refsHeading:'Referencias',noContent:'No hay contenido aún.',
     statsYears:'años de experiencia',statsCompanies:'empresas',statsLangs:'idiomas',statsCerts:'certificaciones',
     contactTitle:'Contáctame',contactName:'Tu nombre',contactMsg:'Mensaje',contactSend:'Enviar por WhatsApp',contactEmail:'Enviar por Email',contactClose:'Cerrar',
-    linkCopied:'✅ Enlace copiado',shareLabel:'Compartir'
+    linkCopied:'✅ Enlace copiado',shareLabel:'Compartir',
+    readMore:'Ver más',readLess:'Ver menos',
+    skillsCatHeading:'Habilidades por categoría'
   },
   en:{
     expHeading:'Experience',eduHeading:'Education & Certifications',skillsHeading:'Skills',
@@ -1005,7 +1066,9 @@ const UI = {
     refsHeading:'References',noContent:'No content yet.',
     statsYears:'years of experience',statsCompanies:'companies',statsLangs:'languages',statsCerts:'certifications',
     contactTitle:'Contact Me',contactName:'Your name',contactMsg:'Message',contactSend:'Send via WhatsApp',contactEmail:'Send by Email',contactClose:'Close',
-    linkCopied:'✅ Link copied',shareLabel:'Share'
+    linkCopied:'✅ Link copied',shareLabel:'Share',
+    readMore:'Read more',readLess:'Read less',
+    skillsCatHeading:'Skills by category'
   }
 };
 
@@ -1062,6 +1125,7 @@ async function buildTranslations(){
   D.languages.forEach((l,i)=>{add(`lang_${i}_name`,l.lang);add(`lang_${i}_level`,l.level);});
   (D.videos||[]).forEach((v,i)=>{add(`vid_${i}_title`,v.title);});
   (D.podcasts||[]).forEach((p,i)=>{add(`pod_${i}_title`,p.title);add(`pod_${i}_desc`,stripHtml(p.desc));});
+  (D.skillCategories||[]).forEach((c,i)=>{add(`scat_${i}_name`,c.name);});
   (D.projects||[]).forEach((p,i)=>{add(`proj_${i}_title`,p.title);add(`proj_${i}_desc`,stripHtml(p.desc));add(`proj_${i}_tags`,p.tags);});
   (D.references||[]).forEach((r,i)=>{add(`ref_${i}_quote`,r.quote);add(`ref_${i}_name`,r.name);add(`ref_${i}_role`,r.role);});
   add('contact_subject',(D.contact||{}).subject||'');
@@ -1097,6 +1161,7 @@ function applyTranslations(map){
   Dt.languages.forEach((l,i)=>{if(g(`lang_${i}_name`))l.lang=g(`lang_${i}_name`);if(g(`lang_${i}_level`))l.level=g(`lang_${i}_level`);});
   (Dt.videos||[]).forEach((v,i)=>{if(g(`vid_${i}_title`))v.title=g(`vid_${i}_title`);});
   (Dt.podcasts||[]).forEach((p,i)=>{if(g(`pod_${i}_title`))p.title=g(`pod_${i}_title`);if(g(`pod_${i}_desc`))p.desc=g(`pod_${i}_desc`);});
+  (Dt.skillCategories||[]).forEach((c,i)=>{if(g(`scat_${i}_name`))c.name=g(`scat_${i}_name`);});
   (Dt.projects||[]).forEach((p,i)=>{if(g(`proj_${i}_title`))p.title=g(`proj_${i}_title`);if(g(`proj_${i}_desc`))p.desc=g(`proj_${i}_desc`);if(g(`proj_${i}_tags`))p.tags=g(`proj_${i}_tags`);});
   (Dt.references||[]).forEach((r,i)=>{if(g(`ref_${i}_quote`))r.quote=g(`ref_${i}_quote`);if(g(`ref_${i}_name`))r.name=g(`ref_${i}_name`);if(g(`ref_${i}_role`))r.role=g(`ref_${i}_role`);});
   if(Dt.contact&&g('contact_subject'))Dt.contact.subject=g('contact_subject');
@@ -1121,6 +1186,7 @@ async function setLang(lang){
   document.getElementById('langsHeading').textContent=u.langsHeading;
   const rh=document.getElementById('refsHeading');if(rh)rh.textContent=u.refsHeading;
   const sb=document.getElementById('shareBtnTxt');if(sb)sb.textContent=u.shareLabel||'Compartir';
+  setTimeout(initReadMoreLabels,100);
   document.getElementById('videosHeading').textContent=u.videosHeading;
   document.getElementById('podcastsHeading').textContent=u.podcastsHeading;
   if(lang==='en'){
@@ -1158,6 +1224,7 @@ async function loadData(){
     if(!d.projects)d.projects=[];
     if(!d.heroImage)d.heroImage='';
     if(!d.headline)d.headline={text:'',badges:[]};
+    if(!d.skillCategories)d.skillCategories=[];
     if(!d.references)d.references=[];
     if(!d.contact)d.contact={whatsapp:'',email:'',subject:''};
     return d;
@@ -1213,7 +1280,7 @@ function initReveal(){
       }
     });
   },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal,.reveal-scale,.skill-tag').forEach(el=>{
+  document.querySelectorAll('.reveal,.reveal-scale,.skill-tag,.skill-cat-tag').forEach(el=>{
     el.classList.remove('vis');
     _revealObs.observe(el);
   });
@@ -1317,24 +1384,115 @@ function renderExperience(){
           <div class="exp-period">${e.period}</div>
         </div>
         <div class="exp-company">${logo}<strong>${e.company}</strong><span style="color:var(--text-l)">·</span>${e.location||''}</div>
-        <div class="exp-desc">${e.desc||''}</div>
+        ${buildExpDesc(e.desc||'',i)}
       </div>
     </div>`;
   }).join('');
 }
+
+function buildExpDesc(html,idx){
+  const u=UI[currentLang]||UI.es;
+  const stripped=html.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+  const isLong=stripped.length>220;
+  if(!isLong)return `<div class="exp-desc">${html}</div>`;
+  return `<div class="exp-desc">
+    <div class="exp-desc-inner collapsed" id="edesc-${idx}">${html}</div>
+    <button class="exp-read-more" id="erm-${idx}" onclick="toggleExpDesc(${idx})">
+      <span class="read-more-lbl">${u.readMore||'Ver más'}</span>
+      <span class="read-less-lbl">${u.readLess||'Ver menos'}</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+  </div>`;
+}
+
+function toggleExpDesc(idx){
+  const inner=document.getElementById('edesc-'+idx);
+  const btn=document.getElementById('erm-'+idx);
+  if(!inner||!btn)return;
+  const isCollapsed=inner.classList.contains('collapsed');
+  inner.classList.toggle('collapsed',!isCollapsed);
+  inner.classList.toggle('expanded',isCollapsed);
+  btn.classList.toggle('open',isCollapsed);
+  // Show correct label
+  btn.querySelector('.read-more-lbl').style.display=isCollapsed?'none':'inline';
+  btn.querySelector('.read-less-lbl').style.display=isCollapsed?'inline':'none';
+}
+
+function initReadMoreLabels(){
+  // Init all read-more buttons with correct labels
+  const u=UI[currentLang]||UI.es;
+  document.querySelectorAll('.exp-read-more').forEach(btn=>{
+    const isOpen=btn.classList.contains('open');
+    const rl=btn.querySelector('.read-more-lbl');
+    const rll=btn.querySelector('.read-less-lbl');
+    if(rl){rl.style.display=isOpen?'none':'inline';rl.textContent=u.readMore||'Ver más';}
+    if(rll){rll.style.display=isOpen?'inline':'none';rll.textContent=u.readLess||'Ver menos';}
+  });
+}
+function getEduMeta(e){
+  const inst=(e.institution||'').toLowerCase();
+  const title=(e.title||'').toLowerCase();
+  // Badge type
+  let badge='cert',badgeTxt=currentLang==='en'?'Certification':'Certificación';
+  if(inst.includes('universidad')||inst.includes('university')||title.includes('licenciatura')||title.includes('bachelor')||title.includes('computer science')){
+    badge='degree';badgeTxt=currentLang==='en'?'Degree':'Grado';
+  } else if(title.includes('generative ai')||title.includes('ia generativa')||title.includes('prompt')||title.includes('llm')||title.includes('deeplearning')){
+    badge='ai';badgeTxt='AI';
+  }
+  // Icon via clearbit (only for known institutions)
+  const iconMap={
+    'cisco':'🛡️','ibm':'💻','okta':'🔐','databricks':'📊',
+    'deeplearning':'🤖','coursera':'📚','vanderbilt':'🏛️',
+    'amazon web services':'☁️','aws':'☁️','sykes':'🏢',
+    'alison':'📖','tech academy':'🎓'
+  };
+  let icon='🎓';
+  for(const[k,v]of Object.entries(iconMap)){
+    if(inst.includes(k)||title.includes(k)){icon=v;break;}
+  }
+  return {badge,badgeTxt,icon};
+}
+
 function renderEducation(){
-  document.getElementById('eduGrid').innerHTML=(D.education||[]).map((e,i)=>`
-    <div class="edu-card reveal-scale reveal-d${Math.min((i%6)+1,6)}">
+  document.getElementById('eduGrid').innerHTML=(D.education||[]).map((e,i)=>{
+    const {badge,badgeTxt,icon}=getEduMeta(e);
+    return `<div class="edu-card reveal-scale reveal-d${Math.min((i%6)+1,6)}">
+      <div class="edu-card-top">
+        <div class="edu-inst-icon">${icon}</div>
+        <span class="edu-badge ${badge}">${badgeTxt}</span>
+      </div>
       <div class="edu-title">${e.title}</div>
       <div class="edu-inst">${e.institution||''}</div>
       <div class="edu-period">${e.period||''}</div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function renderSkills(){
-  document.getElementById('skillsWrap').innerHTML=(D.skills||[]).map((s,i)=>
-    `<div class="skill-tag" style="transition-delay:${(i*0.04).toFixed(2)}s">${s}</div>`
-  ).join('');
+  const cats=D.skillCategories||(D_ORIGINAL&&D_ORIGINAL.skillCategories)||[];
+  const wrap=document.getElementById('skillsWrap');
+  if(cats&&cats.length){
+    // Translate category names if in EN
+    const displayCats=currentLang==='en'&&D_view?
+      (D_view.skillCategories||cats):cats;
+    wrap.className='skills-categories';
+    wrap.innerHTML=displayCats.map((cat,ci)=>`
+      <div class="skill-cat reveal reveal-d${Math.min(ci+1,5)}">
+        <div class="skill-cat-head">
+          <span class="skill-cat-icon">${cat.icon}</span>
+          <span class="skill-cat-name">${cat.name}</span>
+        </div>
+        <div class="skill-cat-tags">
+          ${(cat.skills||[]).map((s,si)=>`<span class="skill-cat-tag" style="transition-delay:${(ci*0.1+si*0.04).toFixed(2)}s">${s}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+  } else {
+    wrap.className='skills-wrap';
+    wrap.innerHTML=(D.skills||[]).map((s,i)=>
+      `<div class="skill-tag" style="transition-delay:${(i*0.04).toFixed(2)}s">${s}</div>`
+    ).join('');
+  }
 }
 
 function renderLanguages(){
@@ -1771,6 +1929,53 @@ function addSkill(){const inp=document.getElementById('newSkillInput');const v=i
 function removeSkill(i){D_ORIGINAL.skills.splice(i,1);renderSkillsAdmin();}
 
 // Languages
+
+// ══════════════════════════════════════════════
+// TYPING ANIMATION
+// ══════════════════════════════════════════════
+let _typingDone=false;
+function runTypingAnimation(){
+  if(_typingDone)return;
+  _typingDone=true;
+  const el=document.getElementById('heroName');
+  const titleEl=document.getElementById('heroTitleEl');
+  if(!el)return;
+  const fullName=el.textContent||'';
+  el.textContent='';
+  const cursor=document.createElement('span');
+  cursor.className='typing-cursor';
+  el.appendChild(cursor);
+  let i=0;
+  const speed=55;
+  const type=()=>{
+    if(i<fullName.length){
+      el.insertBefore(document.createTextNode(fullName[i]),cursor);
+      i++;setTimeout(type,speed);
+    } else {
+      // After name done, blink cursor briefly then fade it
+      setTimeout(()=>{
+        cursor.style.transition='opacity .5s';
+        cursor.style.opacity='0';
+        setTimeout(()=>cursor.remove(),500);
+        // Then animate in title
+        if(titleEl){titleEl.style.opacity='0';titleEl.style.transform='translateY(10px)';titleEl.style.transition='all .5s ease';setTimeout(()=>{titleEl.style.opacity='1';titleEl.style.transform='translateY(0)';},100);}
+      },800);
+    }
+  };
+  setTimeout(type,400);
+}
+
+// ══════════════════════════════════════════════
+// PARALLAX
+// ══════════════════════════════════════════════
+function initParallax(){
+  const bg=document.getElementById('heroBg');
+  if(!bg||!bg.style.backgroundImage||bg.style.backgroundImage==='none'||bg.style.backgroundImage==='')return;
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY;
+    bg.style.transform=`translateY(${y*0.35}px)`;
+  },{passive:true});
+}
 
 // ══════════════════════════════════════════════
 // DARK MODE
@@ -2501,6 +2706,8 @@ function showNotif(msg){const el=document.getElementById('notifEl');el.textConte
     saveData();
   }
   await setLang(currentLang);
+  initParallax();
+  setTimeout(runTypingAnimation,300);
 })();
 </script>
 </body>
