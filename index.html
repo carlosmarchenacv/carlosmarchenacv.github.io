@@ -2384,7 +2384,8 @@ function sendContactWA(){
   const msg=document.getElementById('contactMsgInput').value.trim();
   const c=D.contact||{};
   if(!c.whatsapp){showNotif('No hay número de WhatsApp configurado');return;}
-  const text=encodeURIComponent(`Hola Carlos, soy ${name||'alguien'}.\n\n${msg||c.subject||''}`);
+  const source='📄 Mensaje enviado desde tu CV en línea: carlosmarchenacv.github.io';
+  const text=encodeURIComponent(`Hola Carlos, soy ${name||'alguien'}.\n\n${msg||c.subject||''}\n\n${source}`);
   window.open(`https://wa.me/${c.whatsapp}?text=${text}`,'_blank');
   closeContact();
 }
@@ -2393,8 +2394,9 @@ function sendContactEmail(){
   const msg=document.getElementById('contactMsgInput').value.trim();
   const c=D.contact||{};
   if(!c.email){showNotif('No hay email configurado');return;}
-  const subject=encodeURIComponent(c.subject||'Contacto desde CV');
-  const body=encodeURIComponent(`Hola Carlos, soy ${name||'alguien'}.\n\n${msg||''}`);
+  const subject=encodeURIComponent(`[CV en línea] ${c.subject||'Contacto desde CV'}`);
+  const source='Mensaje enviado desde el CV en línea: carlosmarchenacv.github.io';
+  const body=encodeURIComponent(`Hola Carlos, soy ${name||'alguien'}.\n\n${msg||''}\n\n--\n${source}`);
   window.open(`mailto:${c.email}?subject=${subject}&body=${body}`,'_blank');
   closeContact();
 }
