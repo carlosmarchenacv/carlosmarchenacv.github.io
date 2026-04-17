@@ -1519,7 +1519,6 @@ function updateWaButton(){
   if(waLink){wa.href=buildWaUrl(waLink.url);wa.classList.add('show');}
   else{wa.classList.remove('show');}
 }
-}
 
 function getYTId(url){const m=(url||'').match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^&?/\s]{11})/);return m?m[1]:null;}
 
