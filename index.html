@@ -1348,10 +1348,12 @@ const SOCIAL_ICONS={
 
 function renderSocial(){
   const grid=document.getElementById('socialGrid');
-  grid.innerHTML=(D.social||[]).filter(s=>s.url).map(s=>`
-    <a class="social-btn ${s.type||'custom'}" href="${s.url}" target="_blank" rel="noopener">
+  grid.innerHTML=(D.social||[]).filter(s=>s.url).map(s=>{
+    const href=s.type==='whatsapp'?buildWaUrl(s.url):s.url;
+    return `<a class="social-btn ${s.type||'custom'}" href="${href}" target="_blank" rel="noopener">
       ${SOCIAL_ICONS[s.type]||SOCIAL_ICONS.custom}<span>${s.label||s.type}</span><span class="s-arrow">→</span>
-    </a>`).join('');
+    </a>`;
+  }).join('');
 }
 
 function extractYear(period){
@@ -1504,12 +1506,19 @@ function renderLanguages(){
     </div>`).join('');
 }
 
+function buildWaUrl(baseUrl){
+  if(!baseUrl)return baseUrl;
+  const source=encodeURIComponent('📄 Hola Carlos! Te contacto desde tu CV en línea: carlosmarchenacv.github.io');
+  return baseUrl.includes('?')?`${baseUrl}&text=${source}`:`${baseUrl}?text=${source}`;
+}
+
 function updateWaButton(){
   const wa=document.getElementById('waFloat');
   if(!wa)return;
   const waLink=(D.social||[]).find(s=>s.type==='whatsapp'&&s.url);
-  if(waLink){wa.href=waLink.url;wa.classList.add('show');}
+  if(waLink){wa.href=buildWaUrl(waLink.url);wa.classList.add('show');}
   else{wa.classList.remove('show');}
+}
 }
 
 function getYTId(url){const m=(url||'').match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^&?/\s]{11})/);return m?m[1]:null;}
